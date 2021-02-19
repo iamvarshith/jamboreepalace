@@ -1,1 +1,1 @@
-# jamboripalace
+# jamboreepalace
