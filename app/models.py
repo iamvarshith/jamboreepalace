@@ -21,13 +21,6 @@ class User(db.Model, UserMixin):
         return f"User('{self.unique_id}', '{self.username}', '{self.email}','{self.image_file}','{self.permission}','{self.email_confirm}','{self.password}')"
 
 
-class CourseName(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    courseName = db.Column(db.String(40), unique=True, nullable=False)
-    courseId = db.Column(db.String(40), unique=True, nullable=False)
-
-    def __repr__(self):
-        return f"CourseName('{self.id}','{self.courseName}','{self.courseId}')"
 
 
 class Property(db.Model):
@@ -41,4 +34,5 @@ class Property(db.Model):
     features = db.Column(db.String(120))
 
     def __repr__(self):
-        return f"Property('{self.id}','{self.owner_id}','{self.property_name}','{self.address}','{self.best_price}','{self.pan_number}','{self.partitions}','{self.features}'"
+        return f"Property('{self.id}','{self.owner_id}','{self.property_name}','{self.address}','{self.best_price}'," \
+               f"'{self.pan_number}','{self.partitions}','{self.features}' "
