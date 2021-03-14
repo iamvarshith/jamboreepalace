@@ -3,7 +3,7 @@ import requests
 
 from flask import render_template, redirect, url_for, flash, request
 from app import app, login_manager, bcrypt, db
-from app.models import User, CourseName
+from app.models import User
 from app.forms import RegistrationForm, LoginForm
 from flask_login import current_user, login_user,logout_user
 
