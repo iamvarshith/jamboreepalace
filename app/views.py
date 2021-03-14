@@ -5,7 +5,7 @@ from flask import render_template, redirect, url_for, flash, request
 from app import app, login_manager, bcrypt, db
 from app.models import User, CourseName
 from app.forms import RegistrationForm, LoginForm
-from flask_login import current_user, login_user
+from flask_login import current_user, login_user,logout_user
 
 
 @app.route('/')
@@ -28,6 +28,8 @@ def login():
 
         else:
             flash("unsucessful login", 'danger')
+    if not form.validate_on_submit():
+        flash("Enter valid details", 'warning')
     return render_template('login.html', title='login', form=form)
 
 
@@ -51,3 +53,13 @@ def register():
     else:
 
         return render_template('registration.html', title='Register', form=form)
+
+
+@app.route('/logout')
+def logout():
+    if current_user.is_authenticated:
+        logout_user()
+        flash("logged out Sucessfullly", 'sucess')
+        return redirect(url_for('home'))
+    return redirect(url_for('login'))
+
