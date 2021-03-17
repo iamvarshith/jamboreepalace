@@ -1,10 +1,11 @@
-from config import Config
+from config import Config, Secrets
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
+from oauthlib.oauth2 import WebApplicationClient
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -18,5 +19,7 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 
 manager.add_command('db', MigrateCommand)
+
+client = WebApplicationClient(Secrets.GOOGLE_CLIENT_ID)
 
 from app import views
