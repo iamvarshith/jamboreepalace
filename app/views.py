@@ -8,8 +8,9 @@ from app.forms import RegistrationForm, LoginForm
 from flask_login import current_user, login_user,logout_user
 from oauthlib.oauth2 import WebApplicationClient
 import json
+from app.mailgun import sendMail
 
-print(Secrets.GOOGLE_DISCOVERY_URL)
+
 
 @app.route('/')
 @app.route('/home')
