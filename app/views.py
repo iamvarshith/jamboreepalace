@@ -2,14 +2,16 @@ import random
 import requests
 from config import Secrets
 from flask import render_template, redirect, url_for, flash, request
-from app import app, login_manager, bcrypt, db,client
+from app import app, login_manager, bcrypt, db, client
 from app.models import User
 from app.forms import RegistrationForm, LoginForm
-from flask_login import current_user, login_user,logout_user
+from flask_login import current_user, login_user, logout_user
 from oauthlib.oauth2 import WebApplicationClient
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadTimeSignature
 import json
 from app.mailgun import sendMail
 
+sq = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 
 @app.route('/')
@@ -32,8 +34,7 @@ def login():
 
         else:
             flash("unsucessful login", 'danger')
-    if not form.validate_on_submit():
-        flash("Enter valid details", 'warning')
+
     return render_template('login.html', title='login', form=form)
 
 
@@ -52,11 +53,36 @@ def register():
         user = User(unique_id=unique_id, username=form.name.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
+        token = sq.dumps(form.email.data, salt="itstosaltytonothavesaltinthesaltlake")
+        url = "{}/confirm_email/".format(Secrets.URL) + token
+        variables = {'url_email_confirm': '{}'.format(url)}
+        print(variables)
+
+        sendMail(usermail=str(form.email.data), subject='Welcome to Jamboreepalace {}'.format(form.name.data),
+                 template='emailconfirm', variables=variables)
 
         return redirect(url_for('login'))
     else:
 
         return render_template('registration.html', title='Register', form=form)
+
+
+@app.route('/confirm_email/<token>')
+def confirm_email(token):
+    try:
+        email = sq.loads(token, salt="itstosaltytonothavesaltinthesaltlake", max_age=36000)
+    except BadTimeSignature:
+        return "404"
+    except SignatureExpired:
+        flash("Time expired", 'warning')
+        return redirect(url_for('login'))
+    user = User.query.filter_by(email=email).first
+    user().email_confirm = True
+    email_email = user().email
+    db.session.add(user())
+    db.session.commit()
+
+    return render_template('mail_confirm.html', user = user)
 
 
 @app.route('/logout')
@@ -135,7 +161,8 @@ def callback():
     # we can now insert the incoming data into the db
     user = User.query.filter_by(email=users_email).first()
     if user is None:
-        user = User(unique_id=unique_id, username=users_name, email=users_email, image_file=picture)
+
+        user = User(unique_id=unique_id, username=users_name, email=users_email, password="Google_login")
 
         db.session.add(user)
         db.session.commit()
@@ -156,7 +183,6 @@ def callback():
         login_user(user)
 
         return redirect(url_for('home'))
-
 
 
 # Google Bs

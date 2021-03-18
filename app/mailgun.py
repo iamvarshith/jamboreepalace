@@ -6,7 +6,7 @@ import json
 def sendMail(usermail: str, subject: str, template: str, variables: dict):
     requests.post("{}".format(Secrets.MAILGUN_POST_URL),
                   auth=("api", "{}".format(Secrets.MAILGUNAPI)),
-                  data={"from": "Annapurna <noreply@support.annapurna.tech>",
+                  data={"from": "Jamboree Palace <noreply@support.jamboreepalace.me>",
                         "to": [usermail],
                         "subject": "{}".format(subject),
                         "template": template,

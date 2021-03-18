@@ -34,7 +34,7 @@ body {
     flex: 1;
     background-color: black;
     transition: 1s;
-    background-image: url(https://media-private.canva.com/MADaqYyASSQ/1/screen_2x.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJWF6QO3UH4PAAJ6Q%2F20210312%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210312T025202Z&X-Amz-Expires=47283&X-Amz-Signature=9a7454f8cdf58970cd67d02fa945f38205f7c5013db22bbcddced9a489f31b0b&X-Amz-SignedHeaders=host&response-expires=Fri%2C%2012%20Mar%202021%2016%3A00%3A05%20GMT);
+    background-image: url('bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
