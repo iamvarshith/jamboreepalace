@@ -27,10 +27,18 @@ def login():
         return redirect(url_for('home'))
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('home'))
+        if user:
+            try:
+                if bcrypt.check_password_hash(user.password, form.password.data):
+                    login_user(user)
+                    next_page = request.args.get('next')
+                    return redirect(next_page) if next_page else redirect(url_for('home'))
+            except :
+                if user.password == 'Google_login':
+                    flash('You have signed in with google before please user the same login method','warning')
+                    return redirect(url_for('login'))
+            else:
+                return redirect(url_for("home"))
 
         else:
             flash("unsucessful login", 'danger')
@@ -82,7 +90,7 @@ def confirm_email(token):
     db.session.add(user())
     db.session.commit()
 
-    return render_template('mail_confirm.html', user = user)
+    return render_template('mail_confirm.html', user=user)
 
 
 @app.route('/logout')

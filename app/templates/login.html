@@ -36,7 +36,8 @@
             margin: 0 15px;
             text-align: center
         }
-        .invalid-feedback{
+
+        .invalid-feedback {
             display: block;
         }
     </style>
@@ -73,17 +74,29 @@
 
 
                     {{ form.hidden_tag() }}
+
                     {% if form.email.errors %}
-                    {{ form.email (class="form-field animation a3",placeholder="Email Address") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.email.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
+                        {{ form.email (class="form-field animation a3",placeholder="Email Address") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
                     {% else %}
-                    {{ form.email (class="form-field animation a3",placeholder="Email Address") }}
+                        {{ form.email (class="form-field animation a3",placeholder="Email Address") }}
                     {% endif %}
-                    {{ form.password (class="form-field animation a4",placeholder="Password") }}
+
+
+                    {% if form.password.errors %}
+                        {{ form.password (class="form-field animation a4",placeholder="Password") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password (class="form-field animation a4",placeholder="Password") }}
+                    {% endif %}
                     {#      <input type="password" class="form-field animation a4" placeholder="Password">#}
                     <p class="animation a5"><a href="#">Forgot Password</a></p>
                     {{ form.submit }}
