@@ -3,9 +3,9 @@ import requests
 from config import Secrets
 from flask import render_template, redirect, url_for, flash, request
 from app import app, login_manager, bcrypt, db, client
-from app.models import User
+from app.models import User, Property
 from app.forms import RegistrationForm, LoginForm
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 from oauthlib.oauth2 import WebApplicationClient
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadTimeSignature
 import json
@@ -14,10 +14,15 @@ from app.mailgun import sendMail
 sq = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect(url_for('login'))
+
+
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('index.html')
+    return render_template('home.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -29,14 +34,18 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
             try:
+                if not user.email_confirm:
+                    flash('please Confirm your email id to continue', 'warning')
+                    return redirect(url_for('login'))
                 if bcrypt.check_password_hash(user.password, form.password.data):
                     login_user(user)
                     next_page = request.args.get('next')
                     return redirect(next_page) if next_page else redirect(url_for('home'))
-            except :
+            except:
                 if user.password == 'Google_login':
-                    flash('You have signed in with google before please user the same login method','warning')
+                    flash('You have signed in with google before please user the same login method', 'warning')
                     return redirect(url_for('login'))
+
             else:
                 return redirect(url_for("home"))
 
@@ -51,6 +60,12 @@ def register():
     form = RegistrationForm()
     if current_user.is_authenticated:
         return redirect(url_for('home'))
+    if User.query.filter_by(email=form.email.data).first():
+        flash('This email is already Registered', 'warning')
+        return redirect(url_for('register'))
+    if User.query.filter_by(username=form.name.data).first():
+        flash('Username is taken', 'warning')
+        return redirect(url_for('register'))
     if form.validate_on_submit():
 
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -71,7 +86,6 @@ def register():
 
         return redirect(url_for('login'))
     else:
-
         return render_template('registration.html', title='Register', form=form)
 
 
@@ -196,3 +210,84 @@ def callback():
 # Google Bs
 def get_google_provider_cfg():
     return requests.get(Secrets.GOOGLE_DISCOVERY_URL).json()
+
+
+@app.route('/enlist', methods=['GET', 'POST'])
+@login_required
+def enlist():
+    return render_template('enlist.html')
+
+
+@app.route('/enlist/property', methods=['GET', 'POST'])
+def enlistProperty():
+    if current_user.is_authenticated:
+        if request.method == "POST":
+            print(current_user.id)
+
+            fname = request.form['fname']
+            lname = request.form['lname']
+            owner_name = fname + ' ' + lname
+            email = request.form['email']
+            property_name = request.form['vname']
+            address = request.form['address']
+            features = request.form['description']
+            contact_manager = request.form['phone']
+            contact_front = request.form['frontDeskContact']
+            partitions = request.form['partitions']
+            capacity = request.form['capacity']
+            pan_number = request.form['panNo']
+            best_price = request.form['bestPrice']
+            owner_id = current_user.id
+            enlistment_status = 'pending'
+
+            property = Property(owner_id=owner_id, owner_name=owner_name,
+                                property_name=property_name, address=address, features=features,
+                                contact_manager=contact_manager, contact_front=contact_front, partitions=partitions,
+                                capacity=capacity, pan_number=pan_number, best_price=best_price,
+                                enlistment_status=enlistment_status)
+            db.session.add(property)
+            db.session.commit()
+    return '400'
+
+
+@app.route('/profile')
+@login_required
+def profile():
+    user = current_user
+    return render_template('profile.html', user=user)
+
+
+@app.route('/profile/previous_bookings')
+@login_required
+def prevBookings():
+    return render_template('previousbookings.html')
+
+
+@app.route('/profile/enlistment_application')
+@login_required
+def enlistApplication():
+    properties = current_user.property
+    for i in range(len(properties)):
+        print(properties[i])
+    return render_template('enlistapp.html', properties=properties)
+
+
+@app.route('/profile/manageproperty')
+@login_required
+def manageProperty():
+    return render_template('manage.html')
+
+
+@app.route('/about')
+def about():
+    return render_template('register1.html')
+
+
+@app.route('/spaces')
+def spaces():
+    return 'pending'
+
+
+@app.route('/contact')
+def contact():
+    return 'pending'

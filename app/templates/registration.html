@@ -28,7 +28,7 @@
                     {% if messages %}
                         {% for category,message in messages %}
                             <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                                <h2>sgdjndsd</h2>
+                                <h2>{{ message }}</h2>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -72,7 +72,7 @@
                         {{ form.password (class="input") }}
                         {#                        <input id="user" type="text" class="input">#}
                     </div>
-                {% endif %}
+            {% endif %}
             {% if form.confirm_password.errors %}
                     <label for="pass" class="label">confirm password</label>
                     {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
@@ -81,7 +81,7 @@
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
-                {% else %}
+             {% else %}
                     <div class="group">
                         <label for="pass" class="label">confirm password</label>
                         {{ form.confirm_password (class="input") }}
