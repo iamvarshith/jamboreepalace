@@ -13,7 +13,13 @@ app.config.from_object(Config)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 db = SQLAlchemy(app)
+
+
 login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+login_manager.login_message = u"Please Login to continue"
+login_manager.login_message_category = "info"
+
 bcrypt = Bcrypt(app)
 migrate = Migrate(app, db)
 manager = Manager(app)

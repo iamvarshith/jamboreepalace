@@ -25,17 +25,22 @@ class User(db.Model, UserMixin):
 class Property(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    owner_name = db.Column(db.String(60))
     property_name = db.Column(db.String(60))
     address = db.Column(db.String(120))
     best_price = db.Column(db.Integer())
     pan_number = db.Column(db.Integer())
     partitions = db.Column(db.Integer())
     features = db.Column(db.String(120))
+    contact_front = db.Column(db.Integer())
+    contact_manager = db.Column(db.Integer())
+    capacity = db.Column(db.Integer())
+    enlistment_status = db.Column(db.String(20))
     bookees = db.relationship('Bookings', backref='property_owner')
 
     def __repr__(self):
         return f"Property('{self.id}','{self.owner_id}','{self.property_name}','{self.address}','{self.best_price}'," \
-               f"'{self.pan_number}','{self.partitions}','{self.features}' "
+               f"'{self.pan_number}','{self.partitions}','{self.features}') "
 
 
 class Bookings(db.Model):

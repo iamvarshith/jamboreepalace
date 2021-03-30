@@ -1,0 +1,40 @@
+/* Your custom css code goes here */
+/*UPDATED CSS*/
+.profile-nav{
+    float: left;
+    width: 20%;
+    margin-left: 0;
+  }
+  
+  .profile{
+    padding: 20px;
+    font-size: medium;
+    
+  }
+
+  .el-list{
+    height: 40px;
+    font-size: medium;
+  }
+
+  .update{
+      float: right;
+      padding-right: 13%;
+      
+  }
+
+  .profile-image{
+        border: 1px solid #ddd; /* Gray border */
+        border-radius: 4px;  /* Rounded border */
+        padding: 15px; /* Some padding */
+        padding-bottom: 30px;
+        width: 150px;
+  }
+
+  .profile-image:hover{
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+  .property_name {
+      color: #0b0b0b!important;
+  }
