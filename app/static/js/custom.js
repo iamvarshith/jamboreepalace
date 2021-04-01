@@ -166,13 +166,9 @@ function validateform(){
 
             },
 
-            async: !0,
+            async: !1,
             cache: !1,
-            success: function (data) {
-                $('#address').val(data.line1) & $('#address').addClass('filled');
-                $('#pincode').val(data.pincode).addClass('filled');
-                $('#landmark').val(data.landmark).addClass('filled');
-            },
+
         })
 
     }

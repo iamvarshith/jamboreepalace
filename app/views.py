@@ -222,8 +222,6 @@ def enlist():
 def enlistProperty():
     if current_user.is_authenticated:
         if request.method == "POST":
-            print(current_user.id)
-
             fname = request.form['fname']
             lname = request.form['lname']
             owner_name = fname + ' ' + lname
@@ -240,14 +238,15 @@ def enlistProperty():
             owner_id = current_user.id
             enlistment_status = 'pending'
 
-            property = Property(owner_id=owner_id, owner_name=owner_name,
-                                property_name=property_name, address=address, features=features,
-                                contact_manager=contact_manager, contact_front=contact_front, partitions=partitions,
-                                capacity=capacity, pan_number=pan_number, best_price=best_price,
-                                enlistment_status=enlistment_status)
-            db.session.add(property)
+            enlistproperty = Property(owner_id=owner_id, owner_name=owner_name,
+                                      property_name=property_name, address=address, features=features,
+                                      contact_manager=contact_manager, contact_front=contact_front,
+                                      partitions=partitions,
+                                      capacity=capacity, pan_number=pan_number, best_price=best_price,
+                                      enlistment_status=enlistment_status)
+            db.session.add(enlistproperty)
             db.session.commit()
-    return '400'
+    return '200'
 
 
 @app.route('/profile')
@@ -267,9 +266,12 @@ def prevBookings():
 @login_required
 def enlistApplication():
     properties = current_user.property
-    for i in range(len(properties)):
-        print(properties[i])
-    return render_template('enlistapp.html', properties=properties)
+    enlist_application = Property.query.filter(
+        Property.owner_id == current_user.id, Property.enlistment_status == 'pending').all()
+    print(enlist_application)
+    # for i in range(len(properties)):
+    #     if properties.enlistment_status
+    return render_template('enlistapp.html', properties=enlist_application)
 
 
 @app.route('/profile/manageproperty')
