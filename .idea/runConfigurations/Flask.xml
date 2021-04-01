@@ -1,8 +1,8 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Flask" type="Python.FlaskServer" nameIsGenerated="true">
     <option name="flaskDebug" value="true" />
-    <module name="thirdeye" />
-    <option name="target" value="C:\Users\BedBreaker\PycharmProjects\thirdeye" />
+    <module name="jamboreepalace" />
+    <option name="target" value="C:\Users\BedBreaker\Desktop\jamboreepalace" />
     <option name="targetType" value="PATH" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="false" />
