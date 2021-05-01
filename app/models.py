@@ -8,14 +8,14 @@ class User(db.Model, UserMixin):
         return User.query.get(user_id)
 
     id = db.Column(db.Integer, primary_key=True)
-
-    unique_id = db.Column(db.Integer(), unique=True, nullable=False)
+    unique_id = db.Column(db.String(120), unique=True, nullable='False')
     username = db.Column(db.String(60), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     permission = db.Column(db.String(20), nullable=False, default='user')
     email_confirm = db.Column(db.Boolean, default=False)
     password = db.Column(db.String(60), nullable=True, default='lol_google_login')
     property = db.relationship('Property', backref='owner')
+    profile_img = db.Column(db.String(500), nullable=True)
     bookings = db.relationship('Bookings', backref='user_booked')
 
     def __repr__(self):

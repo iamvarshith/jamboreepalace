@@ -10,8 +10,8 @@ body {
 
 .container {
     display: flex;
-    height: 100vh;
-    max-width: 100%;
+    height: auto;
+
 }
 
 .left {
@@ -31,7 +31,7 @@ body {
 }
 
 .right {
-    flex: 1;
+    flex: 5;
     background-color: black;
     transition: 1s;
     background-image: url('bg.jpg');

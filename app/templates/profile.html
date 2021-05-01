@@ -60,7 +60,7 @@
         <div class="container">
             <div class="profile-nav">
                 <ul style="list-style-type:none;">
-                    <li><img src="./img/logo.jpeg" alt="Profile Image" class="profile-image"></li>
+                    <li><img src="{{ user.profile_img }}" alt="Profile Image" class="profile-image"></li>
                     <li class="el-list"><a href = "{{ url_for('profile') }}">Profile</a></li>
                     <li class="el-list"><a href = "{{ url_for('prevBookings') }}">Previous bookings</a></li>
                     <li class="el-list"><a href = "{{ url_for('enlistApplication') }}">Enlistment Applications</a></li>

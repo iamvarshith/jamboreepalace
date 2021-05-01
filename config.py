@@ -8,7 +8,15 @@ class Config:
     TESING_ENV = os.getenv('TEST_ENV')
     KING = os.getenv('king')
     SECRET_KEY = os.getenv('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
+    db_user = os.getenv('db_user')
+    db_password = os.getenv('db_password')
+    db_host = os.getenv('db_host')
+    db_port = os.getenv('db_port')
+    db_name = os.getenv('db_name')
+    SQLALCHEMY_DATABASE_URI = "postgresql://{user}:{password}@{host}:{port}/{name}".\
+        format(user=db_user,password=db_password,host=db_host,port=db_port,name=db_name)
+    print(SQLALCHEMY_DATABASE_URI)
+
 
 
 class Secrets:
@@ -18,4 +26,3 @@ class Secrets:
     OAUTHLIB_INSECURE_TRANSPORT = os.getenv('OAUTHLIB_INSECURE_TRANSPORT')
     URL = os.getenv('URL')
     MAILGUN_POST_URL = os.getenv('mailgun_post_url')
-    MAILGUNAPI = os.getenv('mailgunapi')

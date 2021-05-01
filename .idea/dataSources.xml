@@ -13,5 +13,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\Users\BedBreaker\Desktop\jamboreepalace\app\site.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="jp" uuid="b460bfe1-c3a3-49ab-9b92-9c406211b7da">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://jp-db.cjnvaoav7fyz.ap-south-1.rds.amazonaws.com:5432/jamboreepalace</jdbc-url>
+    </data-source>
   </component>
 </project>
