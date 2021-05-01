@@ -1,0 +1,72 @@
+/* Your custom css code goes here */
+
+:root {
+  --back: white;
+  --primary: #287094;
+  --text: grey;
+  --secondary: #023246;
+  --accent: #d4d4ce;
+}
+
+#profile {
+  outline: none;
+  border: transparent;
+  background-color: transparent;
+}
+
+#profile {
+  border: transparent;
+}
+
+.profile-dd a {
+  display: block;
+}
+
+.space-des {
+  font-size: 12px;
+}
+
+.contact-img {
+  height: 700px !important;
+}
+
+.conatct-sec-div {
+  background-color: var(--secondary);
+  color: var(--accent);
+}
+
+.conatct-sec-div h2 {
+  color: aliceblue;
+}
+
+.contact-sec-div a {
+  background-color: var(--accent) !important;
+  color: var(--secondary) !important;
+  border-color: var(--accent) !important;
+}
+
+.contact-sec-div a:hover {
+  background-color: var(--primary) !important;
+  color: var(--accent) !important;
+  border-color: var(--primary) !important;
+}
+
+/*space-gallery page*/
+
+.chk-box label {
+  font-family: Rubik, sans-serif !;
+  font-weight: 400;
+}
+
+.chk-box input:checked + label {
+  font-family: Rubik, sans-serif !;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.filter-btn {
+  background-color: var(--accent);
+  border: none;
+  outline: none;
+  padding: 0px 10px;
+}
