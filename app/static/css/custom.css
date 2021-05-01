@@ -38,3 +38,7 @@
   .property_name {
       color: #0b0b0b!important;
   }
+
+  .hires img{
+      width: 15vw;
+  }

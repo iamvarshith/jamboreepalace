@@ -14,9 +14,9 @@ from app.mailgun import sendMail
 sq = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 
-@login_manager.unauthorized_handler
-def unauthorized():
-    return redirect(url_for('login'))
+# @login_manager.unauthorized_handler
+# def unauthorized():
+#     return redirect(url_for('login'))
 
 
 @app.route('/')
@@ -40,6 +40,7 @@ def login():
                 if bcrypt.check_password_hash(user.password, form.password.data):
                     login_user(user)
                     next_page = request.args.get('next')
+                    print(next_page)
                     return redirect(next_page) if next_page else redirect(url_for('home'))
             except:
                 if user.password == 'Google_login':
@@ -124,13 +125,15 @@ def login_google():
 
     # Use library to construct the request for login and provide
     # scopes that let you retrieve user's profile from Google
+    testurl = '{}/login/google/callback'.format(Secrets.URL)
     request_uri = client.prepare_request_uri(
         authorization_endpoint,
-        redirect_uri='{}/login/google/callback'.format(Secrets.URL),
+        redirect_uri=testurl,
         scope=["openid", "email", "profile"],
         prompt="select_account",
 
     )
+    print(testurl)
     return redirect(request_uri)
 
 
@@ -138,6 +141,7 @@ def login_google():
 def callback():
     # Get authorization code Google sent back to you
     code = request.args.get("code")
+    print(code)
 
     # Find out what URL to hit to get tokens that allow you to ask for
     # things on behalf of a user
@@ -151,13 +155,16 @@ def callback():
         redirect_url=request.base_url,
         code=code,
     )
+    print(token_url)
+
     token_response = requests.post(
         token_url,
         headers=headers,
         data=body,
         auth=(Secrets.GOOGLE_CLIENT_ID, Secrets.GOOGLE_CLIENT_SECRET),
     )
-
+    print(Secrets.GOOGLE_CLIENT_ID, Secrets.GOOGLE_CLIENT_SECRET)
+    print(token_response.json())
     # Parse the tokens!
     client.parse_request_body_response(json.dumps(token_response.json()))
 
@@ -173,6 +180,8 @@ def callback():
     # app, and now we've verified their email through Google!
     if userinfo_response.json().get("email_verified"):
         unique_id = userinfo_response.json()["sub"]
+
+        # unique_id = 4548545785
         users_email = userinfo_response.json()["email"]
         picture = userinfo_response.json()["picture"]
         users_name = userinfo_response.json()["given_name"]
@@ -183,24 +192,13 @@ def callback():
     # we can now insert the incoming data into the db
     user = User.query.filter_by(email=users_email).first()
     if user is None:
-
-        user = User(unique_id=unique_id, username=users_name, email=users_email, password="Google_login")
+        user = User(unique_id=unique_id, username=users_name, email=users_email, password="Google_login",profile_img=picture)
 
         db.session.add(user)
         db.session.commit()
-
-        requests.post("https://api.mailgun.net/v3/support.annapurna.tech/messages",
-                      auth=("api", "key-179896d154b2bdb3c6b6d0201268f295"),
-                      data={"from": "Annapurna <noreply@support.annapurna.tech>",
-                            "to": [users_email],
-                            "subject": "Welcome to annapurna {}".format(user.username),
-                            # "text": "Please click the link {}".format(url),
-                            "template": "welcome",
-                            "h:X-Mailgun-Variables": json.dumps({"sitelink": "https://www.annapurna.tech"})
-
-                            })
         login_user(user)
         return redirect(url_for('home'))
+
     else:
         login_user(user)
 
@@ -225,7 +223,6 @@ def enlistProperty():
             fname = request.form['fname']
             lname = request.form['lname']
             owner_name = fname + ' ' + lname
-            email = request.form['email']
             property_name = request.form['vname']
             address = request.form['address']
             features = request.form['description']
@@ -285,11 +282,22 @@ def about():
     return render_template('register1.html')
 
 
-@app.route('/spaces')
+@app.route('/spaces', methods=['GET', 'POST'])
+@login_required
 def spaces():
     return 'pending'
 
 
 @app.route('/contact')
 def contact():
+    return 'pending'
+
+
+@app.route('/property/<token>', methods=['get', 'post'])
+@login_required
+def individual_property(token):
+    properties = current_user.property
+    enlist_application = Property.query.filter(
+        Property.owner_id == current_user.id, Property.owner_id == str(token)).all()
+    print(enlist_application)
     return 'pending'
