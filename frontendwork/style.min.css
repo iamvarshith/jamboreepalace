@@ -326,7 +326,7 @@ a.hover-reverse:hover {
   left: 0;
   right: 0;
   width: 100vw;
-  height: 100vh;
+  height: 500px;
   backdrop-filter: blur(2px);
   /*background: rgba(6, 29, 48, 0.404);*/
   opacity: 0;
@@ -394,16 +394,7 @@ a.hover-reverse:hover {
   bottom: 0;
   content: "";
   background: #ddf0f3;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#ddf0f3),
-    to(#903479)
-  );
   background: linear-gradient(to right, #ddf0f3 0, #903479 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$firstcolor, endColorstr=$secondcolor, GradientType=1 );
-  opacity: 0.8;
 }
 .probootstrap-intro > .container,
 .probootstrap-intro > .container-fluid {
@@ -861,8 +852,8 @@ a.hover-reverse:hover {
 }
 .probootstrap-half .text {
   padding: 100px;
-  color: var(--secondary);
-  background: var(--accent);
+  color: var(--back);
+  background: var(--secondary);
 }
 @media screen and (max-width: 1000px) {
   .probootstrap-half .image {
@@ -876,10 +867,10 @@ a.hover-reverse:hover {
   }
 }
 .probootstrap-half .text h2 {
-  color: var(--secondary);
+  color: var(--back);
 }
 .probootstrap-half .text p {
-  color: var(--secondary);
+  color: var(--back);
   line-height: 1.5;
 }
 .section-heading h2 {
@@ -1203,7 +1194,7 @@ a.hover-reverse:hover {
   color: var(--primary);
 }
 .link-with-icon.white:hover {
-  color: var(--secondary);
+  color: var(--accent);
 }
 .probootstrap-footer-social {
   padding: 0;
@@ -1372,7 +1363,6 @@ a.hover-reverse:hover {
 
 .flexslider form {
   background-color: transparent;
-  margin: 0% 0% 20%;
   padding: 5%;
   height: 90px;
 }
