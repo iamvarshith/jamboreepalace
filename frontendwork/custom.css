@@ -70,3 +70,45 @@
   outline: none;
   padding: 0px 10px;
 }
+
+.locate-icon {
+  background-color: var(--accent);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  top: 4px !important;
+  left: 100px !important;
+  margin-bottom: 15px !important;
+}
+
+.locate-icon i {
+  color: var(--primary) !important;
+}
+
+.locate-icon:hover {
+  background-color: var(--secondary);
+  color: var(--accent) !important;
+}
+
+.probootstrap-room img {
+  height: 500px;
+}
+
+.checkout-cont {
+  background-color: var(--back) !important;
+  width: 50%;
+  height: 50%;
+  border: 1px solid var(--accent);
+  color: var(--secondary);
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.checkout-icon {
+  font-size: 40px !important;
+  color: #023246 !important;
+}
