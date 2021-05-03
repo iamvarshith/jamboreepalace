@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jamboree Palace</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="icon" href="img/logo-small.png" type="image/x-icon" sizes="16x16">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:300,400,700|Rubik:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles-merged.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="fontawesome-free-5.15.2-web/css/all.css">
+
+    <!--[if lt IE 9]>
+      <script src="js/vendor/html5shiv.min.js"></script>
+      <script src="js/vendor/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+  <!-- START: header -->
+
+  <header role="banner" class="probootstrap-header">
+    <!-- <div class="container"> -->
+    <div class="row">
+        <a href="index.html" class="probootstrap-logo visible-xs"><img src="img/logoD1.png" class="hires" width="120" height="33" alt="Free Bootstrap Template by uicookies.com"></a>
+        
+        <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            
+           
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="spaces_gallery.html">Spaces</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            
+            <li class="hidden-xs probootstrap-logo-center">
+              <a href="index.html">
+                <img src="img/logoD1.png" class="hires" width="100px" height="" alt="Jamboree-Palacelogo">
+              </a>
+            </li>
+            <li><a href="about.html">About</a></li>
+
+            <li><a>
+              <select name="profile" id="profile">
+                <option value="placeholder"><a>PROFILE</a></option>
+                <option value=""><a>abc</a></option>
+                <option value=""><a>abc</a></option>
+                <option value=""><a>abc</a></option>
+                <option value=""><a>abc</a></option> 
+              </select>
+            </li>
+
+            <li><a href="#">Login/Signup</a></li>
+          </ul>
+          <div class="extra-text visible-xs">
+            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+            <h5>Connect With Us</h5>
+            <ul class="social-buttons">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook2"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+            </ul>
+          </div>
+        </nav>
+        </div>
+    <!-- </div> -->
+  </header>
+  <!-- END: header -->
+
+  <section class="probootstrap-slider flexslider index-flex">
+    <div class="slides overlay" style="background-image: url('img/THIS\,\ HERE\,\ LIGHT.jfif');background-size:cover; margin-top: 50px; height: 300px; display:flex; align-items:center; justify-content:center;">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <form action="#" method="post" class="probootstrap-form">
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      
+                      <div class="form-field">
+                        
+                        <button class="icon locate-icon"><i class="fas fa-compass"></i></button>
+                        <select name="locations" id="locations" class="form-control">
+                          <option value="placeholder">Location</option>
+                          <option value="3">Location 1</option>
+                          <option value="4">Location 2</option>
+                          <option value="5">Location 3</option>
+                          <option value="6">Location 4</option>
+                          <option value="7">Location 5</option>
+                          <option value="8">Location 6</option>
+                          <option value="9">Location 7</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  
+
+                  <div class="col-md-2">
+            <div class="form-group">
+              <div class="form-field">
+                <i class="icon icon-chevron-down"></i>
+                <select name="space" id="room" class="form-control">
+                  <option value="placeholder">Type</option>
+                  <option value="2">Private</option>
+                  <option value="3">Semi-private</option>
+                </select>
+              </div>
+            </div></div>
+            
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="form-field">
+                    <i class="icon icon-calendar2"></i>
+                    <input type="text" class="form-control" id="date-arrival" name="date-arrival" placeholder="From">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="form-field">
+                    <i class="icon icon-calendar2"></i>
+                    <input type="text" class="form-control" id="date-departure" name="date-departure" placeholder="To">
+                  </div>
+                </div>
+              </div>
+          
+
+              <div class="col-md-2">
+                <div class="form-group">
+      
+                  <div class="form-field">
+                    <i class="icon fas fa-users"></i>
+                    <select name="adults" id="adults" class="form-control">
+                      <option value="placeholder">Guests</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9+</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+           
+
+              <div class="col-md-2">
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Search">
+                </div>
+              </div>
+            
+
+
+
+          </form>
+              </div>
+            </div>
+          </div>
+          
+        </li>
+    </ul>
+  </section>
+
+  <section class="probootstrap-cta probootstrap-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="probootstrap-cta-heading">Reserve a room for your family <span> &mdash; Far far away behind the word mountains far.</span></h2>
+          <div class="probootstrap-cta-button-wrap"><a href="#" class="btn btn-primary">Reserve now</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section class="probootstrap-section">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12 probootstrap-relative">
+            <h3 class="mt0 mb30">More Spaces</h3>
+            <ul class="probootstrap-owl-navigation absolute right">
+              <li><a href="#" class="probootstrap-owl-prev"><i class="icon-chevron-thin-left"></i></a></li>
+              <li><a href="#" class="probootstrap-owl-next"><i class="icon-chevron-thin-right"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 probootstrap-relative">
+            <div class="owl-carousel owl-carousel-carousel">
+              <div class="item">
+                <div class="probootstrap-room">
+                  <a href="#"><img src="img/space2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></a>
+                  <div class="text">
+                    <h3>Classic Room</h3>
+                    <p>Starting from <strong> ₹1299.00/Day</strong></p>
+                    <div class="post-meta">
+                      <ul>
+                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews</li>
+                        <li><i class="icon-user2"></i> 3 Guests</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="probootstrap-room">
+                  <a href="#"><img src="img/space3.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></a>
+                  <div class="text">
+                    <h3>Grand Deluxe Room</h3>
+                    <p>Starting from <strong>₹2000.00/Day</strong></p>
+                    <div class="post-meta">
+                      <ul>
+                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews</li>
+                        <li><i class="icon-user2"></i> 3 Guests</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="probootstrap-room">
+                  <a href="#"><img src="img/space1.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></a>
+                  <div class="text">
+                    <h3>Ultra Superior Room</h3>
+                    <p>Starting from <strong>₹1899.00/Day</strong></p>
+                    <div class="post-meta">
+                      <ul>
+                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews</li>
+                        <li><i class="icon-user2"></i> 3 Guests</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="probootstrap-room">
+                  <a href="#"><img src="img/space5.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></a>
+                  <div class="text">
+                    <h3>Classic Room</h3>
+                    <p>Starting from <strong>₹2299.00/Day</strong></p>
+                    <div class="post-meta">
+                      <ul>
+                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews</li>
+                        <li><i class="icon-user2"></i> 3 Guests</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="probootstrap-room">
+                  <a href="#"><img src="img/space6.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></a>
+                  <div class="text">
+                    <h3>Grand Deluxe Room</h3>
+                    <p>Starting from <strong>₹2500.00/Day</strong></p>
+                    <div class="post-meta">
+                      <ul>
+                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews</li>
+                        <li><i class="icon-user2"></i> 3 Guests</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="probootstrap-room">
+                  <a href="#"><img src="img/Venue.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></a>
+                  <div class="text">
+                    <h3>Ultra Superior Room</h3>
+                    <p>Starting from <strong>₹2599.00/Day</strong></p>
+                    <div class="post-meta">
+                      <ul>
+                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews</li>
+                        <li><i class="icon-user2"></i> 3 Guests</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="probootstrap-room">
+                  <a href="#"><img src="img/11 Lofts We Love For Your Chicago Wedding.jfif" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></a>
+                  <div class="text">
+                    <h3>Ultra Superior Room</h3>
+                    <p>Starting from <strong>₹999.00/Day</strong></p>
+                    <div class="post-meta">
+                      <ul>
+                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews</li>
+                        <li><i class="icon-user2"></i> 3 Guests</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <section class="probootstrap-half">
+    <div class="image" style="background-image: url(img/Venue.jpg);"></div>
+    <div class="text">
+      <div class="probootstrap-animate fadeInUp probootstrap-animated">
+        <h2 class="mt0">Best Spaces for your Gatherings</h2>
+       <hr style="background-color:#287094; border: none; height: 0.3px;">
+        <div class="row">
+          <div class="col-md-6">
+            <p>When you need a space for your posse to gather around, big spaces are not fit for your needs. 
+              When a group of people want to learn and share ideas, a small space is more appropriate.
+            </p></div>
+          <div class="col-md-6">
+            <p>Here we are, with spaces that are just right for you ext gathering. At the right prices and the right amount of room, have a delightful time with your clique.</div>
+        </div>
+        <p><a href="#" class="link-with-icon white">Learn More <i class=" icon-chevron-right"></i></a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- START: footer -->
+  <footer role="contentinfo" class="probootstrap-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="probootstrap-footer-widget">
+            <p class="mt40"><img src="img/logoD1.png" class="hires" width="120" height="120" alt="logo"></p>
+            <p>A new idea for small groups to come together has finally become big enough to be put out there for our clients.
+
+            </p>
+            <p><a href="#" class="link-with-icon">Learn More About Us!<i class=" icon-chevron-right"></i></a></p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="probootstrap-footer-widget">
+            <p class="mt40"><img src="img/THIS, HERE, LIGHT.jfif" class="hires" width="480" height="200" alt="logo"></p>
+            <p><form>
+              <div class="col-md-7">
+                <div class="form-group">
+                  <input type="search" class="form-control" id="footer-newsletter" name="footer-newsletter" placeholder="Subscribe">
+                  </div></div>
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary btn-md" id="submit" name="submit" value="Search" style="height: 35px;">
+                </div>
+              </div>
+            </form>
+            </p>
+          </div>
+       
+
+        <div class="col-md-3">
+          <div class="probootstrap-footer-widget">
+            <h3>Contact</h3>
+            <ul class="probootstrap-contact-info">
+              <li><i class="icon-location2"></i> <span>198 West 21th Street, Suite 721 New York NY 10016</span></li>
+              <li><i class="icon-mail"></i><span>info@domain.com</span></li>
+              <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
+            </ul>
+
+            <div class="row mt30">
+                <ul class="probootstrap-footer-social">
+                  <li><a href=""><i class="icon-twitter"></i></a></li>
+                  <li><a href=""><i class="icon-facebook"></i></a></li>
+                  <li><a href=""><i class="icon-instagram2"></i></a></li>
+                </ul>
+            
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- END: footer -->
+
+  <script src="js/scripts.min.js"></script>
+  <script src="js/main.min.js"></script>
+  <script src="js/custom.js"></script>
+
+
+  </body>
+</html>

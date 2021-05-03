@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="site" uuid="63deff75-59d7-4ded-b163-9bc9369810c8">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\BedBreaker\PycharmProjects\thirdeye\app\site.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="site [2]" uuid="94f30e58-5584-4a02-879c-6c6c8f66f264">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\BedBreaker\Desktop\jamboreepalace\app\site.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="jp" uuid="b460bfe1-c3a3-49ab-9b92-9c406211b7da">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://jp-db.cjnvaoav7fyz.ap-south-1.rds.amazonaws.com:5432/jamboreepalace</jdbc-url>
+    </data-source>
+  </component>
+</project>
