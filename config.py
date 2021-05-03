@@ -25,5 +25,4 @@ class Secrets:
     GOOGLE_DISCOVERY_URL = os.getenv('GOOGLE_DISCOVERY_URL')
     OAUTHLIB_INSECURE_TRANSPORT = os.getenv('OAUTHLIB_INSECURE_TRANSPORT')
     URL = os.getenv('URL')
-    MAILGUNAPI = os.getenv('MAILGUNAPI')
     MAILGUN_POST_URL = os.getenv('mailgun_post_url')
