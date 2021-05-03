@@ -39,9 +39,9 @@
             <ul class="probootstrap-main-nav">
 
 
-                <li class="active"><a href="{{ url_for('login') }}">Home</a></li>
-                <li><a href="{{ spaces }}">Spaces</a></li>
-                <li><a href="{{ contact }}">Contact</a></li>
+                <li class="active"><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('spaces') }}">Spaces</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
 
                 <li class="hidden-xs probootstrap-logo-center">
                     <a href="index.html">
@@ -49,7 +49,7 @@
                              alt="Jamboree-Palacelogo">
                     </a>
                 </li>
-                <li><a href="{{ enlist }}">About</a></li>
+                <li><a href="{{ enlist }}">Enlist</a></li>
 
                 <li><a>
                     <select name="profile" id="profile">
