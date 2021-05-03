@@ -59,6 +59,7 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
+    print(form.name.data)
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     if User.query.filter_by(email=form.email.data).first():
@@ -68,7 +69,7 @@ def register():
         flash('Username is taken', 'warning')
         return redirect(url_for('register'))
     if form.validate_on_submit():
-
+        print('yes')
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
 
         unique_id = (random.randint(100000000000, 10000000000000))
@@ -86,8 +87,10 @@ def register():
                  template='emailconfirm', variables=variables)
 
         return redirect(url_for('login'))
+
     else:
-        return render_template('registration.html', title='Register', form=form)
+        print(form.errors)
+        return render_template('register.html', title='Register', form=form)
 
 
 @app.route('/confirm_email/<token>')
@@ -279,7 +282,7 @@ def manageProperty():
 
 @app.route('/about')
 def about():
-    return render_template('register1.html')
+    return render_template('register.html')
 
 
 @app.route('/spaces', methods=['GET', 'POST'])
@@ -290,7 +293,7 @@ def spaces():
 
 @app.route('/contact')
 def contact():
-    return 'pending'
+    return render_template('register.html')
 
 
 @app.route('/property/<token>', methods=['get', 'post'])
