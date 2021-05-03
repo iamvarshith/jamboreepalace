@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+
+    <meta name="keywords"
+        content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:300,400,700|Rubik:300,400,700,900"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles-merged.css">
+    <link rel="stylesheet" href="../static/css/style.min.css">
+    <link rel="stylesheet" href="../static/css/custom.css">
+
+
+</head>
+
+<body>
+
+    <header role="banner" class="probootstrap-header">
+        <div class="row">
+            <a href="index.html" class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png" class="hires"
+                    alt="JP Logo"></a>
+
+            <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
+            <div class="mobile-menu-overlay"></div>
+
+            <nav role="navigation" class="probootstrap-nav hidden-xs">
+                <ul class="probootstrap-main-nav">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('spaces') }}">Spaces</a></li>
+                    <li class="hidden-xs probootstrap-logo-center"><a href="{{ url_for('home') }}"><img src="../static/img/logoD1.png"
+                                class="hires" width="181" height="120" alt="JP LOGO"></a></li>
+                    <li><a href="{{ url_for('enlist') }}">Add enlistment</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                     {% if current_user.is_authenticated %}
+                        <li class="active"><a href="{{  url_for('profile') }}">Profile</a></li>
+                    {% else %}
+                        <li class="active"><a href="{{  url_for('login') }}">Login</a></li>
+                    {% endif %}
+                </ul>
+                <div class="extra-text visible-xs">
+                    <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+                    <h5>Connect With Us</h5>
+                    <ul class="social-buttons">
+                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#"><i class="icon-facebook2"></i></a></li>
+                        <li><a href="#"><i class="icon-instagram2"></i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <section class="probootstrap-section">
+        <div class="container">
+            <div class="profile-nav">
+                <ul style="list-style-type:none;">
+                    <li><img src="./img/logo.jpeg" alt="Profile Image" class="profile-image"></li>
+                    <li class="el-list"><a href = "{{ url_for('profile') }}">Profile</a></li>
+                    <li class="el-list"><a href = "{{ url_for('prevBookings') }}">Previous bookings</a></li>
+                    <li class="el-list"><a href = "{{ url_for('enlistApplication') }}">Enlistment Applications</a></li>
+                    <li class="el-list"><a href = "{{ url_for('manageProperty') }}">Manage Properties</a></li>
+                </ul>
+            </div>
+
+            {% for property in properties %}
+                {% if property %}
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="probootstrap-room">
+                            <a href="#"><img src="../static/img/img_1.jpg" alt="room1" class="img-responsive"></a>
+                            <div class="text">
+                                <h3>{{ property.property_name }}</h3>
+                                <p>Contact No <strong>{{ property.contact_manager }}</strong></p>
+                                <div class="post-meta mb30 property_name">
+                                    <ul>
+                                        <li> {{ property.enlistment_status }} </li>
+                                        <br><li>Owner Name :  {{ property.owner_name }} </li>
+                                       <br><li>Address :  {{ property.address }} </li>
+                                        <br><li>Best Price :  {{ property.best_price }} </li>
+                                    </ul>
+                                </div>
+                                <p><a href="#" class="btn btn-primary" role="button">Details</a></p>
+                            </div>
+                        </div>
+                </div>
+                {% else %}
+                    <h4>nah No applications</h4>
+                {% endif %}
+            {% endfor %}
+
+
+        </div>
+
+    </section>
+
+    <!-- START: footer -->
+    <footer role="contentinfo" class="probootstrap-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="probootstrap-footer-widget">
+                        <center><img src="../static/img/logoD1.png" class="footlogo" height="250" alt="JP Logo"></center>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="probootstrap-footer-widget">
+                        <h3>About us</h3>
+                        <p>At Jamboree Palace we have decided to find a solution for your need for small spaces. Now you
+                            don't have to worry about planning your small gatherings and events. We are here to take
+                            care of all of that.</p>
+                        <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="probootstrap-footer-widget">
+                        <h3>Contact</h3>
+                        <ul class="probootstrap-contact-info">
+                            <li><i class="icon-location2"></i> <span>Jamboree Palace Main Office, Street 42, Cannaught
+                                    Place, Delhi</span></li>
+                            <li><i class="icon-mail"></i><span>info@jamboreepalace.com</span></li>
+                            <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
+                        </ul>
+                        <div class="col-md-12 text-center">
+                            <ul class="probootstrap-footer-social">
+                                <li><a href=""><i class="icon-twitter"></i></a></li>
+                                <li><a href=""><i class="icon-facebook"></i></a></li>
+                                <li><a href=""><i class="icon-instagram2"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END: footer -->
+
+    <script src="../static/js/scripts.min.js"></script>
+    <script src="../static/js/main.min.js"></script>
+    <script src="../static/js/custom.js"></script>
+
+</body>
+
+</html>

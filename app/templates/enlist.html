@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jamboree Palace</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:300,400,700|Rubik:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles-merged.css">
+    <link rel="stylesheet" href="../static/css/style.min.css">
+    <link rel="stylesheet" href="../static/css/custom.css">
+    <link rel="stylesheet" href="../static/fontawesome-free-5.15.2-web/css/all.css">
+
+    <!--[if lt IE 9]>
+      <script src="../static/js/vendor/html5shiv.min.js"></script>
+      <script src="../static/js/vendor/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+  <!-- START: header -->
+
+  <header role="banner" class="probootstrap-header">
+        <div class="row">
+            <a href="index.html" class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png" class="hires"
+                    alt="JP Logo"></a>
+
+            <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
+            <div class="mobile-menu-overlay"></div>
+
+            <nav role="navigation" class="probootstrap-nav hidden-xs">
+                <ul class="probootstrap-main-nav">
+                    <li ><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('spaces') }}">Spaces</a></li>
+                    <li class="hidden-xs probootstrap-logo-center"><a href="{{ url_for('home') }}"><img src="../static/img/logoD1.png"
+                                class="hires" width="181" height="120" alt="JP LOGO"></a></li>
+                    <li class="active" ><a href="{{ url_for('enlist') }}">Add enlistment</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                     {% if current_user.is_authenticated %}
+                        <li ><a href="{{  url_for('profile') }}">Profile</a></li>
+                    {% else %}
+                        <li ><a href="{{  url_for('login') }}">Login</a></li>
+                    {% endif %}
+                </ul>
+                <div class="extra-text visible-xs">
+                    <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+                    <h5>Connect With Us</h5>
+                    <ul class="social-buttons">
+                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#"><i class="icon-facebook2"></i></a></li>
+                        <li><a href="#"><i class="icon-instagram2"></i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+  <!-- END: header -->
+
+
+  <section class="probootstrap-slider flexslider probootstrap-inner">
+    <ul class="slides">
+       <li style="background-image: url(../static/img/slider_1.jpg);" class="overlay">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <div class="probootstrap-slider-text text-center">
+                  <p><img src="../static/img/curve_white.svg" class="seperator probootstrap-animate" alt="Free HTML5 Bootstrap Template"></p>
+                  <h1 class="probootstrap-heading probootstrap-animate">Enlist your property</h1>
+                  <div class="probootstrap-animate probootstrap-sub-wrap">Have a property that could be partitioned and used for any event?<br> Fill out this small form and get ready to be a part of JP family!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+    </ul>
+  </section>
+  
+  <section class="probootstrap-section">
+    <div class="container">
+      <div class="row probootstrap-gutter40">
+        <div class="col-md-8">
+          <h2 class="mt0">Enlistment Form</h2>
+          <div class="probootstrap-form" id = "form" >
+            <div class="row">
+                
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="fname">First Name</label>
+                  <input type="text" class="form-control" id="fname" name="fname">
+                    <div id="nameErr"></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lname">Last Name</label>
+                  <input type="text" class="form-control" id="lname" name="lname">
+                    <div id="lnameErr"></div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <div class="form-field">
+                <i class="icon icon-mail"></i>
+                <input type="email" class="form-control" id="email" name="email">
+                  <div id="emailErr"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="vname">Venue Name</label>
+              <div class="form-field">
+                <input type="text" class="form-control" id="vname" name="vname">
+                  <div id="vnameErr"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <div class="form-field">
+                <input type="text" class="form-control" id="address" name="address">
+                  <div id="addErr"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="desc">Description</label>
+              <div class="form-field">
+                <input type="text" class="form-control" id="desc" name="desc">
+                  <div id="descErr"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="room">Type of space</label>
+              <div class="form-field">
+                <i class="icon icon-chevron-down"></i>
+                <select name="room" id="room" class="form-control">
+                  <option value="">Select type</option>
+                  <option value="private">Private</option>
+                  <option value="semi-private">Semi-Private</option>
+                  </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="phn">Phone number</label>
+                  <div class="form-field">
+                    <input type="text" class="form-control" id="phn" name="phn">
+                      <div id="mobileErr"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="fd-contact">Front-Desk Contact</label>
+                  <div class="form-field">
+                    <input type="text" class="form-control" id="fd-contact" name="fd-contact">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb30">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="adults">Partitons Available</label>
+                  <div class="form-field">
+                    <i class="icon icon-chevron-down"></i>
+                    <select name="partions" id="partions" class="form-control">
+                      <option value="">Number of Partitions</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4+</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="Capacity">Capacity</label>
+                  <div class="form-field">
+                    <input type="text" class="form-control" id="Capacity" name="Capacity">
+                      <div id="capErr"></div>
+                  </div>  
+                </div>
+              </div>
+                <div class="col-md-6">
+                <div class="form-group">
+                  <label for="pno">PAN No.</label>
+                  <input type="text" class="form-control" id="pno" name="pno">
+                    <div id="pnoErr"></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="bp">Best Pricce</label>
+                  <input type="text" class="form-control" id="bp" name="bp">
+                    <div id="bpErr"></div>
+                </div>
+              </div>
+              
+              <p><a href="#" class="btn btn-primary" role="button">Add images</a></p>
+              
+            </div>
+            <div class="form-group">
+              <input type="submit" onclick="enlist()" class="btn btn-primary btn-lg" id="submit" name="submit" value="Enlist">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h2 class="mt0">Enlistment Procedure</h2>
+          <p>To ensure safety and security, we have a well-laid enlistment procedure:
+             <ol>
+              <li>Fill out the enlistment form.</li>
+              <li>You will receive a mail about your enlistment application.</li>
+              <li>Based on your location, our team will arrive within 3-5 working days to check your documents and verify the details.</li>
+              <li>Once verification is complete, your land will be enlisted.</li>
+             </ol>
+             If you have some other concerns, fell free to contact us!
+          </p>
+          <p><a href="#" class="btn btn-primary" role="button">Contact us</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{#  <section class="probootstrap-half">#}
+{#    <div class="image" style="background-image: url(../static/img/slider_2.jpg);"></div>#}
+{#    <div class="text">#}
+{#      <div class="probootstrap-animate fadeInUp probootstrap-animated">#}
+{#        <h2 class="mt0">Best 5 Star hotel</h2>#}
+{#        <p><img src="img/curve_white.svg" class="seperator" alt="Free HTML5 Bootstrap Template"></p>#}
+{#        <div class="row">#}
+{#          <div class="col-md-6">#}
+{#            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>    #}
+{#          </div>#}
+{#          <div class="col-md-6">#}
+{#            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>    #}
+{#          </div>#}
+{#        </div>#}
+{#        <p><a href="#" class="link-with-icon white">Learn More <i class=" icon-chevron-right"></i></a></p>#}
+{#      </div>#}
+{#    </div>#}
+{#  </section>#}
+
+  <!-- START: footer -->
+    <footer role="contentinfo" class="probootstrap-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="probootstrap-footer-widget">
+                        <center><img src="../static/img/logoD1.png" class="footlogo" height="250" alt="JP Logo"></center>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="probootstrap-footer-widget">
+                        <h3>About us</h3>
+                        <p>At Jamboree Palace we have decided to find a solution for your need for small spaces. Now you
+                            don't have to worry about planning your small gatherings and events. We are here to take
+                            care of all of that.</p>
+                        <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="probootstrap-footer-widget">
+                        <h3>Contact</h3>
+                        <ul class="probootstrap-contact-info">
+                            <li><i class="icon-location2"></i> <span>Jamboree Palace Main Office, Street 42, Cannaught
+                                    Place, Delhi</span></li>
+                            <li><i class="icon-mail"></i><span>info@jamboreepalace.com</span></li>
+                            <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
+                        </ul>
+                        <div class="col-md-12 text-center">
+                            <ul class="probootstrap-footer-social">
+                                <li><a href=""><i class="icon-twitter"></i></a></li>
+                                <li><a href=""><i class="icon-facebook"></i></a></li>
+                                <li><a href=""><i class="icon-instagram2"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END: footer -->
+  
+  <script src="../static/js/scripts.min.js"></script>
+  <script src="../static/js/main.min.js"></script>
+  <script src="../static/js/custom.js"></script>
+<script>
+
+</script>
+  </body>
+</html>
