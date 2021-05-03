@@ -35,10 +35,9 @@
         <nav role="navigation" class="probootstrap-nav hidden-xs">
             <ul class="probootstrap-main-nav">
 
-
-                <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="spaces_gallery.html">Spaces</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li class="active"><a href="{{ url_for("home") }}">Home</a></li>
+                <li><a href="{{ url_for('spaces') }}">Spaces</a></li>
+                <li><a href="{{ url_for("enlist") }}">Enlist</a></li>
 
                 <li class="hidden-xs probootstrap-logo-center">
                     <a href="index.html">
@@ -46,19 +45,22 @@
                              alt="Jamboree-Palacelogo">
                     </a>
                 </li>
-                <li><a href="about.html">About</a></li>
 
+                <li><a href="{{ url_for("about") }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                {% if current_user.is_authenticated %}
                 <li><a>
                     <select name="profile" id="profile">
-                        <option value="placeholder"><a>PROFILE</a></option>
-                        <option value=""><a>abc</a></option>
-                        <option value=""><a>abc</a></option>
-                        <option value=""><a>abc</a></option>
-                        <option value=""><a>abc</a></option>
+                        <option value="placeholder"><a href = "{{ url_for("profile") }}">Profile</a></option>
+                        <option value=""><a href = "{{ "prevBookings" }}">Previous Bookings</a></option>
+                        <option value=""><a href = "{{ "enlistApplication(" }}">Enlistment Applications</a></option>
+                        <option value=""><a href = "{{ "manageProperty" }}">Manage Properties</a></option>
+                        <option value=""><a href = "{{ "logout" }}">Log out</a></option>
                     </select>
                 </li>
-
-                <li><a href="#">Login/Signup</a></li>
+                {% else %}
+                <li><a href="{{ login }}"> Login/Signup </a></li>
+                {% endif %}
             </ul>
             <div class="extra-text visible-xs">
                 <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
@@ -241,25 +243,6 @@
       </div>
     </div>
   </section>
-
-{#  <section class="probootstrap-half">#}
-{#    <div class="image" style="background-image: url(../static/img/slider_2.jpg);"></div>#}
-{#    <div class="text">#}
-{#      <div class="probootstrap-animate fadeInUp probootstrap-animated">#}
-{#        <h2 class="mt0">Best 5 Star hotel</h2>#}
-{#        <p><img src="img/curve_white.svg" class="seperator" alt="Free HTML5 Bootstrap Template"></p>#}
-{#        <div class="row">#}
-{#          <div class="col-md-6">#}
-{#            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>    #}
-{#          </div>#}
-{#          <div class="col-md-6">#}
-{#            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>    #}
-{#          </div>#}
-{#        </div>#}
-{#        <p><a href="#" class="link-with-icon white">Learn More <i class=" icon-chevron-right"></i></a></p>#}
-{#      </div>#}
-{#    </div>#}
-{#  </section>#}
 
   <!-- START: footer -->
     <footer role="contentinfo" class="probootstrap-footer">

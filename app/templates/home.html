@@ -38,10 +38,9 @@
         <nav role="navigation" class="probootstrap-nav hidden-xs">
             <ul class="probootstrap-main-nav">
 
-
-                <li class="active"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="active"><a href="{{ url_for("home") }}">Home</a></li>
                 <li><a href="{{ url_for('spaces') }}">Spaces</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for("enlist") }}">Enlist</a></li>
 
                 <li class="hidden-xs probootstrap-logo-center">
                     <a href="index.html">
@@ -49,19 +48,22 @@
                              alt="Jamboree-Palacelogo">
                     </a>
                 </li>
-                <li><a href="{{ enlist }}">Enlist</a></li>
 
+                <li><a href="{{ url_for("about") }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                {% if current_user.is_authenticated %}
                 <li><a>
                     <select name="profile" id="profile">
-                        <option value="placeholder"><a>PROFILE</a></option>
-                        <option value=""><a>abc</a></option>
-                        <option value=""><a>abc</a></option>
-                        <option value=""><a>abc</a></option>
-                        <option value=""><a>abc</a></option>
+                        <option value="placeholder"><a href = "{{ url_for("profile") }}">Profile</a></option>
+                        <option value=""><a href = "{{ "prevBookings" }}">Previous Bookings</a></option>
+                        <option value=""><a href = "{{ "enlistApplication(" }}">Enlistment Applications</a></option>
+                        <option value=""><a href = "{{ "manageProperty" }}">Manage Properties</a></option>
+                        <option value=""><a href = "{{ "logout" }}">Log out</a></option>
                     </select>
                 </li>
-
-                <li><a href="{{ login }}">Login/Signup</a></li>
+                {% else %}
+                <li><a href="{{ login }}"> Login/Signup </a></li>
+                {% endif %}
             </ul>
             <div class="extra-text visible-xs">
                 <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
@@ -85,7 +87,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <form action="#" method="post" class="probootstrap-form">
-
                         <div class="col-md-2">
                             <div class="form-group">
 
