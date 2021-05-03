@@ -22,40 +22,56 @@
 <body>
 
     <header role="banner" class="probootstrap-header">
-        <div class="row">
-            <a href="index.html" class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png" class="hires"
-                    alt="JP Logo"></a>
+    <!-- <div class="container"> -->
+    <div class="row">
+        <a href="index.html" class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png" class="hires"
+                                                                       width="120" height="33"
+                                                                       alt="Free Bootstrap Template by uicookies.com"></a>
 
-            <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
-            <div class="mobile-menu-overlay"></div>
+        <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
 
-            <nav role="navigation" class="probootstrap-nav hidden-xs">
-                <ul class="probootstrap-main-nav">
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('about') }}">About</a></li>
-                    <li><a href="{{ url_for('spaces') }}">Spaces</a></li>
-                    <li class="hidden-xs probootstrap-logo-center"><a href="{{ url_for('home') }}"><img src="../static/img/logoD1.png"
-                                class="hires" width="181" height="120" alt="JP LOGO"></a></li>
-                    <li><a href="{{ url_for('enlist') }}">Add enlistment</a></li>
-                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
-                     {% if current_user.is_authenticated %}
-                        <li class="active"><a href="{{  url_for('profile') }}">Profile</a></li>
-                    {% else %}
-                        <li class="active"><a href="{{  url_for('login') }}">Login</a></li>
-                    {% endif %}
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+            <ul class="probootstrap-main-nav">
+
+
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="spaces_gallery.html">Spaces</a></li>
+                <li><a href="contact.html">Contact</a></li>
+
+                <li class="hidden-xs probootstrap-logo-center">
+                    <a href="index.html">
+                        <img src="../static/img/logoD1.png" class="hires" width="100px" height=""
+                             alt="Jamboree-Palacelogo">
+                    </a>
+                </li>
+                <li><a href="about.html">About</a></li>
+
+                <li><a>
+                    <select name="profile" id="profile">
+                        <option value="placeholder"><a>PROFILE</a></option>
+                        <option value=""><a>abc</a></option>
+                        <option value=""><a>abc</a></option>
+                        <option value=""><a>abc</a></option>
+                        <option value=""><a>abc</a></option>
+                    </select>
+                </li>
+
+                <li><a href="#">Login/Signup</a></li>
+            </ul>
+            <div class="extra-text visible-xs">
+                <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+                <h5>Connect With Us</h5>
+                <ul class="social-buttons">
+                    <li><a href="#"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#"><i class="icon-facebook2"></i></a></li>
+                    <li><a href="#"><i class="icon-instagram2"></i></a></li>
                 </ul>
-                <div class="extra-text visible-xs">
-                    <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
-                    <h5>Connect With Us</h5>
-                    <ul class="social-buttons">
-                        <li><a href="#"><i class="icon-twitter"></i></a></li>
-                        <li><a href="#"><i class="icon-facebook2"></i></a></li>
-                        <li><a href="#"><i class="icon-instagram2"></i></a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
+            </div>
+        </nav>
+    </div>
+    <!-- </div> -->
+</header>
     <section class="probootstrap-section">
         <div class="container">
             <div class="profile-nav">
@@ -86,45 +102,67 @@
 
     <!-- START: footer -->
     <footer role="contentinfo" class="probootstrap-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="probootstrap-footer-widget">
-                        <center><img src="../static/img/logoD1.png" class="footlogo" height="250" alt="JP Logo"></center>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="probootstrap-footer-widget">
+                    <p class="mt40"><img src="../static/img/logoD1.png" class="hires" width="120" height="120"
+                                         alt="logo"></p>
+                    <p>A new idea for small groups to come together has finally become big enough to be put out there
+                        for our clients.
 
-                <div class="col-md-4">
-                    <div class="probootstrap-footer-widget">
-                        <h3>About us</h3>
-                        <p>At Jamboree Palace we have decided to find a solution for your need for small spaces. Now you
-                            don't have to worry about planning your small gatherings and events. We are here to take
-                            care of all of that.</p>
-                        <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
-                    </div>
+                    </p>
+                    <p><a href="#" class="link-with-icon">Learn More About Us!<i class=" icon-chevron-right"></i></a>
+                    </p>
                 </div>
+            </div>
 
-                <div class="col-md-4">
-                    <div class="probootstrap-footer-widget">
-                        <h3>Contact</h3>
-                        <ul class="probootstrap-contact-info">
-                            <li><i class="icon-location2"></i> <span>Jamboree Palace Main Office, Street 42, Cannaught
-                                    Place, Delhi</span></li>
-                            <li><i class="icon-mail"></i><span>info@jamboreepalace.com</span></li>
-                            <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
-                        </ul>
-                        <div class="col-md-12 text-center">
-                            <ul class="probootstrap-footer-social">
-                                <li><a href=""><i class="icon-twitter"></i></a></li>
-                                <li><a href=""><i class="icon-facebook"></i></a></li>
-                                <li><a href=""><i class="icon-instagram2"></i></a></li>
-                            </ul>
+            <div class="col-md-6">
+                <div class="probootstrap-footer-widget">
+                    <p class="mt40"><img src="../static/img/THIS, HERE, LIGHT.jfif" class="hires" width="480"
+                                         height="200" alt="logo"></p>
+                    <p>
+                    <form>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <input type="search" class="form-control" id="footer-newsletter"
+                                       name="footer-newsletter" placeholder="Subscribe">
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-md" id="submit" name="submit" value="Search"
+                                   style="height: 35px;">
+                        </div>
+                </div>
+                </form>
+                </p>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="probootstrap-footer-widget">
+                    <h3>Contact</h3>
+                    <ul class="probootstrap-contact-info">
+                        <li><i class="icon-location2"></i>
+                            <span>198 West 21th Street, Suite 721 New York NY 10016</span></li>
+                        <li><i class="icon-mail"></i><span>info@domain.com</span></li>
+                        <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
+                    </ul>
+
+                    <div class="row mt30">
+                        <ul class="probootstrap-footer-social">
+                            <li><a href=""><i class="icon-twitter"></i></a></li>
+                            <li><a href=""><i class="icon-facebook"></i></a></li>
+                            <li><a href=""><i class="icon-instagram2"></i></a></li>
+                        </ul>
+
                     </div>
+
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
     <!-- END: footer -->
 
     <script src="../static/js/scripts.min.js"></script>
