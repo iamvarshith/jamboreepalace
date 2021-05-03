@@ -290,7 +290,7 @@ def spaces():
 
 @app.route('/contact')
 def contact():
-    return 'pending'
+    return 'testing'
 
 
 @app.route('/property/<token>', methods=['get', 'post'])
