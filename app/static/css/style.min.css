@@ -125,7 +125,8 @@ a.hover-reverse:hover {
 }
 @media screen and (max-width: 768px) {
   .probootstrap-logo {
-    padding-left: 25px;
+    padding-left: 45px;
+    width: 80px;
   }
 }
 .probootstrap-logo-center {
@@ -163,7 +164,7 @@ a.hover-reverse:hover {
   z-index: 1100;
   height: 100vh;
   width: 300px;
-  background: #000;
+  background: var(--primary);
   padding: 40px;
   -webkit-transition: 0.3s all ease-out;
   transition: 0.3s all ease-out;
@@ -197,7 +198,7 @@ a.hover-reverse:hover {
   .social-buttons
   li
   a {
-  color: #fff;
+  color: var(--accent);
   padding: 10px;
 }
 .probootstrap-mobile-menu-active
@@ -211,7 +212,7 @@ a.hover-reverse:hover {
 .probootstrap-mobile-menu-active .probootstrap-nav .extra-text h5 {
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--accent);
 }
 .probootstrap-mobile-menu-active.show .probootstrap-nav {
   -webkit-transform: translateX(0);
@@ -234,15 +235,25 @@ a.hover-reverse:hover {
   font-size: 18px;
 }
 .probootstrap-mobile-menu-active .probootstrap-main-nav li {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding-left: 0;
   padding-right: 0;
   display: block;
 }
+
+#profile {
+  outline: none;
+  border: transparent;
+}
+
+#profile {
+  border: transparent;
+}
+
 .probootstrap-main-nav li a {
   text-transform: uppercase;
-  padding: 0;
-  color: rgba(0, 0, 0, 0.5);
+  padding: 0px;
+  color: var(--text);
   font-size: 14px;
 }
 .probootstrap-mobile-menu-active .probootstrap-main-nav li a {
@@ -253,8 +264,11 @@ a.hover-reverse:hover {
   color: rgba(255, 255, 255, 0.5);
   border-bottom: none !important;
 }
-.probootstrap-main-nav li a:hover {
+
+.probootstrap-main-nav li a:hover,
+#profile:hover {
   color: var(--accent);
+  cursor: pointer;
 }
 .probootstrap-mobile-menu-active .probootstrap-main-nav li a:hover {
   color: #fff;
@@ -312,8 +326,9 @@ a.hover-reverse:hover {
   left: 0;
   right: 0;
   width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.3);
+  height: 500px;
+  backdrop-filter: blur(2px);
+  /*background: rgba(6, 29, 48, 0.404);*/
   opacity: 0;
   visibility: hidden;
   -webkit-transition: 0.3s all ease-out;
@@ -379,16 +394,7 @@ a.hover-reverse:hover {
   bottom: 0;
   content: "";
   background: #ddf0f3;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#ddf0f3),
-    to(#903479)
-  );
   background: linear-gradient(to right, #ddf0f3 0, #903479 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$firstcolor, endColorstr=$secondcolor, GradientType=1 );
-  opacity: 0.8;
 }
 .probootstrap-intro > .container,
 .probootstrap-intro > .container-fluid {
@@ -486,11 +492,11 @@ a.hover-reverse:hover {
   display: inline-block;
   width: 18px;
   height: 2px;
-  color: #000;
+  color: var(--primary);
   font: 700 14px/0.4 Helvetica, arial;
   text-transform: uppercase;
   text-indent: -55px;
-  background: #000;
+  background: var(--primary);
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
@@ -499,7 +505,7 @@ a.hover-reverse:hover {
   content: "";
   width: 18px;
   height: 2px;
-  background: #000;
+  background: var(--primary);
   position: absolute;
   left: 0;
   -webkit-transition: all 0.2s ease-out;
@@ -846,8 +852,8 @@ a.hover-reverse:hover {
 }
 .probootstrap-half .text {
   padding: 100px;
-  color: var(--secondary);
-  background: var(--accent);
+  color: var(--back);
+  background: var(--secondary);
 }
 @media screen and (max-width: 1000px) {
   .probootstrap-half .image {
@@ -861,10 +867,10 @@ a.hover-reverse:hover {
   }
 }
 .probootstrap-half .text h2 {
-  color: var(--secondary);
+  color: var(--back);
 }
 .probootstrap-half .text p {
-  color: var(--secondary);
+  color: var(--back);
   line-height: 1.5;
 }
 .section-heading h2 {
@@ -908,7 +914,7 @@ a.hover-reverse:hover {
 .probootstrap-footer .probootstrap-backtotop a:active,
 .probootstrap-footer .probootstrap-backtotop a:focus,
 .probootstrap-footer .probootstrap-backtotop a:hover {
-  color: #903479 !important;
+  color: var(--secondary) !important;
 }
 .probootstrap-footer .border-top {
   padding-top: 50px;
@@ -1188,7 +1194,7 @@ a.hover-reverse:hover {
   color: var(--primary);
 }
 .link-with-icon.white:hover {
-  color: var(--secondary);
+  color: var(--accent);
 }
 .probootstrap-footer-social {
   padding: 0;
@@ -1357,7 +1363,6 @@ a.hover-reverse:hover {
 
 .flexslider form {
   background-color: transparent;
-  margin: 0% 0% 20%;
   padding: 5%;
   height: 90px;
 }
@@ -1373,7 +1378,7 @@ a.hover-reverse:hover {
   border-radius: 10px;
   font-size: 12px;
   padding: 10px 0px;
-
+  height: 40rem;
   display: flex !important;
   flex-direction: column;
   align-items: center;
@@ -1388,7 +1393,27 @@ a.hover-reverse:hover {
 .google-btn {
   background-color: white !important;
   border: none !important;
+  color: var(--secondary) !important;
+  padding: 15px 20px !important;
+  transition: 0.2s linear !important;
   box-shadow: 1px 1px 10px rgb(214, 214, 214) !important;
+}
+
+.google-btn:hover {
+  background-color: var(--secondary) !important;
+  transition: 0.2s linear;
+  color: white !important;
+  transform: scale(1.05);
+}
+
+.google-icon {
+  color: #023246 !important;
+  transition: 0.2s linear;
+  margin-right: 15px !important;
+}
+
+.google-btn:hover .google-icon {
+  color: white !important;
 }
 
 .probootstrap-form {
