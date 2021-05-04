@@ -308,14 +308,12 @@ def individual_property(token):
 def location():
     lat = request.form['lat']
     long = request.form['long']
-    print(lat)
     key = "AIzaSyCFeIvoO8acKzK7czHvQoNnTl4ObJeajNo"
     url = "https://maps.googleapis.com/maps/api/geocode/json?latlng={0},{1}&key={2}".format(lat, long, key)
     print(url)
     i = requests.get(url)
-    print(i.json())
     j = i.json()
-    k = j['results'][1]['formatted_address']
+    k = j['results'][0]['address_components'][2]['short_name']
     print(k)
     return 'ok'
 
