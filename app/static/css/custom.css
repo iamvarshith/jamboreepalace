@@ -259,3 +259,8 @@ display:flex;
 .dropdown-div:hover{
 display:flex;
 }
+
+.space-gallery-navi-btn{
+background-color:--secondary;
+margin:0 0 20% 45%;
+}

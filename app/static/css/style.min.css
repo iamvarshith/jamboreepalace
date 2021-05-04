@@ -1388,8 +1388,9 @@ flex-direction:column !important;
   height: 90px;
 }
 
-#submit {
+#submit , #subscribe{
   height: 45px;
+  transition:0.2s linear;
   text-align: center;
   padding: 5px 40px;
 }

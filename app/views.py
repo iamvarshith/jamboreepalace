@@ -279,7 +279,7 @@ def manageProperty():
 
 @app.route('/about')
 def about():
-    return render_template('space_gallery.html')
+    return render_template('contact.html')
 
 
 @app.route('/spaces', methods=['GET', 'POST'])
