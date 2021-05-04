@@ -228,3 +228,39 @@
     outline: none;
     padding: 0px 10px;
 }
+
+
+.dropdown-div{
+background-color:transparent;
+display:none;
+height:200px;
+top:70px;
+padding-top:20px;
+padding:10px;
+z-index:10000;
+position:absolute;
+flex-direction:column;
+align-items:flex-start;
+}
+
+.probootstrap-mobile-menu-active .probootstrap-main-nav .dropdown-div{
+top:400px;
+}
+
+.probootstrap-mobile-menu-active .probootstrap-main-nav .dropdown-div a{
+
+padding:0px;
+}
+
+#dropdown:hover + .dropdown-div{
+display:flex;
+}
+
+.dropdown-div:hover{
+display:flex;
+}
+
+.space-gallery-navi-btn{
+background-color:--secondary;
+margin:0 0 20% 45%;
+}
