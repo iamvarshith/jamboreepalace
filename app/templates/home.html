@@ -81,18 +81,17 @@
 <!-- END: header -->
 
 <section class="probootstrap-slider flexslider index-flex">
-    <div class="slides overlay"
-         style="background-image: url('../static/img/THIS\,\ HERE\,\ LIGHT.jfif');background-size:cover; margin-top: 50px; height: 300px; display:flex; align-items:center; justify-content:center;">
+    <div class="slides overlay"style="background-image: url('../static/img');background-size:cover; margin-top: 50px; height: 300px; display:flex; align-items:center; justify-content:center;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="#" method="post" class="probootstrap-form">
+                    <div class="probootstrap-form">
                         <div class="col-md-2">
                             <div class="form-group">
 
                                 <div class="form-field">
 
-                                    <button class="icon locate-icon"><i class="fas fa-compass"></i></button>
+                                    <button class="icon locate-icon" onclick="getLocation()"><i class="fas fa-compass"></i></button>
                                     <select name="locations" id="locations" class="form-control">
                                         <option value="placeholder">Location</option>
                                         <option value="3">Location 1</option>
@@ -163,19 +162,18 @@
 
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit"
+                                <input type="submit" class="btn btn-primary btn-lg" onclick="searchspace()" id="submit" name="submit"
                                        value="Search">
                             </div>
                         </div>
 
 
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
 
-        </li>
-        </ul>
+    </div>
 </section>
 
 <section class="probootstrap-cta probootstrap-light">
@@ -418,7 +416,7 @@
 <script src="../static/js/scripts.min.js"></script>
 <script src="../static/js/main.min.js"></script>
 <script src="../static/js/custom.js"></script>
-
+<script src="../static/js/homepage.js"></script>
 
 </body>
 </html>
