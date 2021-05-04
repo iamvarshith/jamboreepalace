@@ -31,27 +31,43 @@
 <!-- START: header -->
 
 <header role="banner" class="probootstrap-header">
+    <!-- <div class="container"> -->
     <div class="row">
         <a href="index.html" class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png" class="hires"
-                                                                       alt="JP Logo"></a>
+                                                                       width="120" height="33"
+                                                                       alt="Free Bootstrap Template by uicookies.com"></a>
 
         <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">
             <ul class="probootstrap-main-nav">
-                <li class="active"><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('about') }}">About</a></li>
+
+                <li class="active"><a href="{{ url_for("home") }}">Home</a></li>
                 <li><a href="{{ url_for('spaces') }}">Spaces</a></li>
-                <li class="hidden-xs probootstrap-logo-center"><a href="{{ url_for('home') }}"><img
-                        src="../static/img/logoD1.png"
-                        class="hires" width="181" height="120" alt="JP LOGO"></a></li>
-                <li><a href="{{ url_for('enlist') }}">Add enlistment</a></li>
+                <li><a href="{{ url_for("enlist") }}">Enlist</a></li>
+
+                <li class="hidden-xs probootstrap-logo-center">
+                    <a href="index.html">
+                        <img src="../static/img/logoD1.png" class="hires" width="100px" height=""
+                             alt="Jamboree-Palacelogo">
+                    </a>
+                </li>
+
+                <li><a href="{{ url_for("about") }}">About</a></li>
                 <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                <li><a>
+                    <select name="profile" id="profile">
+                        <option value="placeholder"><a href = "{{ url_for("profile") }}">Profile</a></option>
+                        <option value=""><a href = "{{ "prevBookings" }}">Previous Bookings</a></option>
+                        <option value=""><a href = "{{ "enlistApplication(" }}">Enlistment Applications</a></option>
+                        <option value=""><a href = "{{ "manageProperty" }}">Manage Properties</a></option>
+                        <option value=""><a href = "{{ "logout" }}">Log out</a></option>
+                    </select>
+                </li>
                 {% else %}
-                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ login }}"> Login/Signup </a></li>
                 {% endif %}
             </ul>
             <div class="extra-text visible-xs">
@@ -65,6 +81,7 @@
             </div>
         </nav>
     </div>
+    <!-- </div> -->
 </header>
 <!-- END: header -->
 
