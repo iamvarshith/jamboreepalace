@@ -290,7 +290,7 @@ def spaces():
 
 @app.route('/contact')
 def contact():
-    return 'testing-git2'
+    return render_template('contact.html')
 
 
 @app.route('/property/<token>', methods=['get', 'post'])
