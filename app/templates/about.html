@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jamboree Palace</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="icon" href="../static/img/logo-small.png" type="image/x-icon" sizes="16x16">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:300,400,700|Rubik:300,400,700,900"
+          rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles-merged.css">
+    <link rel="stylesheet" href="../static/css/style.min.css">
+    <link rel="stylesheet" href="../static/css/custom.css">
+    <link rel="stylesheet" href="fontawesome-free-5.15.2-web/css/all.css">
+
+    <!--[if lt IE 9]>
+    <script src="../static/js/vendor/html5shiv.min.js"></script>
+    <script src="../static/js/vendor/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<!-- START: header -->
+
+<header role="banner" class="probootstrap-header">
+    <!-- <div class="container"> -->
+    <div class="row">
+        <a href="index.html" class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png" class="hires"
+                                                                       width="120" height="33"
+                                                                       alt="Free Bootstrap Template by uicookies.com"></a>
+
+        <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+            <ul class="probootstrap-main-nav">
+
+                <li class="active"><a href='{{ url_for("home") }}'>Home</a></li>
+                <li><a href='{{ url_for("spaces") }}'>Spaces</a></li>
+                <li><a href='{{ url_for("enlist") }}'>Enlist</a></li>
+
+                <li class="hidden-xs probootstrap-logo-center">
+                    <a href="index.html">
+                        <img src="../static/img/logoD1.png" class="hires" width="100px" height=""
+                             alt="Jamboree-Palacelogo">
+                    </a>
+                </li>
+
+                <li><a href='{{ url_for("about") }}'>About</a></li>
+                <li><a href='{{ url_for("contact") }}'>Contact</a></li>
+                {% if current_user.is_authenticated %}
+                <li>
+                    <a id="dropdown" href='{{ url_for("profile") }}'>Profile</a>
+                    <div class="dropdown-div">
+                    <a class="dropdown" href='{{ url_for("prevBookings") }}'>Previous Bookings</a>
+                     <a class="dropdown" href='{{ url_for("enlistApplication") }}'>Enlistments</a>
+                        <a class="dropdown" href='{{ url_for("manageProperty") }}'>My Properties</a>
+                    <a href = '{{ url_for("logout") }}'>Log out <i class="icon fa fa-sign-out"></i></a>
+                    </div>
+
+                   <!--                    <select name="profile" id="profile">-->
+<!--                        <option value="placeholder"><a href = '{{ url_for("profile") }}'>Profile</a></option>-->
+<!--                        <option value=""><a href = '{{ url_for("prevBookings") }}'>Previous Bookings</a></option>-->
+<!--                        <option value=""><a href = '{{ url_for("enlistApplication") }}'>Enlistment Applications</a></option>-->
+<!--                        <option value=""><a href = '{{ url_for("manageProperty") }}'>Manage Properties</a></option>-->
+<!--                        <option value=""><a href = '{{ url_for("logout") }}'>Log out</a></option>-->
+<!--                    </select>-->
+                </li>
+                {% else %}
+                <li><a href='{{ url_for("login") }}'> Login/Signup </a></li>
+                {% endif %}
+            </ul>
+            <div class="extra-text visible-xs">
+                <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+                <h5>Connect With Us</h5>
+                <ul class="social-buttons">
+                    <li><a href="#"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#"><i class="icon-facebook2"></i></a></li>
+                    <li><a href="#"><i class="icon-instagram2"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- </div> -->
+</header>
+<!-- END: header -->
+
+  <section class="probootstrap-slider flexslider probootstrap-inner">
+    <ul class="slides">
+       <li style="background-image: url(../static/img/Venue.jpg);" class="overlay">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <div class="probootstrap-slider-text text-center">
+                  <p><img src="img/curve_white.svg" class="seperator probootstrap-animate" alt="Free HTML5 Bootstrap Template"></p>
+                  <h1 class="probootstrap-heading probootstrap-animate">About Atlantis</h1>
+                  <div class="probootstrap-animate probootstrap-sub-wrap">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+    </ul>
+  </section>
+
+  <section class="probootstrap-section">
+    <div class="container">
+      <div class="row mb30">
+        <div class="col-md-12">
+          <figure>
+          <img src="../static/img/Venue.jpg" alt="space-img" class="img-responsive">
+          </figure>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p>One time, we wanted to gather around 10 people for a jazz dance class. But to do so we needed a space. Getting a place for a couple of weeks was the challenge we were facing.</p>
+        <p>That's when we realised that there are very few services in the market that let people rent out a small space for a few people for a small amount of time.
+        The important part of this idea was the scale in which we wanted to establish the idea upon. The smalls mattered here.
+        </p>
+        </div>
+        <div class="col-md-6">
+          <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="probootstrap-section probootstrap-section-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="mt0">Why Choose Us?</h2>
+        </div>
+        <div class="col-md-4">
+          <div class="service left-icon left-icon-sm probootstrap-animate">
+            <div class="icon">
+              <i class="icon-check"></i>
+            </div>
+            <div class="text">
+              <h3>1+ Million Hotel Rooms</h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service left-icon left-icon-sm probootstrap-animate">
+            <div class="icon">
+              <i class="icon-check"></i>
+            </div>
+            <div class="text">
+              <h3>Food &amp; Drinks</h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service left-icon left-icon-sm probootstrap-animate">
+            <div class="icon">
+              <i class="icon-check"></i>
+            </div>
+            <div class="text">
+              <h3>Airport Taxi</h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="probootstrap-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 mb50 text-center probootstrap-animate">
+          <h2 class="mt0">More Features</h2>
+          <p class="mb30"><img src="img/curve.svg" class="svg" alt="space"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12 probootstrap-animate">
+          <h3 class="heading-with-icon"><i class="icon-heart2"></i> <span>Countries Vokalia</span></h3>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+          <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12 probootstrap-animate">
+          <h3 class="heading-with-icon"><i class="icon-rocket"></i> <span>Large Language Ocean</span></h3>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+          <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+        </div>
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-md-4 col-sm-6 col-xs-12 probootstrap-animate">
+          <h3 class="heading-with-icon"><i class="icon-image"></i> <span>Bookmarksgrove Right</span></h3>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+          <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+        </div>
+        <div class="clearfix visible-lg-block visible-md-block"></div>
+        <div class="col-md-4 col-sm-6 col-xs-12 probootstrap-animate">
+          <h3 class="heading-with-icon"><i class="icon-briefcase"></i> <span>Live the Blind Texts</span></h3>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+          <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+        </div>
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-md-4 col-sm-6 col-xs-12 probootstrap-animate">
+          <h3 class="heading-with-icon"><i class="icon-chat"></i> <span>Behind the Word Mountains</span></h3>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+          <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12 probootstrap-animate">
+          <h3 class="heading-with-icon"><i class="icon-colours"></i> <span>Separated They Live</span></h3>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+          <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+        </div>
+        <div class="clearfix visible-lg-block visible-md-block visible-sm-block"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="probootstrap-section probootstrap-section-dark">
+    <div class="container">
+      <div class="row mb30">
+        <div class="col-md-8 col-md-offset-2 probootstrap-section-heading text-center">
+          <h2>Explore our Services</h2>
+          <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+          <p><img src="img/curve.svg" class="svg" alt="Free HTML5 Bootstrap Template"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="service left-icon probootstrap-animate">
+            <div class="icon">
+              <img src="img/flaticon/svg/001-building.svg" class="svg" alt="Free HTML5 Bootstrap Template by uicookies.com">
+            </div>
+            <div class="text">
+              <h3>1+ Million Hotel Rooms</h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service left-icon probootstrap-animate">
+            <div class="icon">
+              <img src="img/flaticon/svg/003-restaurant.svg" class="svg" alt="Free HTML5 Bootstrap Template by uicookies.com">
+            </div>
+            <div class="text">
+              <h3>Food &amp; Drinks</h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service left-icon probootstrap-animate">
+            <div class="icon">
+              <img src="img/flaticon/svg/004-parking.svg" class="svg" alt="Free HTML5 Bootstrap Template by uicookies.com">
+            </div>
+            <div class="text">
+              <h3>Airport Taxi</h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <section class="probootstrap-half">
+    <div class="image" style="background-image: url(../static/img/Venue.jpg);"></div>
+    <div class="text">
+        <div class="probootstrap-animate fadeInUp probootstrap-animated">
+            <h2 class="mt0">Best Spaces for your Gatherings</h2>
+            <hr style="background-color:#287094; border: none; height: 0.3px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>When you need a space for your posse to gather around, big spaces are not fit for your needs.
+                        When a group of people want to learn and share ideas, a small space is more appropriate.
+                    </p></div>
+                <div class="col-md-6">
+                    <p>Here we are, with spaces that are just right for you ext gathering. At the right prices and the
+                        right amount of room, have a delightful time with your clique.</div>
+            </div>
+            <p><a href="#" class="link-with-icon white">Learn More <i class=" icon-chevron-right"></i></a></p>
+        </div>
+    </div>
+</section>
+
+<!-- START: footer -->
+<footer role="contentinfo" class="probootstrap-footer">
+    <div class="container">
+            <div class="col-md-3">
+                <div class="probootstrap-footer-widget">
+                    <p class="mt40"><img src="../static/img/logoD1.png" class="hires" width="50%" height="50%"
+                                         alt="logo"></p>
+                    <p style="font-size:80%;">A new idea for small groups to come together has finally become big enough to be put out there
+                        for our clients.
+
+                    </p>
+                    <p><a href="#" class="link-with-icon">Learn More About Us!<i class=" icon-chevron-right"></i></a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="probootstrap-footer-widget">
+                    <p class="mt40"><img src="../static/img/THIS, HERE, LIGHT.jfif" class="hires" width="90%"
+                                         height="150px" alt="logo"></p>
+                    <p>
+                    <form>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <input type="search" class="form-control" id="footer-newsletter"
+                                       name="footer-newsletter" placeholder="Subscribe">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-md" id="submit" name="submit" value="Go"
+                                   style="height: 35px;">
+                        </div>
+                </form>
+                </p>
+            </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="probootstrap-footer-widget">
+                    <h3>Contact</h3>
+                    <ul class="probootstrap-contact-info">
+                        <li><i class="icon-location2"></i>
+                            <span>198 West 21th Street, Suite 721 New York NY 10016</span></li>
+                        <li><i class="icon-mail"></i><span>info@domain.com</span></li>
+                        <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
+                    </ul>
+
+                    <div class="row mt30">
+                        <ul class="probootstrap-footer-social">
+                            <li><a href=""><i class="icon-twitter"></i></a></li>
+                            <li><a href=""><i class="icon-facebook"></i></a></li>
+                            <li><a href=""><i class="icon-instagram2"></i></a></li>
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+    </div>
+</footer>
+<!-- END: footer -->
+
+
+
+  <script src="js/scripts.min.js"></script>
+  <script src="js/main.min.js"></script>
+  <script src="js/custom.js"></script>
+
+  </body>
+</html>

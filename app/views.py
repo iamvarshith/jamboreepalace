@@ -280,7 +280,7 @@ def manageProperty():
 
 @app.route('/about')
 def about():
-    return render_template('contact.html')
+    return render_template('confirmation.html')
 
 
 @app.route('/spaces', methods=['GET', 'POST'])
@@ -291,7 +291,7 @@ def spaces():
 
 @app.route('/contact')
 def contact():
-    return 'testing-git2'
+    return render_template('contact.html')
 
 
 @app.route('/property/<token>', methods=['get', 'post'])

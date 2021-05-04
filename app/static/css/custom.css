@@ -1,115 +1,116 @@
 /* Your custom css code goes here */
 
 :root {
-    --back: white;
-    --primary: #287094;
-    --text: grey;
-    --secondary: #023246;
-    --accent: #d4d4ce;
+  --back: white;
+  --primary: #287094;
+  --text: grey;
+  --secondary: #023246;
+  --accent: #d4d4ce;
 }
 
 #profile {
-    outline: none;
-    border: transparent;
-    background-color: transparent;
+  outline: none;
+  border: transparent;
+  background-color: transparent;
 }
 
 #profile {
-    border: transparent;
+  border: transparent;
 }
 
 .profile-dd a {
-    display: block;
+  display: block;
 }
 
 .space-des {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .contact-img {
-    height: 700px !important;
+  height: 700px !important;
 }
 
 .conatct-sec-div {
-    background-color: var(--secondary);
-    color: var(--accent);
+  background-color: var(--secondary);
+  color: var(--accent);
 }
 
 .conatct-sec-div h2 {
-    color: aliceblue;
+  color: aliceblue;
 }
 
 .contact-sec-div a {
-    background-color: var(--accent) !important;
-    color: var(--secondary) !important;
-    border-color: var(--accent) !important;
+  background-color: var(--accent) !important;
+  color: var(--secondary) !important;
+  border-color: var(--accent) !important;
 }
 
 .contact-sec-div a:hover {
-    background-color: var(--primary) !important;
-    color: var(--accent) !important;
-    border-color: var(--primary) !important;
+  background-color: var(--primary) !important;
+  color: var(--accent) !important;
+  border-color: var(--primary) !important;
 }
+
 
 
 .chk-box label {
-    font-family: Rubik, sans-serif !important;
-    font-weight: 400;
+  font-family: Rubik, sans-serif !important;
+  font-weight: 400;
 }
 
 .chk-box input:checked + label {
-    font-family: Rubik, sans-serif !important;;
-    font-weight: 400;
-    color: var(--accent);
+  font-family: Rubik, sans-serif !important;;
+  font-weight: 400;
+  color: var(--accent);
 }
 
 .filter-btn {
-    background-color: var(--accent);
-    border: none;
-    outline: none;
-    padding: 0px 10px;
+  background-color: var(--accent);
+  border: none;
+  outline: none;
+  padding: 0px 10px;
 }
 
 .locate-icon {
-    background-color: var(--accent);
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    top: 4px !important;
-    left: 100px !important;
-    margin-bottom: 15px !important;
+  background-color: var(--accent);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  top: 4px !important;
+  left: 100px !important;
+  margin-bottom: 15px !important;
 }
 
 .locate-icon i {
-    color: var(--primary) !important;
+  color: var(--primary) !important;
 }
 
 .locate-icon:hover {
-    background-color: var(--secondary);
-    color: var(--accent) !important;
+  background-color: var(--secondary);
+  color: var(--accent) !important;
 }
 
 .probootstrap-room img {
-    height: 500px;
+  height: 500px;
 }
 
 .checkout-cont {
-    background-color: var(--back) !important;
-    width: 50%;
-    height: 50%;
-    border: 1px solid var(--accent);
-    color: var(--secondary);
-    padding: 20px 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
+  background-color: var(--back) !important;
+  width: 50%;
+  height: 50%;
+  border: 1px solid var(--accent);
+  color: var(--secondary);
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
 }
 
 .checkout-icon {
-    font-size: 40px !important;
-    color: #023246 !important;
+  font-size: 40px !important;
+  color: #023246 !important;
 }
 
 .profile-nav {
@@ -209,6 +210,7 @@
 }
 
 
+
 .chk-box label {
     font-family: Rubik, sans-seri;
     font-weight: 400;
@@ -228,44 +230,37 @@
 }
 
 
-.dropdown-div {
-    background-color: transparent;
-    display: none;
-    height: 200px;
-    top: 70px;
-    padding-top: 20px;
-    padding: 10px;
-    z-index: 10000;
-    position: absolute;
-    flex-direction: column;
-    align-items: flex-start;
+.dropdown-div{
+background-color:transparent;
+display:none;
+height:200px;
+top:70px;
+padding-top:20px;
+padding:10px;
+z-index:10000;
+position:absolute;
+flex-direction:column;
+align-items:flex-start;
 }
 
-.probootstrap-mobile-menu-active .probootstrap-main-nav .dropdown-div {
-    top: 400px;
+.probootstrap-mobile-menu-active .probootstrap-main-nav .dropdown-div{
+top:400px;
 }
 
-.probootstrap-mobile-menu-active .probootstrap-main-nav .dropdown-div a {
+.probootstrap-mobile-menu-active .probootstrap-main-nav .dropdown-div a{
 
-    padding: 0px;
+padding:0px;
 }
 
-#dropdown:hover + .dropdown-div {
-    display: flex;
+#dropdown:hover + .dropdown-div{
+display:flex;
 }
 
-.dropdown-div:hover {
-    display: flex;
+.dropdown-div:hover{
+display:flex;
 }
 
-.space-gallery-navi-btn {
-    background-color: var(--secondary);
-    margin: 0 0 20% 45%;
-}
-
-.enlist-cont {
-    background-color: var(--back);
-    padding: 20px;
-    z-index: 100;
-    width: 80%;
+.space-gallery-navi-btn{
+background-color:--secondary;
+margin:0 0 20% 45%;
 }
