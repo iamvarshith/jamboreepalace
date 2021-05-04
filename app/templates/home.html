@@ -61,13 +61,7 @@
                     <a href = '{{ url_for("logout") }}'>Log out <i class="icon fa fa-sign-out"></i></a>
                     </div>
 
-                   <!--                    <select name="profile" id="profile">-->
-<!--                        <option value="placeholder"><a href = '{{ url_for("profile") }}'>Profile</a></option>-->
-<!--                        <option value=""><a href = '{{ url_for("prevBookings") }}'>Previous Bookings</a></option>-->
-<!--                        <option value=""><a href = '{{ url_for("enlistApplication") }}'>Enlistment Applications</a></option>-->
-<!--                        <option value=""><a href = '{{ url_for("manageProperty") }}'>Manage Properties</a></option>-->
-<!--                        <option value=""><a href = '{{ url_for("logout") }}'>Log out</a></option>-->
-<!--                    </select>-->
+
                 </li>
                 {% else %}
                 <li><a href='{{ url_for("login") }}'> Login/Signup </a></li>
@@ -94,13 +88,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="#" method="post" class="probootstrap-form">
+                    <div class="probootstrap-form">
                         <div class="col-md-2">
                             <div class="form-group">
 <br>
                                 <div class="form-field">
 
-                                    <button class="icon locate-icon"><i class="fa fa-compass"></i></button>
+                                    <button class="icon locate-icon" onclick="getLocation()"><i class="fa fa-compass"></i></button>
                                     <select name="locations" id="locations" class="form-control">
                                         <option value="placeholder">Location</option>
                                         <option value="3">Location 1</option>
@@ -178,13 +172,12 @@
                         </div>
 
 
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
 
-        </li>
-        </ul>
+    </div>
 </section>
 
 <section class="probootstrap-cta probootstrap-light">
@@ -426,6 +419,7 @@
 <script src="../static/js/scripts.min.js"></script>
 <script src="../static/js/main.min.js"></script>
 <script src="../static/js/custom.js"></script>
+<script src="../static/js/homepage.js"></script>
 
 
 </body>
