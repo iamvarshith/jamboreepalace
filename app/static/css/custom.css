@@ -261,6 +261,13 @@ display:flex;
 }
 
 .space-gallery-navi-btn{
-background-color:--secondary;
+background-color:var(--secondary);
 margin:0 0 20% 45%;
 }
+
+.enlist-cont{
+background-color:var(--back)
+padding:20px;
+z-index:100;
+width:80%;
+;}
