@@ -22,6 +22,7 @@ html {
 }
 html {
   font-size: 1em;
+  list-style:none !important;
 }
 body {
   font-size: 15px;
@@ -81,7 +82,7 @@ ul {
   margin-bottom: 1.3em;
 }
 a {
-  -webkit-transition: 0.3s all;
+  -webkit-transition: 0.2s linear;
   transition: 0.3s all;
   color: var(--secondary);
 }
@@ -175,7 +176,7 @@ a.hover-reverse:hover {
   display: block;
   float: left;
   clear: both;
-  margin-top: 30px;
+  margin-top: 80px;
   color: #fff;
 }
 .probootstrap-mobile-menu-active .probootstrap-nav .extra-text .social-buttons {
@@ -205,6 +206,14 @@ a.hover-reverse:hover {
   .probootstrap-nav
   .extra-text
   .social-buttons
+  li
+  a:hover{
+  color: var(--secondary);
+  }
+.probootstrap-mobile-menu-active
+  .probootstrap-nav
+  .extra-text
+  .social-buttons
   li:first-child
   a {
   padding-left: 0;
@@ -227,13 +236,25 @@ a.hover-reverse:hover {
   margin-top: 40px;
   width: 100%;
 }
-.probootstrap-main-nav li {
-  margin: 0;
-  padding: 0 10px;
-  list-style: none;
-  display: inline;
-  font-size: 18px;
+/*nav style*/
+.probootstrap-main-nav{
+display:flex;
+flex-direction:row !important;
+align-items:center;
+justify-content:center;
 }
+.probootstrap-main-nav li {
+  padding: 0 10px;
+  list-style:none
+}
+
+.probootstrap-mobile-menu-active .probootstrap-main-nav{
+display:flex;
+flex-direction:column !important;
+}
+
+
+
 .probootstrap-mobile-menu-active .probootstrap-main-nav li {
   margin-bottom: 20px;
   padding-left: 0;
@@ -1367,8 +1388,9 @@ a.hover-reverse:hover {
   height: 90px;
 }
 
-#submit {
+#submit , #subscribe{
   height: 45px;
+  transition:0.2s linear;
   text-align: center;
   padding: 5px 40px;
 }
