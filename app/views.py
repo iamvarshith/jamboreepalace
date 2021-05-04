@@ -192,7 +192,8 @@ def callback():
     # we can now insert the incoming data into the db
     user = User.query.filter_by(email=users_email).first()
     if user is None:
-        user = User(unique_id=unique_id, username=users_name, email=users_email, password="Google_login",profile_img=picture)
+        user = User(unique_id=unique_id, username=users_name, email=users_email, password="Google_login",
+                    profile_img=picture)
 
         db.session.add(user)
         db.session.commit()
@@ -279,7 +280,7 @@ def manageProperty():
 
 @app.route('/about')
 def about():
-    return render_template('register1.html')
+    return render_template('contact.html')
 
 
 @app.route('/spaces', methods=['GET', 'POST'])
@@ -301,3 +302,24 @@ def individual_property(token):
         Property.owner_id == current_user.id, Property.owner_id == str(token)).all()
     print(enlist_application)
     return 'pending'
+
+
+@app.route('/api/location', methods=['POST'])
+def location():
+    lat = request.form['lat']
+    long = request.form['long']
+    print(lat)
+    key = "AIzaSyCFeIvoO8acKzK7czHvQoNnTl4ObJeajNo"
+    url = "https://maps.googleapis.com/maps/api/geocode/json?latlng={0},{1}&key={2}".format(lat, long, key)
+    print(url)
+    i = requests.get(url)
+    print(i.json())
+    j = i.json()
+    k = j['results'][1]['formatted_address']
+    print(k)
+    return 'ok'
+
+@app.route('/api/search', methods=['POST'])
+def search():
+    print(request.form['arrival'])
+    return 'kll'

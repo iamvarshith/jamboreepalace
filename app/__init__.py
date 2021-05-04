@@ -9,6 +9,7 @@ from oauthlib.oauth2 import WebApplicationClient
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
