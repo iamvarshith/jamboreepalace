@@ -54,7 +54,13 @@
                 {% if current_user.is_authenticated %}
                 <li>
                     <a id="dropdown" href='{{ url_for("profile") }}'>Profile</a>
+                    <div class="dropdown-div">
                     <a class="dropdown" href='{{ url_for("prevBookings") }}'>Previous Bookings</a>
+                     <a class="dropdown" href='{{ url_for("enlistApplication") }}'>Enlistments</a>
+                        <a class="dropdown" href='{{ url_for("manageProperty") }}'>My Properties</a>
+                    <a href = '{{ url_for("logout") }}'>Log out <i class="icons fas fa-sign-out-alt"></i></a>
+                    </div>
+
                    <!--                    <select name="profile" id="profile">-->
 <!--                        <option value="placeholder"><a href = '{{ url_for("profile") }}'>Profile</a></option>-->
 <!--                        <option value=""><a href = '{{ url_for("prevBookings") }}'>Previous Bookings</a></option>-->
