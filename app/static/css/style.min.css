@@ -1498,8 +1498,7 @@ flex-direction:column !important;
   resize: vertical;
 }
 .probootstrap-animate {
-  opacity: 0;
-  visibility: hidden;
+  visibility: visible;
 }
 .probootstrap-contact-info,
 .with-icon {
