@@ -127,11 +127,10 @@ function validateform() {
 
 
     if (nameErr || lnameErr || emailErr || vnameErr || addErr || descErr || mobileErr || capErr || pnoErr || bpErr == true) {
-
         return true;
     } else {
         console.log('form sucessful')
-        return true;
+        return false;
     }
 }
 
