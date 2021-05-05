@@ -6,12 +6,17 @@ from flask_bcrypt import Bcrypt
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from oauthlib.oauth2 import WebApplicationClient
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.config.from_object(Config)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
+UPLOAD_FOLDER = 'app/static/property_img'
+ALLOWED_EXTENSIONS = { 'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 db = SQLAlchemy(app)
 
