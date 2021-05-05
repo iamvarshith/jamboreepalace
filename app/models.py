@@ -40,7 +40,7 @@ class Property(db.Model):
     bookees = db.relationship('Bookings', backref='property_owner')
 
     def __repr__(self):
-        return f"Property('{self.id}','{self.owner_id}','{self.property_name}','{self.address}','{self.best_price}'," \
+        return f"('{self.id}','{self.owner_id}','{self.property_name}','{self.address}','{self.best_price}'," \
                f"'{self.pan_number}','{self.partitions}','{self.features}') "
 
 

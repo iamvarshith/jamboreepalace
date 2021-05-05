@@ -88,7 +88,7 @@
 </header>
 <!-- END: header -->
 
-<section></section>
+
 
 <section class="probootstrap-section">
     <div class="container col-md-3" style="position: static;">
@@ -148,368 +148,421 @@
         <div class="row">
             <div class="col-md-12 probootstrap-relative">
                 <div class="owl-carousel owl-carousel-carousel">
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space2.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Classic Room</h3>
-                                <p>Starting from <strong> ₹1299.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
+                    {% for property in avilable2 %}
+
+                        {% if property %}
+
+                        <div class="item">
+                            <div class="probootstrap-room">
+                                <a href="#"><img src="../static/property_img/{{ property.image }}"
+                                                 alt="space" class="img-responsive"></a>
+                                <div class="text">
+                                    <h3>{{ property.name }}</h3>
+                                    <p>Starting from <strong> ₹{{ property.best_price }}/Day</strong></p>
+                                    <div class="post-meta">
+                                        <ul>
+                                            <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252
+                                                Reviews
+                                            </li>
+                                            <li><i class="icon-user2"></i> {{ property.capacity }} Guests</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space3.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Grand Deluxe Room</h3>
-                                <p>Starting from <strong>₹2000.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space1.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Ultra Superior Room</h3>
-                                <p>Starting from <strong>₹1899.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space5.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Classic Room</h3>
-                                <p>Starting from <strong>₹2299.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space6.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Grand Deluxe Room</h3>
-                                <p>Starting from <strong>₹2500.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/Venue.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Ultra Superior Room</h3>
-                                <p>Starting from <strong>₹2599.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/11 Lofts We Love For Your Chicago Wedding.jfif"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Ultra Superior Room</h3>
-                                <p>Starting from <strong>₹999.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        {% else %}
+                        <h2>No properties for the desired location</h2>
+                        {% endif %}
+                    {% endfor %}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space2.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Classic Room</h3>#}
+{#                                <p>Starting from <strong> ₹1299.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space3.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Grand Deluxe Room</h3>#}
+{#                                <p>Starting from <strong>₹2000.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space1.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Ultra Superior Room</h3>#}
+{#                                <p>Starting from <strong>₹1899.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space5.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Classic Room</h3>#}
+{#                                <p>Starting from <strong>₹2299.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space6.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Grand Deluxe Room</h3>#}
+{#                                <p>Starting from <strong>₹2500.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/Venue.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Ultra Superior Room</h3>#}
+{#                                <p>Starting from <strong>₹2599.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/11 Lofts We Love For Your Chicago Wedding.jfif"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Ultra Superior Room</h3>#}
+{#                                <p>Starting from <strong>₹999.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
                 </div>
                 <div class="owl-carousel owl-carousel-carousel">
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space2.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Classic Room</h3>
-                                <p>Starting from <strong> ₹1299.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
+                    {% for property in avilable1 %}
+
+                        {% if property %}
+
+                        <a href="/{{ property.id }}"><div class="item">
+                            <div class="probootstrap-room">
+                                <a href="/{{ property.id }}"><img src="../static/property_img/{{ property.image }}"
+                                                 alt="space" class="img-responsive"></a>
+                                <div class="text">
+                                    <h3>{{ property.property_name }}</h3>
+                                    <p>Starting from <strong> ₹{{ property.best_price }}/Day</strong></p>
+                                    <div class="post-meta">
+                                        <ul>
+                                            <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252
+                                                Reviews
+                                            </li>
+                                            <li><i class="icon-user2"></i> {{ property.capacity }} Guests</li>
+                                        </ul>
+                                    </div>
                                 </div>
+                                <a href="/spaces/{{ property.id }}">Book Now</a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space3.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Grand Deluxe Room</h3>
-                                <p>Starting from <strong>₹2000.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space1.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Ultra Superior Room</h3>
-                                <p>Starting from <strong>₹1899.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space5.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Classic Room</h3>
-                                <p>Starting from <strong>₹2299.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space6.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Grand Deluxe Room</h3>
-                                <p>Starting from <strong>₹2500.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/Venue.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Ultra Superior Room</h3>
-                                <p>Starting from <strong>₹2599.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/11 Lofts We Love For Your Chicago Wedding.jfif"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Ultra Superior Room</h3>
-                                <p>Starting from <strong>₹999.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </div></a>
+                        {% else %}
+                        <h2>No properties for the desired location</h2>
+                        {% endif %}
+                    {% endfor %}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space2.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Classic Room</h3>#}
+{#                                <p>Starting from <strong> ₹1299.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space3.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Grand Deluxe Room</h3>#}
+{#                                <p>Starting from <strong>₹2000.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space1.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Ultra Superior Room</h3>#}
+{#                                <p>Starting from <strong>₹1899.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space5.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Classic Room</h3>#}
+{#                                <p>Starting from <strong>₹2299.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space6.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Grand Deluxe Room</h3>#}
+{#                                <p>Starting from <strong>₹2500.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/Venue.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Ultra Superior Room</h3>#}
+{#                                <p>Starting from <strong>₹2599.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/11 Lofts We Love For Your Chicago Wedding.jfif"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Ultra Superior Room</h3>#}
+{#                                <p>Starting from <strong>₹999.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
                 </div>
-                <div class="owl-carousel owl-carousel-carousel">
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space2.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Classic Room</h3>
-                                <p>Starting from <strong> ₹1299.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space3.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Grand Deluxe Room</h3>
-                                <p>Starting from <strong>₹2000.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space1.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Ultra Superior Room</h3>
-                                <p>Starting from <strong>₹1899.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space5.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Classic Room</h3>
-                                <p>Starting from <strong>₹2299.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/space6.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Grand Deluxe Room</h3>
-                                <p>Starting from <strong>₹2500.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/Venue.jpg"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Ultra Superior Room</h3>
-                                <p>Starting from <strong>₹2599.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/img/11 Lofts We Love For Your Chicago Wedding.jfif"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>Ultra Superior Room</h3>
-                                <p>Starting from <strong>₹999.00/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{#                <div class="owl-carousel owl-carousel-carousel">#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space2.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Classic Room</h3>#}
+{#                                <p>Starting from <strong> ₹1299.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space3.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Grand Deluxe Room</h3>#}
+{#                                <p>Starting from <strong>₹2000.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space1.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Ultra Superior Room</h3>#}
+{#                                <p>Starting from <strong>₹1899.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space5.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Classic Room</h3>#}
+{#                                <p>Starting from <strong>₹2299.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/space6.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Grand Deluxe Room</h3>#}
+{#                                <p>Starting from <strong>₹2500.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/Venue.jpg"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Ultra Superior Room</h3>#}
+{#                                <p>Starting from <strong>₹2599.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="probootstrap-room">#}
+{#                            <a href="#"><img src="../static/img/11 Lofts We Love For Your Chicago Wedding.jfif"#}
+{#                                             alt="space" class="img-responsive"></a>#}
+{#                            <div class="text">#}
+{#                                <h3>Ultra Superior Room</h3>#}
+{#                                <p>Starting from <strong>₹999.00/Day</strong></p>#}
+{#                                <div class="post-meta">#}
+{#                                    <ul>#}
+{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                                        </li>#}
+{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
             </div>
         </div>
         <div class="col-md-6 space-gallery-navi-btn">
@@ -522,9 +575,6 @@
 
 </section>
 
-<section>
-
-</section>
 
 
 <!-- START: footer -->

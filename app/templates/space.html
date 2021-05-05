@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jamboree Palace</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="icon" href="../static/img/logo-small.png" type="image/x-icon" sizes="16x16">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:300,400,700|Rubik:300,400,700,900"
+          rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles-merged.css">
+    <link rel="stylesheet" href="../static/css/style.min.css">
+    <link rel="stylesheet" href="../static/css/custom.css">
+    <link rel="stylesheet" href="fontawesome-free-5.15.2-web/css/all.css">
+
+    <!--[if lt IE 9]>
+    <script src="../static/js/vendor/html5shiv.min.js"></script>
+    <script src="../static/js/vendor/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<!-- START: header -->
+
+<header role="banner" class="probootstrap-header">
+    <!-- <div class="container"> -->
+    <div class="row">
+        <a href="index.html" class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png" class="hires"
+                                                                       width="120" height="33"
+                                                                       alt="Free Bootstrap Template by uicookies.com"></a>
+
+        <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+            <ul class="probootstrap-main-nav">
+
+                <li class="active"><a href='{{ url_for("home") }}'>Home</a></li>
+                <li><a href='{{ url_for("spaces") }}'>Spaces</a></li>
+                <li><a href='{{ url_for("enlist") }}'>Enlist</a></li>
+
+                <li class="hidden-xs probootstrap-logo-center">
+                    <a href="index.html">
+                        <img src="../static/img/logoD1.png" class="hires" width="100px" height=""
+                             alt="Jamboree-Palacelogo">
+                    </a>
+                </li>
+
+                <li><a href='{{ url_for("about") }}'>About</a></li>
+                <li><a href='{{ url_for("contact") }}'>Contact</a></li>
+                {% if current_user.is_authenticated %}
+                <li>
+                    <a id="dropdown" href='{{ url_for("profile") }}'>Profile</a>
+                    <div class="dropdown-div">
+                    <a class="dropdown" href='{{ url_for("prevBookings") }}'>Previous Bookings</a>
+                     <a class="dropdown" href='{{ url_for("enlistApplication") }}'>Enlistments</a>
+                        <a class="dropdown" href='{{ url_for("manageProperty") }}'>My Properties</a>
+                    <a href = '{{ url_for("logout") }}'>Log out <i class="icon fa fa-sign-out"></i></a>
+                    </div>
+
+                   <!--                    <select name="profile" id="profile">-->
+<!--                        <option value="placeholder"><a href = '{{ url_for("profile") }}'>Profile</a></option>-->
+<!--                        <option value=""><a href = '{{ url_for("prevBookings") }}'>Previous Bookings</a></option>-->
+<!--                        <option value=""><a href = '{{ url_for("enlistApplication") }}'>Enlistment Applications</a></option>-->
+<!--                        <option value=""><a href = '{{ url_for("manageProperty") }}'>Manage Properties</a></option>-->
+<!--                        <option value=""><a href = '{{ url_for("logout") }}'>Log out</a></option>-->
+<!--                    </select>-->
+                </li>
+                {% else %}
+                <li><a href='{{ url_for("login") }}'> Login/Signup </a></li>
+                {% endif %}
+            </ul>
+            <div class="extra-text visible-xs">
+                <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+                <h5>Connect With Us</h5>
+                <ul class="social-buttons">
+                    <li><a href="#"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#"><i class="icon-facebook2"></i></a></li>
+                    <li><a href="#"><i class="icon-instagram2"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- </div> -->
+</header>
+<!-- END: header -->
+
+
+
+ <section class="probootstrap-section">
+    <div class="container">
+      <div class="row mb30">
+        <div class="col-md-7">
+            <section class="probootstrap-slider flexslider" style="height: 500px;">
+                <ul class="slides">
+                   <li style="background-image: url(../static/property_img/{{ property.image }});" class="overlay">
+                    </li>
+                    <li style="background-image: url(../static/property_img/{{ property.image }});" class="overlay">
+                    </li>
+                </ul>
+              </section>
+        </div>
+        <div class="col-md-5">
+            <div class="col-md-12">
+                <h2 class="mt0">Book Now {{ property.property_name }}</h2>
+                <form action="#" method="post" class="probootstrap-form">
+
+                  <div class="form-group">
+                    <label for="room">Type of Room</label>
+                    <div class="form-field">
+                      <i class="icon icon-chevron-down"></i>
+                      <select name="room" id="room" class="form-control">
+                        <option value="">Select Type of Room</option>
+                        <option value="1">Private</option>
+                        <option value="2">Semi-Private</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="date-arrival">Arrival</label>
+                        <div class="form-field">
+                          <i class="icon icon-calendar2"></i>
+                          <input type="text" class="form-control" id="date-arrival" name="date-arrival">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="date-departure">Departure</label>
+                        <div class="form-field">
+                          <i class="icon icon-calendar2"></i>
+                          <input type="text" class="form-control" id="date-departure" name="date-departure">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb30">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="adults">Guests</label>
+                        <div class="form-field">
+                          <i class="icon icon-chevron-down"></i>
+                          <select name="adults" id="adults" class="form-control">
+                            <option value="">Number of Guests</option>
+                            <option value="1">3</option>
+                            <option value="2">4</option>
+                            <option value="3">5</option>
+                            <option value="4">6+</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Reserve">
+                  </div>
+                </form>
+              </div>
+
+        </div>
+
+      </div>
+      <div class="row">
+
+             <div class="col-md-8">
+                <div class="col-md-12 text-center probootstrap-animate">
+                  <h3 class="mt0">Features Available</h3></div>
+              <div class="row">
+                <div class="col-xs-12 probootstrap-animate">
+                  <h3 class="heading-with-icon"><i class="icon-heart2"></i> <span>Private and Semi-Private</span></h3>
+            </div>
+                <div class="col-xs-12 probootstrap-animate">
+                  <h3 class="heading-with-icon"><i class="icon-rocket"></i> <span>Catering on Demand</span></h3>
+                  </div>
+
+                <div class="col-xs-12 probootstrap-animate">
+                  <h3 class="heading-with-icon"><i class="icon-image"></i> <span>Wifi on demand</span></h3>
+                 </div>
+
+                <div class="col-xs-12 probootstrap-animate">
+                  <h3 class="heading-with-icon"><i class="icon-briefcase"></i> <span>Restrooms</span></h3>
+                 </div>
+
+                <div class="col-xs-12 probootstrap-animate">
+                  <h3 class="heading-with-icon"><i class="icon-chat"></i> <span>Behind the Word Mountains</span></h3>
+                  </div>
+                <div class="col-xs-12 probootstrap-animate">
+                  <h3 class="heading-with-icon"><i class="icon-colours"></i> <span>Separated They Live</span></h3>
+                  </div>
+                <div class="clearfix visible-lg-block visible-md-block visible-sm-block"></div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+                <h2 class="mt0">Feedback</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                <p><a href="#" class="btn btn-primary" role="button">Send Message</a></p>
+              </div>
+
+
+        </div>
+  </section>
+
+  <section class="probootstrap-section probootstrap-section-dark">
+    <div class="container">
+      <div class="row mb30">
+        <div class="col-md-8 col-md-offset-2 probootstrap-section-heading text-center">
+          <h2>Explore our Services</h2>
+          <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+          <p><img src="img/curve.svg" class="svg" alt="Free HTML5 Bootstrap Template"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="service left-icon probootstrap-animate">
+            <div class="icon">
+              <img src="img/flaticon/svg/001-building.svg" class="svg" alt="Free HTML5 Bootstrap Template by uicookies.com">
+            </div>
+            <div class="text">
+              <h3>1+ Million Hotel Rooms</h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service left-icon probootstrap-animate">
+            <div class="icon">
+              <img src="img/flaticon/svg/003-restaurant.svg" class="svg" alt="Free HTML5 Bootstrap Template by uicookies.com">
+            </div>
+            <div class="text">
+              <h3>Food &amp; Drinks</h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service left-icon probootstrap-animate">
+            <div class="icon">
+              <img src="img/flaticon/svg/004-parking.svg" class="svg" alt="Free HTML5 Bootstrap Template by uicookies.com">
+            </div>
+            <div class="text">
+              <h3>Airport Taxi</h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+<!-- START: footer -->
+<footer role="contentinfo" class="probootstrap-footer">
+    <div class="container">
+            <div class="col-md-3">
+                <div class="probootstrap-footer-widget">
+                    <p class="mt40"><img src="../static/img/logoD1.png" class="hires" width="50%" height="50%"
+                                         alt="logo"></p>
+                    <p style="font-size:80%;">A new idea for small groups to come together has finally become big enough to be put out there
+                        for our clients.
+
+                    </p>
+                    <p><a href="#" class="link-with-icon">Learn More About Us!<i class=" icon-chevron-right"></i></a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="probootstrap-footer-widget">
+                    <p class="mt40"><img src="../static/img/THIS, HERE, LIGHT.jfif" class="hires" width="90%"
+                                         height="150px" alt="logo"></p>
+                    <p>
+                    <form>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <input type="search" class="form-control" id="footer-newsletter"
+                                       name="footer-newsletter" placeholder="Subscribe">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-md" id="submit" name="submit" value="Go"
+                                   style="height: 35px;">
+                        </div>
+                </form>
+                </p>
+            </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="probootstrap-footer-widget">
+                    <h3>Contact</h3>
+                    <ul class="probootstrap-contact-info">
+                        <li><i class="icon-location2"></i>
+                            <span>198 West 21th Street, Suite 721 New York NY 10016</span></li>
+                        <li><i class="icon-mail"></i><span>info@domain.com</span></li>
+                        <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
+                    </ul>
+
+                    <div class="row mt30">
+                        <ul class="probootstrap-footer-social">
+                            <li><a href=""><i class="icon-twitter"></i></a></li>
+                            <li><a href=""><i class="icon-facebook"></i></a></li>
+                            <li><a href=""><i class="icon-instagram2"></i></a></li>
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+    </div>
+</footer>
+<!-- END: footer -->
+
+
+<script src="../static/js/scripts.min.js"></script>
+<script src="../static/js/main.min.js"></script>
+<script src="../static/js/custom.js"></script>
+
+
+</body>
+</html>

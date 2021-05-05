@@ -1,10 +1,10 @@
-$(document).ready(function() {
-  $('form').on('submit', function(e){
-    // validation code here
-    if(!valid) {
-      e.preventDefault();
-    }
-  });
+$(document).ready(function () {
+    $('form').on('submit', function (e) {
+        // validation code here
+        if (!valid) {
+            e.preventDefault();
+        }
+    });
 });
 
 function getLocation() {
@@ -36,28 +36,46 @@ function sendLocation(position) {
     });
 }
 
+
 function searchspace() {
+    serialize = function (obj) {
+        var str = [];
+        for (var p in obj)
+            if (obj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+        return str.join("&");
+    }
 
+    query=serialize({
+        location: $('#locations').val(),
+        type: $('#room').val(),
+        arrival: $('#date-arrival').val(),
+        depature: $('#date-departure').val(),
+        guests: $('#adults').val()
+    });
+    window.location.href="spaces?"+query
 
-    $.ajax({
-            type: "POST",
-            url: "/api/search",
-            data: {
-                location: $('#locations').val(),
-                type: $('#room').val(),
-                arrival: $('#date-arrival').val(),
-                depature: $('#date-departure').val(),
-                guests: $('#adults').val()
-            },
-            async: !0,
-            cache: !1,
-            success: function (data) {
-                option.text = data.city
-                option.value = data.city
-                y.add(option)
-                $('#locations').val(data.city)
-                console.log(data.city)
-            },
-        }
-    )
+    //
+    // $.ajax({
+    //         type: "POST",
+    //         url: "/api/search",
+    //         data: {
+    //             location: $('#locations').val(),
+    //             type: $('#room').val(),
+    //             arrival: $('#date-arrival').val(),
+    //             depature: $('#date-departure').val(),
+    //             guests: $('#adults').val()
+    //         },
+    //         async: !0,
+    //         cache: !1,
+    //         success: function (data) {
+    //             option.text = data.city
+    //             option.value = data.city
+    //             y.add(option)
+    //             $('#locations').val(data.city)
+    //             console.log(data.city)
+    //         },
+    //     }
+    // )
 }
