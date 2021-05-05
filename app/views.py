@@ -1,8 +1,13 @@
+import os
 import random
 import requests
+from flask_wtf import file
+from werkzeug.exceptions import BadRequest
+from werkzeug.utils import secure_filename
+
 from config import Secrets
-from flask import render_template, redirect, url_for, flash, request
-from app import app, login_manager, bcrypt, db, client
+from flask import render_template, redirect, url_for, flash, request, jsonify
+from app import app, login_manager, bcrypt, db, client, ALLOWED_EXTENSIONS
 from app.models import User, Property
 from app.forms import RegistrationForm, LoginForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -216,6 +221,10 @@ def get_google_provider_cfg():
 def enlist():
     return render_template('enlist.html')
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @app.route('/enlist/property', methods=['GET', 'POST'])
 def enlistProperty():
@@ -226,15 +235,30 @@ def enlistProperty():
             owner_name = fname + ' ' + lname
             property_name = request.form['vname']
             address = request.form['address']
-            features = request.form['description']
-            contact_manager = request.form['phone']
-            contact_front = request.form['frontDeskContact']
-            partitions = request.form['partitions']
-            capacity = request.form['capacity']
-            pan_number = request.form['panNo']
-            best_price = request.form['bestPrice']
+            features = request.form['desc']
+            contact_manager = request.form['phn']
+            contact_front = request.form['fd-contact']
+            partitions = request.form['partions']
+            capacity = request.form['Capacity']
+            pan_number = request.form['pno']
+            best_price = request.form['bp']
             owner_id = current_user.id
             enlistment_status = 'pending'
+            if 'myFile' not in request.files:
+                print('No file part')
+            file = request.files['myFile']
+            print(file)
+            # try:
+            #     file = request.form['filename']
+            #     if file:
+            #         print('yay')
+            # except BadRequest:
+            if contact_front == '':
+                contact_front = None
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
 
             enlistproperty = Property(owner_id=owner_id, owner_name=owner_name,
                                       property_name=property_name, address=address, features=features,
@@ -313,11 +337,12 @@ def location():
     print(url)
     i = requests.get(url)
     j = i.json()
-    k = j['results'][0]['address_components'][2]['short_name']
-    print(k)
-    return 'ok'
+    k = j['results'][5]['formatted_address'].split(',')[0]
+    return jsonify({'city': k})
+
 
 @app.route('/api/search', methods=['POST'])
 def search():
     print(request.form['arrival'])
+    k = db.query
     return 'kll'

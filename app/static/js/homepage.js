@@ -1,3 +1,12 @@
+$(document).ready(function() {
+  $('form').on('submit', function(e){
+    // validation code here
+    if(!valid) {
+      e.preventDefault();
+    }
+  });
+});
+
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(sendLocation)
@@ -7,6 +16,8 @@ function getLocation() {
 }
 
 function sendLocation(position) {
+    var y = document.getElementById("locations");
+    var option = document.createElement("option");
     let x = position.coords.latitude
     $.ajax({
         type: "POST",
@@ -15,15 +26,19 @@ function sendLocation(position) {
         async: !0,
         cache: !1,
         success: function (data) {
-            $('#address').val(data.line1) & $('#address').addClass('filled');
-            $('#pincode').val(data.pincode).addClass('filled');
-            $('#landmark').val(data.landmark).addClass('filled');
+            option.text = data.city
+            option.value = data.city
+            y.add(option)
+            $('#locations').val(data.city)
+            console.log(data.city)
         },
 
     });
 }
 
 function searchspace() {
+
+
     $.ajax({
             type: "POST",
             url: "/api/search",
@@ -36,6 +51,13 @@ function searchspace() {
             },
             async: !0,
             cache: !1,
+            success: function (data) {
+                option.text = data.city
+                option.value = data.city
+                y.add(option)
+                $('#locations').val(data.city)
+                console.log(data.city)
+            },
         }
     )
 }
