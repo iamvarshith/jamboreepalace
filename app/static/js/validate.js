@@ -9,6 +9,7 @@ $(document).ready(function () {
     });
 });
 
+
 function printError(elemId, hintMsg) {
     document.getElementById(elemId).innerHTML = hintMsg;
 }
@@ -63,26 +64,26 @@ function validate_homeform() {
     }
 }
 
-function homeValCall() {
-    const myform = document.getElementById('form_search');
-    const formData = new FormData(myform);
+function home_valcall(){  return(
+        validate_homeform()
+        &&
+            $.ajax({
+            type:'POST',
+            url : '/api/search',
+            data:{
+                location: $('#location').val(),
+                type: $('#type').val(),
+				from: $('#from').val(),
+				to: $('#to').val(),
+				guest: $('#guest').val()
+            },
+            async: !1,
+            cache: !1,
+            },
 
 
-    $.ajax({
-        type: 'POST',
-        url: '/',                 //add url idhar
-        data: formData,
-        dataType: 'json',
-        processData: false,
-        enctype: 'multipart/form-data',
-        contentType: false,
-        async: !1,
-        cache: !1,
-        success: function () {
-            alert('form was submitted');
-        }
 
-    });
+    ));
 }
 
 function submitFormhome() {
