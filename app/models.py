@@ -46,6 +46,8 @@ class Property(db.Model):
 
 class Bookings(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
+    arrival_data = db.Column(db.Date())
+    depature_data = db.Column(db.Date())
     user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
     property_id = db.Column(db.Integer(), db.ForeignKey('property.id'))
     payment_id = db.Column(db.String(60), nullable=False)
