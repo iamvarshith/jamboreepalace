@@ -297,7 +297,7 @@ def manageProperty():
 
 @app.route('/about')
 def about():
-    return render_template('confirmation.html')
+    return render_template('about.html')
 
 
 @app.route('/spaces', methods=['GET', 'POST'])

@@ -264,3 +264,18 @@ display:flex;
 background-color:--secondary;
 margin:0 0 20% 45%;
 }
+
+.about-cont{
+background-color:var(--secondary);
+}
+
+.about-cont span{
+color:white;
+}
+
+.about-cont i, .about-cont h2{
+color:var(--accent) !important;}
+
+.about-cont p{
+color:rgb(219, 209, 196);
+}
