@@ -139,7 +139,7 @@ function validateform() {
         }
 
 
-    if (nameErr || lnameErr || emailErr || vnameErr || addErr || descErr || mobileErr || capErr || pnoErr || bpErr == true) {
+    if (nameErr || lnameErr || emailErr || vnameErr || addErr || descErr || mobileErr || capErr || pnoErr || bpErr === true) {
         return false;
     } else {
         return true;
@@ -204,7 +204,8 @@ function enlist() {
 }
 
 function submitForm() {
-    validateform() 
-    alert(validateform())
+    validateform() &&
+    enlist()
+
 
 }

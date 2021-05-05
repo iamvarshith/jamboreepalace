@@ -244,15 +244,7 @@ def enlistProperty():
             best_price = request.form['bp']
             owner_id = current_user.id
             enlistment_status = 'pending'
-            if 'myFile' not in request.files:
-                print('No file part')
             file = request.files['myFile']
-            print(file)
-            # try:
-            #     file = request.form['filename']
-            #     if file:
-            #         print('yay')
-            # except BadRequest:
             if contact_front == '':
                 contact_front = None
             if file and allowed_file(file.filename):
@@ -264,10 +256,11 @@ def enlistProperty():
                                       property_name=property_name, address=address, features=features,
                                       contact_manager=contact_manager, contact_front=contact_front,
                                       partitions=partitions,
-                                      capacity=capacity, pan_number=pan_number, best_price=best_price,
+                                      capacity=capacity, pan_number=pan_number, best_price=best_price,image=str(filename),
                                       enlistment_status=enlistment_status)
             db.session.add(enlistproperty)
             db.session.commit()
+            return jsonify({})
     return '200'
 
 

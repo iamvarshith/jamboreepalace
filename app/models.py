@@ -35,6 +35,7 @@ class Property(db.Model):
     contact_front = db.Column(db.BigInteger())
     contact_manager = db.Column(db.BigInteger())
     capacity = db.Column(db.Integer())
+    image = db.Column(db.String(1000))
     enlistment_status = db.Column(db.String(20))
     bookees = db.relationship('Bookings', backref='property_owner')
 
