@@ -76,15 +76,25 @@ function validateform() {
 
     if (vname.value == "") {
         printError("vnameErr", "Please enter your Venue name");
-    }
+    } else {
+            printError("vnameErr", "");
+            vnameErr = false;
+        }
+
 
     if (address.value == "") {
         printError("addErr", "Please enter venue address");
-    }
+    } else {
+            printError("addErr", "");
+            addErr = false;
+        }
 
     if (desc.value == "") {
         printError("descErr", "Please enter a description");
-    }
+    } else {
+            printError("descErr", "");
+            descErr = false;
+        }
 
     if (phn.value == "") {
         printError("mobileErr", "Please enter your mobile number");
@@ -123,14 +133,16 @@ function validateform() {
 
     if (bp.value == "") {
         printError("bpErr", "Please enter a suitable price for booking  purposes");
-    }
+    } else {
+            printError("bpErr", "");
+            bpErr = false;
+        }
 
 
     if (nameErr || lnameErr || emailErr || vnameErr || addErr || descErr || mobileErr || capErr || pnoErr || bpErr == true) {
-        return true;
-    } else {
-        console.log('form sucessful')
         return false;
+    } else {
+        return true;
     }
 }
 

@@ -18,7 +18,7 @@ function validate_homeform() {
     var ArDateErr = true;
     var DeDateErr = true;
     var AdultErr = true;
-    var alerts = []
+    var LocErr = true;
 
     if (date_arrival.value == "") {
         printError("ArDateErr", "Arrival date can't be empty");
@@ -29,7 +29,7 @@ function validate_homeform() {
     }
 
     if (locations.value == "") {
-        printError("DeDateErr", "Departure date can't be empty");
+        printError("LocErr", "Departure date can't be empty");
     }
 
 
