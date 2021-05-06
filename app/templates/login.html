@@ -154,6 +154,7 @@
                     {{ form.hidden_tag() }}
 
                     {% if form.email.errors %}
+                        {{ form.name.label }}
                         {{ form.email (class="form-field animation a3",placeholder="Email Address") }}
                         <div class="invalid-feedback">
                             {% for error in form.email.errors %}
