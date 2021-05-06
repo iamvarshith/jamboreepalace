@@ -361,69 +361,70 @@ def individualProperties(token):
     print(property)
     return render_template('space.html',property = property)
 
-@app.route('/payu', methods=['POST', "GET"])
-def payu():
-    if request.method == 'POST':
-
-    txnid = hashlib.md5(str((random.randint(100000, 999999) + current_user.email)).encode()).hexdigest()
-
-    hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10"
-    hash_string = ''
-    hashVarsSeq = hashSequence.split('|')
-
-    param_dict = {
-        'key': 'ZOwH3J89',
-        'txnid': txnid,
-        'amount': str(txn_amount),
-        'productinfo': str(test_type),
-        'firstname': order.name,
-        'email': current_user.email,
-        'phone': current_user.phone,
-        'surl': final_url + '/payu/success',
-        'furl': final_url + '/payu/gg',
-        'hash': '',
-        'service_provider': 'payu_paisa'
-
-    }
-    for i in hashVarsSeq:
-        try:
-            hash_string += str(param_dict[i])
-        except Exception:
-            hash_string += ''
-        hash_string += '|'
-    hash_string += 'LpoLYPU8dV'
-    hashh = hashlib.sha512(hash_string.encode()).hexdigest().lower()
-    param_dict['hash'] = hashh
-    return render_template('payu.html', param=param_dict)
-
-@app.route('/payu/success', methods=['POST', 'GET'])
-def payu_success():
-    order = TestOrder.query.filter_by(id=session['order_id']).first()
-    status = request.form["status"]
-    firstname = request.form["firstname"]
-    amount = request.form["amount"]
-    txnid = request.form["txnid"]
-    posted_hash = request.form["hash"]
-    key = request.form["key"]
-    productinfo = request.form["productinfo"]
-    email = request.form["email"]
-    salt = "LpoLYPU8dV"
-    retHashSeq = salt + '|' + status + '|||||||||||' + email + '|' + firstname + '|' + productinfo + '|' + amount + '|' + txnid + '|' + key
-    hashh = hashlib.sha512(retHashSeq.encode()).hexdigest().lower()
-    if hashh == posted_hash:
-        order.status_txn = 'success' + '  ,\u20B9' + session['amount']
-
-        db.session.commit()
-        pay_status = 1
-
-    return render_template('postpayment.html', status=pay_status, transaction_id=txnid)
-
-
-@app.route('/payu/gg', methods=['POST', 'GET'])
-def payu_fail():
-    order = TestOrder.query.filter_by(id=session['order_id']).first()
-    order.status_txn = 'fail' + '  ,\u20B9' + str(session['amount'])
-
-    db.session.commit()
-    pay_status = 0
-    return render_template('postpayment.html', status=pay_status, transaction_id=request.form['txnid'])
+# @app.route('/payu', methods=['POST', "GET"])
+# def payu():
+#
+#
+#
+#     txnid = hashlib.md5(str((random.randint(100000, 999999) + current_user.email)).encode()).hexdigest()
+#
+#     hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10"
+#     hash_string = ''
+#     hashVarsSeq = hashSequence.split('|')
+#
+#     param_dict = {
+#         'key': 'ZOwH3J89',
+#         'txnid': txnid,
+#         'amount': str(txn_amount),
+#         'productinfo': str(test_type),
+#         'firstname': order.name,
+#         'email': current_user.email,
+#         'phone': current_user.phone,
+#         'surl': final_url + '/payu/success',
+#         'furl': final_url + '/payu/gg',
+#         'hash': '',
+#         'service_provider': 'payu_paisa'
+#
+#     }
+#     for i in hashVarsSeq:
+#         try:
+#             hash_string += str(param_dict[i])
+#         except Exception:
+#             hash_string += ''
+#         hash_string += '|'
+#     hash_string += 'LpoLYPU8dV'
+#     hashh = hashlib.sha512(hash_string.encode()).hexdigest().lower()
+#     param_dict['hash'] = hashh
+#     return render_template('payu.html', param=param_dict)
+#
+# @app.route('/payu/success', methods=['POST', 'GET'])
+# def payu_success():
+#     order = TestOrder.query.filter_by(id=session['order_id']).first()
+#     status = request.form["status"]
+#     firstname = request.form["firstname"]
+#     amount = request.form["amount"]
+#     txnid = request.form["txnid"]
+#     posted_hash = request.form["hash"]
+#     key = request.form["key"]
+#     productinfo = request.form["productinfo"]
+#     email = request.form["email"]
+#     salt = "LpoLYPU8dV"
+#     retHashSeq = salt + '|' + status + '|||||||||||' + email + '|' + firstname + '|' + productinfo + '|' + amount + '|' + txnid + '|' + key
+#     hashh = hashlib.sha512(retHashSeq.encode()).hexdigest().lower()
+#     if hashh == posted_hash:
+#         order.status_txn = 'success' + '  ,\u20B9' + session['amount']
+#
+#         db.session.commit()
+#         pay_status = 1
+#
+#     return render_template('postpayment.html', status=pay_status, transaction_id=txnid)
+#
+#
+# @app.route('/payu/gg', methods=['POST', 'GET'])
+# def payu_fail():
+#     order = TestOrder.query.filter_by(id=session['order_id']).first()
+#     order.status_txn = 'fail' + '  ,\u20B9' + str(session['amount'])
+#
+#     db.session.commit()
+#     pay_status = 0
+#     return render_template('postpayment.html', status=pay_status, transaction_id=request.form['txnid'])
