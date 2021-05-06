@@ -281,12 +281,17 @@ color:var(--accent) !important;}
 color:rgb(219, 209, 196);
 }
 
-.room-cont{
-display:flex;}
+.room-cont {
+    display: flex;
+    flex-wrap:wrap;
+    width: 90vw;
 
+}
 .room{
-width:300px;
-margin:10px;
+    margin: 10px;
+    order: 2;
+    width: 25%;
+
 }
 
 .room img{

@@ -8,10 +8,10 @@
     <title>{{ title }}</title>
 
     <meta name="keywords"
-        content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+          content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
     <link href="https://fonts.googleapis.com/css?family=Crimson+Text:300,400,700|Rubik:300,400,700,900"
-        rel="stylesheet">
+          rel="stylesheet">
     <link rel="stylesheet" href="../static/css/styles-merged.css">
     <link rel="stylesheet" href="../static/css/style.min.css">
     <link rel="stylesheet" href="../static/css/custom.css">
@@ -21,7 +21,7 @@
 
 <body>
 
-    <header role="banner" class="probootstrap-header">
+<header role="banner" class="probootstrap-header">
     <!-- <div class="container"> -->
     <div class="row">
         <a href="index.html" class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png" class="hires"
@@ -48,17 +48,17 @@
                 <li><a href="{{ url_for("about") }}">About</a></li>
                 <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 {% if current_user.is_authenticated %}
-                <li><a>
-                    <select name="profile" id="profile">
-                        <option value="placeholder"><a href = "{{ url_for("profile") }}">Profile</a></option>
-                        <option value=""><a href = "{{ "prevBookings" }}">Previous Bookings</a></option>
-                        <option value=""><a href = "{{ "enlistApplication(" }}">Enlistment Applications</a></option>
-                        <option value=""><a href = "{{ "manageProperty" }}">Manage Properties</a></option>
-                        <option value=""><a href = "{{ "logout" }}">Log out</a></option>
-                    </select>
-                </li>
+                    <li><a>
+                        <select name="profile" id="profile">
+                            <option value="placeholder"><a href="{{ url_for("profile") }}">Profile</a></option>
+                            <option value=""><a href="{{ "prevBookings" }}">Previous Bookings</a></option>
+                            <option value=""><a href="{{ "enlistApplication(" }}">Enlistment Applications</a></option>
+                            <option value=""><a href="{{ "manageProperty" }}">Manage Properties</a></option>
+                            <option value=""><a href="{{ "logout" }}">Log out</a></option>
+                        </select>
+                    </li>
                 {% else %}
-                <li><a href="{{ login }}"> Login/Signup </a></li>
+                    <li><a href="{{ login }}"> Login/Signup </a></li>
                 {% endif %}
             </ul>
             <div class="extra-text visible-xs">
@@ -74,56 +74,58 @@
     </div>
     <!-- </div> -->
 </header>
-    <section class="probootstrap-section">
-        <div class="container">
-            <div class="profile-nav">
-                <ul style="list-style-type:none;">
-                    <li><img src="./img/logo.jpeg" alt="Profile Image" class="profile-image"></li>
-                    <li class="el-list"><a href = "{{ url_for('profile') }}">Profile</a></li>
-                    <li class="el-list"><a href = "{{ url_for('prevBookings') }}">Previous bookings</a></li>
-                    <li class="el-list"><a href = "{{ url_for('enlistApplication') }}">Enlistment Applications</a></li>
-                    <li class="el-list"><a href = "{{ url_for('manageProperty') }}">Manage Properties</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="probootstrap-room">
-                  <a href="#"><img src="img/img_1.jpg" alt="room1" class="img-responsive"></a>
-                  <div class="text">
-                    <h3>Grand Deluxe Space</h3>
-                    <p>Enlisted on <strong>02 December 2020</strong></p>
-                    <div class="post-meta mb30">
-                      <ul>
-                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews</li>
-                        <li><i class="icon-user2"></i> 3 Guests</li>
-                      </ul>
-                    </div>
-                    <p><a href="#" class="btn btn-primary" role="button">Details</a></p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="probootstrap-room">
-                  <a href="#"><img src="img/img_1.jpg" alt="room1" class="img-responsive"></a>
-                  <div class="text">
-                    <h3>Grand Deluxe Space</h3>
-                    <p>Enlisted on <strong>02 December 2020</strong></p>
-                    <div class="post-meta mb30">
-                      <ul>
-                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews</li>
-                        <li><i class="icon-user2"></i> 3 Guests</li>
-                      </ul>
-                    </div>
-                    <p><a href="#" class="btn btn-primary" role="button">Details</a></p>
-                  </div>
-                </div>
-              </div>
+<section class="probootstrap-section">
+    <div class="container">
+        <div class="profile-nav">
+            <ul style="list-style-type:none;">
+                <li><img src="{{ current_user.profile_img }}" alt="Profile Image" class="profile-image"></li>
+                <li class="el-list"><a href="{{ url_for('profile') }}">Profile</a></li>
+                <li class="el-list"><a href="{{ url_for('prevBookings') }}">Previous bookings</a></li>
+                <li class="el-list"><a href="{{ url_for('enlistApplication') }}">Enlistment Applications</a></li>
+                <li class="el-list"><a href="{{ url_for('manageProperty') }}">Manage Properties</a></li>
+            </ul>
         </div>
+        {% if properties|length %}
+            {% for property in properties %}
 
-    </section>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="probootstrap-room">
+                        <a href="#"><img src="../static/property_img/{{ property.image }}" alt='../static/bg.jpg'
+                                         class="img-responsive"></a>
+                        <div class="text">
+                            <h3>{{ property.property_name }}</h3>
+                            <p>Contact No <strong>{{ property.contact_manager }}</strong></p>
+                            <div class="post-meta mb30 property_name">
+                                <ul>
+                                    <li> {{ property.enlistment_status }} </li>
+                                    <br>
+                                    <li>Owner Name : {{ property.owner_name }} </li>
+                                    <br>
+                                    <li>Address : {{ property.address }} </li>
+                                    <br>
+                                    <li>Best Price : {{ property.best_price }} </li>
+                                </ul>
+                            </div>
+                            <p><a href="#" class="btn btn-primary" role="button">Details</a></p>
+                        </div>
+                    </div>
+                </div>
 
-   <!-- START: footer -->
-    <footer role="contentinfo" class="probootstrap-footer">
+            {% endfor %}
+        {% else %}
+            <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="probootstrap-room">
+                <h4>nah No applications</h4></div></div>
+        {% endif %}
+
+
+
+    </div>
+
+</section>
+
+<!-- START: footer -->
+<footer role="contentinfo" class="probootstrap-footer">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -185,11 +187,11 @@
         </div>
     </div>
 </footer>
-    <!-- END: footer -->
+<!-- END: footer -->
 
-    <script src="js/scripts.min.js"></script>
-    <script src="js/main.min.js"></script>
-    <script src="js/custom.js"></script>
+<script src="js/scripts.min.js"></script>
+<script src="js/main.min.js"></script>
+<script src="js/custom.js"></script>
 
 </body>
 

@@ -106,8 +106,9 @@
         <div class="col-md-5">
             <div class="col-md-12">
                 <h2 class="mt0">Book Now {{ property.property_name }}</h2>
-                <form action="#" method="post" class="probootstrap-form">
+                <form action="/payu" method="post" class="probootstrap-form">
 
+                     <input type="hidden" id="property_id" name="property_id" value="{{ property.id }}">
                   <div class="form-group">
                     <label for="room">Type of Room</label>
                     <div class="form-field">

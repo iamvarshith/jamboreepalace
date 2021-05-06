@@ -55,7 +55,7 @@
                         <option value=""><a href = "{{ "enlistApplication(" }}">Enlistment Applications</a></option>
                         <option value=""><a href = "{{ "manageProperty" }}">Manage Properties</a></option>
                         <option value=""><a href = "{{ "logout" }}">Log out</a></option>
-                    </select>
+                    </select></a>
                 </li>
                 {% else %}
                 <li><a href="{{ login }}"> Login/Signup </a></li>
@@ -78,19 +78,21 @@
         <div class="container">
             <div class="profile-nav">
                 <ul style="list-style-type:none;">
-                    <li><img src="./img/logo.jpeg" alt="Profile Image" class="profile-image"></li>
+                    <li><img src="{{ current_user.profile_img }}" alt="Profile Image" class="profile-image"></li>
                     <li class="el-list"><a href = "{{ url_for('profile') }}">Profile</a></li>
                     <li class="el-list"><a href = "{{ url_for('prevBookings') }}">Previous bookings</a></li>
                     <li class="el-list"><a href = "{{ url_for('enlistApplication') }}">Enlistment Applications</a></li>
                     <li class="el-list"><a href = "{{ url_for('manageProperty') }}">Manage Properties</a></li>
                 </ul>
             </div>
+            {% for dict in previous_booking_list %}
+
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="probootstrap-room">
-                  <a href="#"><img src="img/img_1.jpg" alt="room1" class="img-responsive"></a>
+                  <a href=""><img src="../static/property_img/{{ dict['image'] }}" alt="room1" class="img-responsive"></a>
                   <div class="text">
-                    <h3>Grand Deluxe Space</h3>
-                    <p>Booked on <strong>02 December 2020</strong></p>
+                    <h3 style="font-variant-caps: all-petite-caps">{{ dict['payment_status'] }}</h3>
+                    <p>Booked on <strong>{{ dict['date_booking'] }}</strong></p>
                     <div class="post-meta mb30">
                       <ul>
                         <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews</li>
@@ -102,22 +104,8 @@
                 </div>
               </div>
 
-              <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="probootstrap-room">
-                  <a href="#"><img src="img/img_1.jpg" alt="room1" class="img-responsive"></a>
-                  <div class="text">
-                    <h3>Grand Deluxe Space</h3>
-                    <p>Booked on <strong>02 December 2020</strong></p>
-                    <div class="post-meta mb30">
-                      <ul>
-                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews</li>
-                        <li><i class="icon-user2"></i> 3 Guests</li>
-                      </ul>
-                    </div>
-                    <p><a href="#" class="btn btn-primary" role="button">Details</a></p>
-                  </div>
-                </div>
-              </div>
+            {% endfor %}
+
         </div>
 
     </section>

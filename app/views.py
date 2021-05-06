@@ -3,19 +3,23 @@ import os
 import random
 import requests
 from flask_wtf import file
+from sqlalchemy import inspect
 from werkzeug.exceptions import BadRequest
 from werkzeug.utils import secure_filename
 
 from config import Secrets
 from flask import render_template, redirect, url_for, flash, request, jsonify
 from app import app, login_manager, bcrypt, db, client, ALLOWED_EXTENSIONS
-from app.models import User, Property
+from app.models import User, Property, Bookings
 from app.forms import RegistrationForm, LoginForm
 from flask_login import current_user, login_user, logout_user, login_required
 from oauthlib.oauth2 import WebApplicationClient
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadTimeSignature
 import json
 from app.mailgun import sendMail
+import datetime
+from datetime import datetime, date
+import arrow
 
 sq = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
@@ -28,7 +32,8 @@ sq = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    null_query = Property.query.all()[-5:]
+    return render_template('home.html',null_query=null_query)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -276,25 +281,41 @@ def profile():
 @app.route('/profile/previous_bookings')
 @login_required
 def prevBookings():
-    return render_template('previousbookings.html')
+    user = current_user
+    previous_booking = Bookings.query.filter(Bookings.user_id == current_user.id).all()
+    previous_booking_list = []
+    def object_as_dict(obj):
+        return {c.key: getattr(obj, c.key)
+                for c in inspect(obj).mapper.column_attrs}
+    previous_booking_list = []
+    for i in previous_booking:
+        previous_booking_list.append(object_as_dict(i))
+    for i in range(len(previous_booking_list)):
+        property_details = Property.query.filter(Property.id == previous_booking_list[i]['property_id']).first()
+        previous_booking_list[i].update(object_as_dict(property_details))
+
+    print(previous_booking_list[1])
+    return render_template('previousbookings.html', user=user, previous_booking_list=previous_booking_list)
 
 
 @app.route('/profile/enlistment_application')
 @login_required
 def enlistApplication():
-    properties = current_user.property
+
     enlist_application = Property.query.filter(
         Property.owner_id == current_user.id, Property.enlistment_status == 'pending').all()
     print(type(enlist_application))
-    # for i in range(len(properties)):
-    #     if properties.enlistment_status
+
     return render_template('enlistapp.html', properties=enlist_application)
 
 
 @app.route('/profile/manageproperty')
 @login_required
 def manageProperty():
-    return render_template('manage.html')
+
+    properties = Property.query.filter(
+    Property.owner_id == current_user.id, Property.enlistment_status == 'approved').all()
+    return render_template('manage.html',properties=properties)
 
 
 @app.route('/about')
@@ -349,82 +370,108 @@ def spaces():
     arrival_date = request.args.get('arrival')
     depature_date = request.args.get('depature')
     no_guests = request.args.get('guests')
+    print(arrival_date)
     avilable1 = Property.query.filter(Property.address == location).all()[:7]
     avilable2 = Property.query.filter(Property.address == location).all()[7:14]
-    print(avilable1)
-    return render_template('space_gallery.html', avilable1=avilable1, avilable2=avilable2)
+    null_query = Property.query.all()[-5:]
+    print(null_query)
+
+    return render_template('space_gallery.html', avilable1=avilable1, avilable2=avilable2, null_query=null_query)
 
 
 @app.route('/spaces/<token>', methods=['get', 'post'])
 def individualProperties(token):
     property = Property.query.filter(Property.id == token).first()
     print(property)
-    return render_template('space.html',property = property)
+    return render_template('space.html', property=property)
 
-# @app.route('/payu', methods=['POST', "GET"])
-# def payu():
-#
-#
-#
-#     txnid = hashlib.md5(str((random.randint(100000, 999999) + current_user.email)).encode()).hexdigest()
-#
-#     hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10"
-#     hash_string = ''
-#     hashVarsSeq = hashSequence.split('|')
-#
-#     param_dict = {
-#         'key': 'ZOwH3J89',
-#         'txnid': txnid,
-#         'amount': str(txn_amount),
-#         'productinfo': str(test_type),
-#         'firstname': order.name,
-#         'email': current_user.email,
-#         'phone': current_user.phone,
-#         'surl': final_url + '/payu/success',
-#         'furl': final_url + '/payu/gg',
-#         'hash': '',
-#         'service_provider': 'payu_paisa'
-#
-#     }
-#     for i in hashVarsSeq:
-#         try:
-#             hash_string += str(param_dict[i])
-#         except Exception:
-#             hash_string += ''
-#         hash_string += '|'
-#     hash_string += 'LpoLYPU8dV'
-#     hashh = hashlib.sha512(hash_string.encode()).hexdigest().lower()
-#     param_dict['hash'] = hashh
-#     return render_template('payu.html', param=param_dict)
-#
-# @app.route('/payu/success', methods=['POST', 'GET'])
-# def payu_success():
-#     order = TestOrder.query.filter_by(id=session['order_id']).first()
-#     status = request.form["status"]
-#     firstname = request.form["firstname"]
-#     amount = request.form["amount"]
-#     txnid = request.form["txnid"]
-#     posted_hash = request.form["hash"]
-#     key = request.form["key"]
-#     productinfo = request.form["productinfo"]
-#     email = request.form["email"]
-#     salt = "LpoLYPU8dV"
-#     retHashSeq = salt + '|' + status + '|||||||||||' + email + '|' + firstname + '|' + productinfo + '|' + amount + '|' + txnid + '|' + key
-#     hashh = hashlib.sha512(retHashSeq.encode()).hexdigest().lower()
-#     if hashh == posted_hash:
-#         order.status_txn = 'success' + '  ,\u20B9' + session['amount']
-#
-#         db.session.commit()
-#         pay_status = 1
-#
-#     return render_template('postpayment.html', status=pay_status, transaction_id=txnid)
-#
-#
-# @app.route('/payu/gg', methods=['POST', 'GET'])
-# def payu_fail():
-#     order = TestOrder.query.filter_by(id=session['order_id']).first()
-#     order.status_txn = 'fail' + '  ,\u20B9' + str(session['amount'])
-#
-#     db.session.commit()
-#     pay_status = 0
-#     return render_template('postpayment.html', status=pay_status, transaction_id=request.form['txnid'])
+
+@app.route('/payu', methods=['POST', "GET"])
+@login_required
+def payu():
+    if request.method == 'POST':
+        date_format = "%m/%d/%Y"
+        room_type = request.form['room']
+        date_arrival = request.form['date-arrival']
+        date_departure = request.form['date-departure']
+        adults = request.form['adults']
+        property_id = request.form['property_id']
+        property_selected = Property.query.filter(Property.id == property_id).first()
+        a = datetime.strptime(date_arrival, date_format)
+        b = datetime.strptime(date_departure, date_format)
+        days = b - a
+        if days.days <= 0:
+            txn_amount = property_selected.best_price
+        else:
+            billed_for_days = days.days
+            txn_amount = billed_for_days * property_selected.best_price
+        txnid = hashlib.md5(str((random.randint(100000, 999999) + current_user.id)).encode()).hexdigest()
+        new_booking = Bookings(arrival_data=date_arrival, depature_data=date_departure, user_id=current_user.id,
+                               property_id=property_id, date_booking=date.today(), payment_id=txnid,
+                               payment_status='pending', payment_amount=txn_amount)
+
+        db.session.add(new_booking)
+        db.session.commit()
+
+        hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10"
+        hash_string = ''
+        hashVarsSeq = hashSequence.split('|')
+
+        param_dict = {
+            'key': 'ZOwH3J89',
+            'txnid': txnid,
+            'amount': str(txn_amount),
+            'productinfo': str(property_selected.property_name),
+            'firstname': current_user.username,
+            'email': current_user.email,
+            'phone': 9949588645,
+            'surl': Secrets.URL + '/payu/success',
+            'furl': Secrets.URL + '/payu/failed',
+            'hash': '',
+            'service_provider': 'payu_paisa'
+
+        }
+        for i in hashVarsSeq:
+            try:
+                hash_string += str(param_dict[i])
+            except Exception:
+                hash_string += ''
+            hash_string += '|'
+        hash_string += 'LpoLYPU8dV'
+        hashh = hashlib.sha512(hash_string.encode()).hexdigest().lower()
+        param_dict['hash'] = hashh
+    return render_template('payu.html', param=param_dict)
+
+
+@app.route('/payu/success', methods=['POST', 'GET'])
+def payu_success():
+    status = request.form["status"]
+    firstname = request.form["firstname"]
+    amount = request.form["amount"]
+    txnid = request.form["txnid"]
+    posted_hash = request.form["hash"]
+    key = request.form["key"]
+    productinfo = request.form["productinfo"]
+    email = request.form["email"]
+    salt = "LpoLYPU8dV"
+    order = Bookings.query.filter(Bookings.payment_id == txnid).first()
+    retHashSeq = salt + '|' + status + '|||||||||||' + email + '|' + firstname + '|' + productinfo + '|' + amount + '|' + txnid + '|' + key
+    hashh = hashlib.sha512(retHashSeq.encode()).hexdigest().lower()
+    if hashh == posted_hash:
+        order.payment_status = 'success'
+        db.session.commit()
+        pay_status = 1
+    else:
+        pay_status = 0
+    return render_template('postpayment.html', status=pay_status, transaction_id=txnid)
+
+
+@app.route('/payu/failed', methods=['POST', 'GET'])
+def payu_fail():
+    txnid = request.form["txnid"]
+    order = Bookings.query.filter(Bookings.payment_id == txnid).first()
+    order.payment_status = 'failed'
+
+    db.session.commit()
+    pay_status = 0
+    return render_template('postpayment.html', status=pay_status, transaction_id=request.form['txnid'])

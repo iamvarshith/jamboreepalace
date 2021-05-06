@@ -57,6 +57,6 @@ class Bookings(db.Model):
     date_for_booking = db.Column(db.DateTime)
     partition_no = db.Column(db.Integer())
 
-    def __repr__(self):
-        return f"Bookings('booking_{self.id}','booking_{self.user_id}','{self.property_id}','{self.payment_id}'," \
-               f"'{self.payment_amount}','{self.date_for_booking}','{self.date_for_booking}','{self.payment_status}','{self.partition_no}')"
+    # def __repr__(self):
+    #     return f"Bookings('booking_{self.id}','booking_{self.user_id}','{self.property_id}','{self.payment_id}'," \
+    #            f"'{self.payment_amount}','{self.date_for_booking}','{self.date_for_booking}','{self.payment_status}','{self.partition_no}')"
