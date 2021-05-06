@@ -254,14 +254,15 @@ padding:0px;
 
 #dropdown:hover + .dropdown-div{
 display:flex;
+
 }
 
 .dropdown-div:hover{
 display:flex;
+transition:0.2s linear;
 }
 
 .space-gallery-navi-btn{
-background-color:--secondary;
 margin:0 0 20% 45%;
 }
 
@@ -278,4 +279,28 @@ color:var(--accent) !important;}
 
 .about-cont p{
 color:rgb(219, 209, 196);
+}
+
+.room-cont{
+display:flex;}
+
+.room{
+width:300px;
+margin:10px;
+}
+
+.room img{
+height:400px;
+width:100%;
+transition:0.2s linear !important;}
+
+.room img:hover{
+opacity:0.7;
+
+}
+
+.text{
+border:1px solid var(--accent);
+padding:10px;
+
 }

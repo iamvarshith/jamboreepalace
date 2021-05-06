@@ -833,7 +833,7 @@ flex-direction:column !important;
   background: var(--secondary);
   color: #fff;
 }
-.probootstrap-room {
+.probootstrap-room, .room {
   -webkit-transition: 0.3s all ease-out;
   transition: 0.3s all ease-out;
   margin-bottom: 30px;
