@@ -303,7 +303,7 @@ def about():
 @app.route('/spaces', methods=['GET', 'POST'])
 @login_required
 def spaces():
-    return 'pending'
+    return render_template('space_gallery.html')
 
 
 @app.route('/contact')
@@ -336,6 +336,11 @@ def location():
 
 @app.route('/api/search', methods=['POST'])
 def search():
-    print(request.form['arrival'])
-    k = db.query
+    location = request.form['location']
+    type = request.form['type']
+    arrival_date = request.form['arrival']
+    depature_date = request.form['depature']
+    no_guests = request.form['guests']
+    avilable = Property.query.filter()
+
     return 'kll'
