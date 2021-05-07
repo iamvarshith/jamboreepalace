@@ -515,11 +515,6 @@ def testing():
     return json.dumps(list)
 
 
-@app.route('/admin', methods=['POST', 'GET'])
-def admin():
-    return render_template('admin/home.html')
-
-
 @app.route('/admin/enlistment_status', methods=['POST', 'GET'])
 def admin_enlist_status():
     return render_template('admin/enlist_status.html')
