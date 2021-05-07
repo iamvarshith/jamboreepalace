@@ -27,6 +27,7 @@ sq = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 # @login_manager.unauthorized_handler
 # def unauthorized():
 #     return redirect(url_for('login'))
+
 @app.errorhandler(404)
 def page_not_found(e):
     # note that we set the 404 status explicitly
@@ -264,7 +265,9 @@ def enlistProperty():
             best_price = request.form['bp']
             owner_id = current_user.id
             enlistment_status = 'pending'
+            # file = request.files.getlist("myFile")
             file = request.files['myFile']
+
             if contact_front == '':
                 contact_front = None
             if file and allowed_file(file.filename):
@@ -507,3 +510,6 @@ def payu_fail():
 def testing():
     list = ['khammam','delhi','hyderbad','india','uk']
     return json.dumps(list)
+
+# @app.route('/admin', methods=['POST', 'GET'])
+# def admin():
