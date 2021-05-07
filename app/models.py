@@ -37,6 +37,7 @@ class Property(db.Model):
     capacity = db.Column(db.Integer())
     image = db.Column(db.String(1000))
     enlistment_status = db.Column(db.String(20))
+    rating = db.Column(db.Float(),default=5.0)
     bookees = db.relationship('Bookings', backref='property_owner')
 
     def __repr__(self):

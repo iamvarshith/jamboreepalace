@@ -325,7 +325,7 @@ def about():
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html')
+    return render_template('testing.html')
 
 
 @app.route('/property/<token>', methods=['get', 'post'])
@@ -371,12 +371,12 @@ def spaces():
     depature_date = request.args.get('depature')
     no_guests = request.args.get('guests')
     print(arrival_date)
-    avilable1 = Property.query.filter(Property.address == location).all()[:7]
-    avilable2 = Property.query.filter(Property.address == location).all()[7:14]
-    null_query = Property.query.all()[-5:]
+    avilable1 = Property.query.filter(Property.address == location,Property.enlistment_status == 'approved').all()[:7]
+
+    null_query = Property.query.filter(Property.enlistment_status == 'approved').all()[-5:]
     print(null_query)
 
-    return render_template('space_gallery.html', avilable1=avilable1, avilable2=avilable2, null_query=null_query)
+    return render_template('space_gallery.html', avilable1=avilable1, null_query=null_query)
 
 
 @app.route('/spaces/<token>', methods=['get', 'post'])
@@ -475,3 +475,9 @@ def payu_fail():
     db.session.commit()
     pay_status = 0
     return render_template('postpayment.html', status=pay_status, transaction_id=request.form['txnid'])
+
+
+@app.route('/api/testing', methods=['POST', 'GET'])
+def testing():
+    list = ['khammam','delhi','hyderbad','india','uk']
+    return json.dumps(list)
