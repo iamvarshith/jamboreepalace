@@ -19,7 +19,7 @@ import json
 from app.mailgun import sendMail
 import datetime
 from datetime import datetime, date
-import arrow
+
 
 sq = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
