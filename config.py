@@ -26,3 +26,4 @@ class Secrets:
     OAUTHLIB_INSECURE_TRANSPORT = os.getenv('OAUTHLIB_INSECURE_TRANSPORT')
     URL = os.getenv('URL')
     MAILGUN_POST_URL = os.getenv('mailgun_post_url')
+    MAILGUNAPI = os.getenv('MAILGUNAPI')

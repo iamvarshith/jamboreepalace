@@ -20,7 +20,6 @@ from app.mailgun import sendMail
 import datetime
 from datetime import datetime, date
 
-
 sq = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 
@@ -43,11 +42,12 @@ def server_error(e):
 def page_error(e):
     return render_template('400.html'), 400
 
+
 @app.route('/')
 @app.route('/home')
 def home():
     null_query = Property.query.all()[-5:]
-    return render_template('home.html',null_query=null_query)
+    return render_template('home.html', null_query=null_query)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -300,9 +300,11 @@ def prevBookings():
     user = current_user
     previous_booking = Bookings.query.filter(Bookings.user_id == current_user.id).all()
     previous_booking_list = []
+
     def object_as_dict(obj):
         return {c.key: getattr(obj, c.key)
                 for c in inspect(obj).mapper.column_attrs}
+
     previous_booking_list = []
     for i in previous_booking:
         previous_booking_list.append(object_as_dict(i))
@@ -317,7 +319,6 @@ def prevBookings():
 @app.route('/profile/enlistment_application')
 @login_required
 def enlistApplication():
-
     enlist_application = Property.query.filter(
         Property.owner_id == current_user.id, Property.enlistment_status == 'pending').all()
     print(type(enlist_application))
@@ -328,10 +329,9 @@ def enlistApplication():
 @app.route('/profile/manageproperty')
 @login_required
 def manageProperty():
-
     properties = Property.query.filter(
-    Property.owner_id == current_user.id, Property.enlistment_status == 'approved').all()
-    return render_template('manage.html',properties=properties)
+        Property.owner_id == current_user.id, Property.enlistment_status == 'approved').all()
+    return render_template('manage.html', properties=properties)
 
 
 @app.route('/about')
@@ -387,7 +387,7 @@ def spaces():
     depature_date = request.args.get('depature')
     no_guests = request.args.get('guests')
     print(arrival_date)
-    avilable1 = Property.query.filter(Property.address == location,Property.enlistment_status == 'approved').all()[:7]
+    avilable1 = Property.query.filter(Property.address == location, Property.enlistment_status == 'approved').all()[:7]
 
     null_query = Property.query.filter(Property.enlistment_status == 'approved').all()[-5:]
     print(null_query)
@@ -422,8 +422,9 @@ def payu():
             billed_for_days = days.days
             txn_amount = billed_for_days * property_selected.best_price
         txnid = hashlib.md5(str((random.randint(100000, 999999) + current_user.id)).encode()).hexdigest()
-        new_booking = Bookings(arrival_data=date_arrival, depature_data=date_departure,no_adults=adults, user_id=current_user.id,
-                               property_id=property_id, date_booking=date.today(), payment_id=txnid,
+        new_booking = Bookings(arrival_data=date_arrival, depature_data=date_departure, no_adults=adults,
+                               user_id=current_user.id,
+                               property_id=property_id, date_booking=datetime.today(), payment_id=txnid,
                                payment_status='pending', payment_amount=txn_amount)
 
         db.session.add(new_booking)
@@ -436,14 +437,14 @@ def payu():
 
         param_dict = {
             'key': 'ZOwH3J89',
-            'txnid': txnid,
+            'txnid': str(txnid),
             'amount': str(txn_amount),
             'productinfo': str(property_selected.property_name),
             'firstname': current_user.username,
             'email': current_user.email,
-            'phone': 9949588645,
-            'surl': Secrets.URL + '/payu/success',
-            'furl': Secrets.URL + '/payu/failed',
+            'phone': str(9949588645),
+            'surl': str(Secrets.URL + '/payu/success'),
+            'furl': str(Secrets.URL + '/payu/failed'),
             'hash': '',
             'service_provider': 'payu_paisa'
 
@@ -481,15 +482,17 @@ def payu_success():
         pay_status = 1
         send_email_dict_variable = {
             "username": current_user.username,
-            "property_name": productinfo,
-            "no_adults": order.no_adults,
-            "date": order.arrival_data,
-            "location": property_selected.address,
-            "capacity": property_selected.capacity,
-            "phone": property_selected.contact_manager,
-            "booking_id": order.payment_id
+            "property_name": str(productinfo),
+            "no_adults": str(order.no_adults),
+            "date": str(order.arrival_data),
+            "location": str(property_selected.address),
+            "capacity": str(property_selected.capacity),
+            "phone": str(property_selected.contact_manager),
+            "booking_id": str(order.payment_id)
         }
-        sendMail(usermail=current_user.email, subject='Booking Confirmed', template='booking_confirm',variables=send_email_dict_variable )
+        print(type(send_email_dict_variable))
+        sendMail(usermail=current_user.email, subject='Booking Confirmed', template='booking_confirm',
+                 variables=send_email_dict_variable)
     else:
         pay_status = 0
     return render_template('postpayment.html', status=pay_status, transaction_id=txnid)
@@ -508,8 +511,20 @@ def payu_fail():
 
 @app.route('/api/testing', methods=['POST', 'GET'])
 def testing():
-    list = ['khammam','delhi','hyderbad','india','uk']
+    list = ['khammam', 'delhi', 'hyderbad', 'india', 'uk']
     return json.dumps(list)
 
-# @app.route('/admin', methods=['POST', 'GET'])
-# def admin():
+
+@app.route('/admin', methods=['POST', 'GET'])
+def admin():
+    return render_template('admin/home.html')
+
+
+@app.route('/admin/enlistment_status', methods=['POST', 'GET'])
+def admin_enlist_status():
+    return render_template('admin/enlist_status.html')
+
+
+@app.route('/admin/property', methods=['POST', 'GET'])
+def admin_property():
+    return render_template('admin/other_prop.html')
