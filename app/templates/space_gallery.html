@@ -150,7 +150,7 @@
         {% if avilable1|length %}
             {% for property in avilable1 %}
             <div class="room">
-                <a href="#"><img src="../static/property_img/{{ property.image }}" alt="space" class="img-responsive"></a>
+               <img src="../static/property_img/{{ property.image }}" alt="space" class="img-responsive">
                 <div class="text">
                     <h3>{{ property.property_name }}</h3>
                     <p>Starting from <strong> ₹{{ property.best_price }}/Day</strong></p>
