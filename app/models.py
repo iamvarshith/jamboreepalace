@@ -37,6 +37,7 @@ class Property(db.Model):
     capacity = db.Column(db.Integer())
     image = db.Column(db.String(1000))
     enlistment_status = db.Column(db.String(20))
+    rating = db.Column(db.Float(),default=5.0)
     bookees = db.relationship('Bookings', backref='property_owner')
 
     def __repr__(self):
@@ -51,6 +52,7 @@ class Bookings(db.Model):
     user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
     property_id = db.Column(db.Integer(), db.ForeignKey('property.id'))
     payment_id = db.Column(db.String(60), nullable=False)
+    no_adults = db.Column(db.Integer())
     payment_amount = db.Column(db.Integer(), nullable=False)
     payment_status = db.Column(db.String(20))
     date_booking = db.Column(db.DateTime)

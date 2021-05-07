@@ -19,7 +19,7 @@ import json
 from app.mailgun import sendMail
 import datetime
 from datetime import datetime, date
-import arrow
+
 
 sq = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
@@ -27,7 +27,20 @@ sq = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 # @login_manager.unauthorized_handler
 # def unauthorized():
 #     return redirect(url_for('login'))
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
+
+@app.errorhandler(500)
+def server_error(e):
+    return render_template('500.html'), 500
+
+
+@app.errorhandler(400)
+def page_error(e):
+    return render_template('400.html'), 400
 
 @app.route('/')
 @app.route('/home')
@@ -325,7 +338,7 @@ def about():
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html')
+    return render_template('testing.html')
 
 
 @app.route('/property/<token>', methods=['get', 'post'])
@@ -371,12 +384,12 @@ def spaces():
     depature_date = request.args.get('depature')
     no_guests = request.args.get('guests')
     print(arrival_date)
-    avilable1 = Property.query.filter(Property.address == location).all()[:7]
-    avilable2 = Property.query.filter(Property.address == location).all()[7:14]
-    null_query = Property.query.all()[-5:]
+    avilable1 = Property.query.filter(Property.address == location,Property.enlistment_status == 'approved').all()[:7]
+
+    null_query = Property.query.filter(Property.enlistment_status == 'approved').all()[-5:]
     print(null_query)
 
-    return render_template('space_gallery.html', avilable1=avilable1, avilable2=avilable2, null_query=null_query)
+    return render_template('space_gallery.html', avilable1=avilable1, null_query=null_query)
 
 
 @app.route('/spaces/<token>', methods=['get', 'post'])
@@ -406,11 +419,12 @@ def payu():
             billed_for_days = days.days
             txn_amount = billed_for_days * property_selected.best_price
         txnid = hashlib.md5(str((random.randint(100000, 999999) + current_user.id)).encode()).hexdigest()
-        new_booking = Bookings(arrival_data=date_arrival, depature_data=date_departure, user_id=current_user.id,
+        new_booking = Bookings(arrival_data=date_arrival, depature_data=date_departure,no_adults=adults, user_id=current_user.id,
                                property_id=property_id, date_booking=date.today(), payment_id=txnid,
                                payment_status='pending', payment_amount=txn_amount)
 
         db.session.add(new_booking)
+
         db.session.commit()
 
         hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10"
@@ -455,12 +469,24 @@ def payu_success():
     email = request.form["email"]
     salt = "LpoLYPU8dV"
     order = Bookings.query.filter(Bookings.payment_id == txnid).first()
+    property_selected = Property.query.filter(Property.id == order.property_id).first()
     retHashSeq = salt + '|' + status + '|||||||||||' + email + '|' + firstname + '|' + productinfo + '|' + amount + '|' + txnid + '|' + key
     hashh = hashlib.sha512(retHashSeq.encode()).hexdigest().lower()
     if hashh == posted_hash:
         order.payment_status = 'success'
         db.session.commit()
         pay_status = 1
+        send_email_dict_variable = {
+            "username": current_user.username,
+            "property_name": productinfo,
+            "no_adults": order.no_adults,
+            "date": order.arrival_data,
+            "location": property_selected.address,
+            "capacity": property_selected.capacity,
+            "phone": property_selected.contact_manager,
+            "booking_id": order.payment_id
+        }
+        sendMail(usermail=current_user.email, subject='Booking Confirmed', template='booking_confirm',variables=send_email_dict_variable )
     else:
         pay_status = 0
     return render_template('postpayment.html', status=pay_status, transaction_id=txnid)
@@ -475,3 +501,9 @@ def payu_fail():
     db.session.commit()
     pay_status = 0
     return render_template('postpayment.html', status=pay_status, transaction_id=request.form['txnid'])
+
+
+@app.route('/api/testing', methods=['POST', 'GET'])
+def testing():
+    list = ['khammam','delhi','hyderbad','india','uk']
+    return json.dumps(list)

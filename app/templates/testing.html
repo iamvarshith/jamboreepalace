@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="text" name="country" id="autocomplete"/>
+
+<script type="text/javascript" src="../static/testing/scripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="../static/testing/scripts/jquery.mockjax.js"></script>
+<script type="text/javascript" src="../static/testing/src/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="../static/testing/scripts/countries.js"></script>
+<script>
+    $('#autocomplete').autocomplete({
+
+        lookup: function (query, done) {
+
+            var k
+            $.ajax({
+                type: "POST",
+                url: "/api/testing",
+
+                async: !0,
+                cache: !1,
+                success: function (data) {
+                    k = JSON.parse(data)
+                    datahandler(k)
+
+                }
+
+            });
+
+            const result = function datahandler(k) {
+                return k;
+
+            }
+
+
+
+            done(result);
+        },
+        onSelect: function (suggestion) {
+            alert('You selected: ' + suggestion.value);
+        }
+    });
+</script>
+{#<script>#}
+{#    $('#autocomplete').autocomplete({#}
+{##}
+{#        lookup: function k(query, done) {#}
+{##}
+{#            function getData() {#}
+{#                return $.ajax({#}
+{#                    url: '/api/testing',#}
+{#                    type: 'POST'#}
+{#                });#}
+{#            }#}
+{##}
+{#            function handleData(data /* , textStatus, jqXHR */) {#}
+{#                const data1 = JSON.parse(data)#}
+{#                //do some stuff#}
+{#            }#}
+{##}
+{#            getData().done(handleData);#}
+{#            var result = {#}
+{##}
+{#                suggestions: data1,#}
+{#            };#}
+{##}
+{#            done(result);#}
+{#        },#}
+{#        onSelect: function (suggestion) {#}
+{#            alert('You selected: ' + suggestion);#}
+{#        }#}
+{#    });#}
+{#</script>#}
+</body>
+</html>

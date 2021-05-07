@@ -105,7 +105,8 @@
         </div>
         <div class="col-md-5">
             <div class="col-md-12">
-                <h2 class="mt0">Book Now {{ property.property_name }}</h2>
+                <h3 class="mt0">Book Now {{ property.property_name }}</h3>
+                 <h3 class="mt0">₹{{ property.best_price }}/Day</h3>
                 <form action="/payu" method="post" class="probootstrap-form">
 
                      <input type="hidden" id="property_id" name="property_id" value="{{ property.id }}">
@@ -208,55 +209,50 @@
         </div>
   </section>
 
-  <section class="probootstrap-section probootstrap-section-dark">
+   <section class="probootstrap-section probootstrap-section-dark">
     <div class="container">
-      <div class="row mb30">
-        <div class="col-md-8 col-md-offset-2 probootstrap-section-heading text-center">
-          <h2>Explore our Services</h2>
-          <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          <p><img src="img/curve.svg" class="svg" alt="Free HTML5 Bootstrap Template"></p>
-        </div>
-      </div>
       <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="mt0">Why Choose Us?</h2>
+        </div>
         <div class="col-md-4">
-          <div class="service left-icon probootstrap-animate">
+          <div class="service left-icon left-icon-sm probootstrap-animate">
             <div class="icon">
-              <img src="img/flaticon/svg/001-building.svg" class="svg" alt="Free HTML5 Bootstrap Template by uicookies.com">
+              <i class="icon-check"></i>
             </div>
             <div class="text">
-              <h3>1+ Million Hotel Rooms</h3>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+              <h3>1+ Million Event Spaces</h3>
+                <p>Many spaces from Jamboree Palace and our trusted clients enlisted on our site for all of you out there.</p><p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
             </div>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="service left-icon probootstrap-animate">
+          <div class="service left-icon left-icon-sm probootstrap-animate">
             <div class="icon">
-              <img src="img/flaticon/svg/003-restaurant.svg" class="svg" alt="Free HTML5 Bootstrap Template by uicookies.com">
+              <i class="icon-check"></i>
             </div>
             <div class="text">
-              <h3>Food &amp; Drinks</h3>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+              <h3>Private & Semi-private</h3>
+                <p>Choose between private or semi-private spaces that best suits your needs. Variety of properties with both type of spaces.</p>
+                <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
             </div>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="service left-icon probootstrap-animate">
+          <div class="service left-icon left-icon-sm probootstrap-animate">
             <div class="icon">
-              <img src="img/flaticon/svg/004-parking.svg" class="svg" alt="Free HTML5 Bootstrap Template by uicookies.com">
+              <i class="icon-check"></i>
             </div>
             <div class="text">
-              <h3>Airport Taxi</h3>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+              <h3>Extra Facilities</h3>
+                <p>Get extra facilities along with your time with us. Extras such as food, wifi, props etc, can be availed at the property you have booked. </p><p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
 
 
 
