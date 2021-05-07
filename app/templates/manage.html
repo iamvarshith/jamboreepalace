@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ title }}</title>
-
-    <meta name="keywords"
-          content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-
+    <title>Jamboree Palace</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="icon" href="../static/img/logo-small.png" type="image/x-icon" sizes="16x16">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Crimson+Text:300,400,700|Rubik:300,400,700,900"
           rel="stylesheet">
     <link rel="stylesheet" href="../static/css/styles-merged.css">
     <link rel="stylesheet" href="../static/css/style.min.css">
     <link rel="stylesheet" href="../static/css/custom.css">
+    <link rel="stylesheet" href="../static/fontawesome-free-5.15.2-web/css/all.css">
 
-
+    <!--[if lt IE 9]>
+    <script src="../static/js/vendor/html5shiv.min.js"></script>
+    <script src="../static/js/vendor/respond.min.js"></script>
+    <![endif]-->
 </head>
-
 <body>
+
+<!-- START: header -->
 
 <header role="banner" class="probootstrap-header">
     <!-- <div class="container"> -->
@@ -34,31 +38,33 @@
         <nav role="navigation" class="probootstrap-nav hidden-xs">
             <ul class="probootstrap-main-nav">
 
-                <li class="active"><a href="{{ url_for("home") }}">Home</a></li>
-                <li><a href="{{ url_for('spaces') }}">Spaces</a></li>
-                <li><a href="{{ url_for("enlist") }}">Enlist</a></li>
+                <li class="active"><a href='{{ url_for("home") }}'>Home</a></li>
+                <li><a href='{{ url_for("spaces") }}'>Spaces</a></li>
+                <li><a href='{{ url_for("enlist") }}'>Enlist</a></li>
 
                 <li class="hidden-xs probootstrap-logo-center">
                     <a href="index.html">
                         <img src="../static/img/logoD1.png" class="hires" width="100px" height=""
-                             alt="Jamboree-Palacelogo">
+                             alt="Jamboree-Palace-logo">
                     </a>
                 </li>
 
-                <li><a href="{{ url_for("about") }}">About</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href='{{ url_for("about") }}'>About</a></li>
+                <li><a href='{{ url_for("contact") }}'>Contact</a></li>
                 {% if current_user.is_authenticated %}
-                    <li><a>
-                        <select name="profile" id="profile">
-                            <option value="placeholder"><a href="{{ url_for("profile") }}">Profile</a></option>
-                            <option value=""><a href="{{ "prevBookings" }}">Previous Bookings</a></option>
-                            <option value=""><a href="{{ "enlistApplication(" }}">Enlistment Applications</a></option>
-                            <option value=""><a href="{{ "manageProperty" }}">Manage Properties</a></option>
-                            <option value=""><a href="{{ "logout" }}">Log out</a></option>
-                        </select>
-                    </li>
+                <li>
+                    <a id="dropdown" href='{{ url_for("profile") }}'>Profile</a>
+                    <div class="dropdown-div">
+                    <a class="dropdown" href='{{ url_for("prevBookings") }}'>Previous Bookings</a>
+                     <a class="dropdown" href='{{ url_for("enlistApplication") }}'>Enlistments</a>
+                        <a class="dropdown" href='{{ url_for("manageProperty") }}'>My Properties</a>
+                    <a href = '{{ url_for("logout") }}'>Log out <i class="icon fas fa-sign-out-alt"></i></a>
+                    </div>
+
+
+                </li>
                 {% else %}
-                    <li><a href="{{ login }}"> Login/Signup </a></li>
+                <li><a href='{{ url_for("login") }}'> Login/Signup </a></li>
                 {% endif %}
             </ul>
             <div class="extra-text visible-xs">
@@ -74,17 +80,21 @@
     </div>
     <!-- </div> -->
 </header>
+<!-- END: header -->
+
+
 <section class="probootstrap-section">
     <div class="container">
-        <div class="profile-nav">
-            <ul style="list-style-type:none;">
-                <li><img src="{{ current_user.profile_img }}" alt="Profile Image" class="profile-image"></li>
-                <li class="el-list"><a href="{{ url_for('profile') }}">Profile</a></li>
-                <li class="el-list"><a href="{{ url_for('prevBookings') }}">Previous bookings</a></li>
-                <li class="el-list"><a href="{{ url_for('enlistApplication') }}">Enlistment Applications</a></li>
-                <li class="el-list"><a href="{{ url_for('manageProperty') }}">Manage Properties</a></li>
-            </ul>
-        </div>
+         <div class="profile-nav col-md-4">
+                <ul style="list-style-type:none;">
+                    <li class="el-list"> <img src="{{ current_user.profile_img }}" alt="Profile Image" class="profile-image"></li>
+                    <br><br>
+                    <li class="el-list"><a href = "{{ url_for('profile') }}"> <i class="fa fa-user"></i> Profile</a></li>
+                    <li class="el-list"><a href = "{{ url_for('prevBookings') }}"><i class="fa fa-calendar-day"></i> Previous bookings</a></li>
+                    <li class="el-list"><a href = "{{ url_for('enlistApplication') }}"><i class="fa fa-clipboard-list"></i> Enlistment Applications</a></li>
+                    <li class="el-list"><a href = "{{ url_for('manageProperty') }}"><i class="fa fa-tasks"></i> Manage Properties</a></li>
+                </ul>
+            </div>
         {% if properties|length %}
             {% for property in properties %}
 
@@ -115,7 +125,7 @@
         {% else %}
             <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="probootstrap-room">
-                <h4>nah No applications</h4></div></div>
+                <h4 style="color:#d4d4ce;">No Properties</h4></div></div>
         {% endif %}
 
 

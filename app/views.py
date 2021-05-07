@@ -310,7 +310,7 @@ def prevBookings():
         property_details = Property.query.filter(Property.id == previous_booking_list[i]['property_id']).first()
         previous_booking_list[i].update(object_as_dict(property_details))
 
-    print(previous_booking_list[1])
+    print(previous_booking_list[i])
     return render_template('previousbookings.html', user=user, previous_booking_list=previous_booking_list)
 
 
