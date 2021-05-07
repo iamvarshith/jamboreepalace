@@ -27,7 +27,20 @@ sq = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 # @login_manager.unauthorized_handler
 # def unauthorized():
 #     return redirect(url_for('login'))
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
+
+@app.errorhandler(500)
+def server_error(e):
+    return render_template('500.html'), 500
+
+
+@app.errorhandler(400)
+def page_error(e):
+    return render_template('400.html'), 400
 
 @app.route('/')
 @app.route('/home')
@@ -406,11 +419,12 @@ def payu():
             billed_for_days = days.days
             txn_amount = billed_for_days * property_selected.best_price
         txnid = hashlib.md5(str((random.randint(100000, 999999) + current_user.id)).encode()).hexdigest()
-        new_booking = Bookings(arrival_data=date_arrival, depature_data=date_departure, user_id=current_user.id,
+        new_booking = Bookings(arrival_data=date_arrival, depature_data=date_departure,no_adults=adults, user_id=current_user.id,
                                property_id=property_id, date_booking=date.today(), payment_id=txnid,
                                payment_status='pending', payment_amount=txn_amount)
 
         db.session.add(new_booking)
+
         db.session.commit()
 
         hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10"
@@ -455,12 +469,24 @@ def payu_success():
     email = request.form["email"]
     salt = "LpoLYPU8dV"
     order = Bookings.query.filter(Bookings.payment_id == txnid).first()
+    property_selected = Property.query.filter(Property.id == order.property_id).first()
     retHashSeq = salt + '|' + status + '|||||||||||' + email + '|' + firstname + '|' + productinfo + '|' + amount + '|' + txnid + '|' + key
     hashh = hashlib.sha512(retHashSeq.encode()).hexdigest().lower()
     if hashh == posted_hash:
         order.payment_status = 'success'
         db.session.commit()
         pay_status = 1
+        send_email_dict_variable = {
+            "username": current_user.username,
+            "property_name": productinfo,
+            "no_adults": order.no_adults,
+            "date": order.arrival_data,
+            "location": property_selected.address,
+            "capacity": property_selected.capacity,
+            "phone": property_selected.contact_manager,
+            "booking_id": order.payment_id
+        }
+        sendMail(usermail=current_user.email, subject='Booking Confirmed', template='booking_confirm',variables=send_email_dict_variable )
     else:
         pay_status = 0
     return render_template('postpayment.html', status=pay_status, transaction_id=txnid)
