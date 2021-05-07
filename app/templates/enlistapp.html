@@ -96,8 +96,9 @@
                 </ul>
             </div>
 
-        {% for property in properties %}
-            {% if property %}
+
+            {% if property | length %}
+                {% for property in properties %}
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="probootstrap-room">
                         <a href="#"><img src="../static/property_img/{{ property.image }}" alt='../static/bg.jpg'
@@ -120,10 +121,12 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             {% else %}
-                <h4 style="color:#d4d4ce;"> No Applications</h4>
+                <h4 style="color:#d4d4ce;">No Enlistments</h4>
+
             {% endif %}
-        {% endfor %}
+
 
 
     </div>
