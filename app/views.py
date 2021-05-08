@@ -366,12 +366,12 @@ def individual_property(token):
 def location():
     lat = request.form['lat']
     long = request.form['long']
-    key = "AIzaSyCFeIvoO8acKzK7czHvQoNnTl4ObJeajNo"
+    key = Secrets.GOOGLE_MAP_API_KEY
     url = "https://maps.googleapis.com/maps/api/geocode/json?latlng={0},{1}&key={2}".format(lat, long, key)
     print(url)
     i = requests.get(url)
     j = i.json()
-    k = j['results'][5]['formatted_address'].split(',')[0]
+    k = j['results'][4]['formatted_address'].split(',')[0]
     return jsonify({'city': k})
 
 

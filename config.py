@@ -23,6 +23,7 @@ class Secrets:
     GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
     GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET')
     GOOGLE_DISCOVERY_URL = os.getenv('GOOGLE_DISCOVERY_URL')
+    GOOGLE_MAP_API_KEY = os.getenv('GOOGLE_MAP_API_KEY')
     OAUTHLIB_INSECURE_TRANSPORT = os.getenv('OAUTHLIB_INSECURE_TRANSPORT')
     URL = os.getenv('URL')
     MAILGUN_POST_URL = os.getenv('mailgun_post_url')
