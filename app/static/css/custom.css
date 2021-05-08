@@ -8,6 +8,20 @@
   --accent: #d4d4ce;
 }
 
+.overlay-home{
+height: 80% !important;
+padding:20px 0px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+@media screen and (max-width: 768px){
+.overlay-home{
+height: 100% !important;
+}
+}
+
 #profile {
   outline: none;
   border: transparent;
@@ -289,7 +303,10 @@ color:rgb(219, 209, 196);
     margin: 10px;
     order: 2;
     width: 25%;
+}
 
+.room-cont-home .room{
+width:100%;
 }
 
 .room img{
@@ -316,4 +333,34 @@ transition:0.2s linear;
 .room h4:hover{
 color:var(--accent);
 background-color:var(--secondary);
+}
+
+.form-group-detail h4{
+color: var(--primary)!important;
+}
+
+.form-group-detail i{
+font-size:16px;
+margin-right:5px;
+}
+
+.form-group-detail span{
+float:right;
+color:black;
+margin-right:40%;
+}
+
+.profile-no-cont{
+text-align:center;
+margin:1% 22%;
+color:var(--secondary) !important;
+background-color:var(--back);
+border:2px solid var(--accent);
+padding:20px;
+border-radius:10px;
+}
+
+
+.profile-no-cont i{
+font-size:100px;
 }

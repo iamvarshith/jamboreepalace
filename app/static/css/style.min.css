@@ -322,9 +322,9 @@ flex-direction:column !important;
   padding-top: 2px;
   padding-bottom: 2px;
 }
-.probootstrap-main-nav li.active a {
-  color: var(--secondary);
-  border-bottom: 2px solid var(--secondary);
+.probootstrap-main-nav li.active a, a.active {
+  color: var(--secondary) !important;
+  border-bottom: 2px solid var(--secondary) !important;
 }
 .probootstrap-main-nav li.active a:hover {
   color: #000;

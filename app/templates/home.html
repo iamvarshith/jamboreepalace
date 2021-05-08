@@ -83,8 +83,7 @@
 <!-- END: header -->
 
 <section class="probootstrap-slider flexslider index-flex">
-    <div class="slides overlay"
-         style="background-image: url('../static/img/THIS\,\ HERE\,\ LIGHT.jfif');background-size:cover; margin-top: 50px; height: 300px; display:flex; align-items:center; justify-content:center;">
+    <div class="slides overlay-home" style="background-image: url('../static/img/THIS\,\ HERE\,\ LIGHT.jfif');background-size:cover; margin-top: 50px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -204,132 +203,74 @@
                 </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12 probootstrap-relative">
-                <div class="owl-carousel owl-carousel-carousel">
-                    {% for property in null_query %}
-                    <div class="item">
-                        <div class="probootstrap-room">
-                            <a href="#"><img src="../static/property_img/{{ property.image }}"
-                                             alt="space" class="img-responsive"></a>
-                            <div class="text">
-                                <h3>{{ property.prperty_name }}</h3>
-                                <p>Starting from <strong> ₹{{ property.best_price }}/Day</strong></p>
-                                <div class="post-meta">
-                                    <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
-                                        </li>
-                                        <li><i class="icon-user2"></i> {{ property.capacity }} Guests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+      <div class="room-cont-home owl-carousel owl-carousel-carousel">
+        {% if avilable1|length %}
+            {% for property in avilable1 %}
+            <div class="room">
+               <img src="../static/property_img/{{ property.image }}" alt="space" class="img-responsive">
+                <div class="text">
+                    <h3>{{ property.property_name }}</h3>
+                    <p>Starting from <strong> ₹{{ property.best_price }}/Day</strong></p>
+                    <div class="post-meta">
+                        <ul>
+                            <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
+                            </li>
+                            <li><i class="icon-user2"></i> {{ property.capacity }} Guests</li>
+                        </ul>
                     </div>
-                    {% endfor %}
-{#                    <div class="item">#}
-{#                        <div class="probootstrap-room">#}
-{#                            <a href="#"><img src="../static/img/space3.jpg"#}
-{#                                             alt="space" class="img-responsive"></a>#}
-{#                            <div class="text">#}
-{#                                <h3>Grand Deluxe Room</h3>#}
-{#                                <p>Starting from <strong>₹2000.00/Day</strong></p>#}
-{#                                <div class="post-meta">#}
-{#                                    <ul>#}
-{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
-{#                                        </li>#}
-{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
-{#                                    </ul>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="item">#}
-{#                        <div class="probootstrap-room">#}
-{#                            <a href="#"><img src="../static/img/space1.jpg"#}
-{#                                             alt="space" class="img-responsive"></a>#}
-{#                            <div class="text">#}
-{#                                <h3>Ultra Superior Room</h3>#}
-{#                                <p>Starting from <strong>₹1899.00/Day</strong></p>#}
-{#                                <div class="post-meta">#}
-{#                                    <ul>#}
-{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
-{#                                        </li>#}
-{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
-{#                                    </ul>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="item">#}
-{#                        <div class="probootstrap-room">#}
-{#                            <a href="#"><img src="../static/img/space5.jpg"#}
-{#                                             alt="space" class="img-responsive"></a>#}
-{#                            <div class="text">#}
-{#                                <h3>Classic Room</h3>#}
-{#                                <p>Starting from <strong>₹2299.00/Day</strong></p>#}
-{#                                <div class="post-meta">#}
-{#                                    <ul>#}
-{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
-{#                                        </li>#}
-{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
-{#                                    </ul>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="item">#}
-{#                        <div class="probootstrap-room">#}
-{#                            <a href="#"><img src="../static/img/space6.jpg"#}
-{#                                             alt="space" class="img-responsive"></a>#}
-{#                            <div class="text">#}
-{#                                <h3>Grand Deluxe Room</h3>#}
-{#                                <p>Starting from <strong>₹2500.00/Day</strong></p>#}
-{#                                <div class="post-meta">#}
-{#                                    <ul>#}
-{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
-{#                                        </li>#}
-{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
-{#                                    </ul>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="item">#}
-{#                        <div class="probootstrap-room">#}
-{#                            <a href="#"><img src="../static/img/Venue.jpg"#}
-{#                                             alt="space" class="img-responsive"></a>#}
-{#                            <div class="text">#}
-{#                                <h3>Ultra Superior Room</h3>#}
-{#                                <p>Starting from <strong>₹2599.00/Day</strong></p>#}
-{#                                <div class="post-meta">#}
-{#                                    <ul>#}
-{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
-{#                                        </li>#}
-{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
-{#                                    </ul>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="item">#}
-{#                        <div class="probootstrap-room">#}
-{#                            <a href="#"><img src="../static/img/11 Lofts We Love For Your Chicago Wedding.jfif"#}
-{#                                             alt="space" class="img-responsive"></a>#}
-{#                            <div class="text">#}
-{#                                <h3>Ultra Superior Room</h3>#}
-{#                                <p>Starting from <strong>₹999.00/Day</strong></p>#}
-{#                                <div class="post-meta">#}
-{#                                    <ul>#}
-{#                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
-{#                                        </li>#}
-{#                                        <li><i class="icon-user2"></i> 3 Guests</li>#}
-{#                                    </ul>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
+                     <a href="/spaces/{{ property.id }}"><div style="text-align: center;"><h4>Book Now</h4></div></a>
                 </div>
             </div>
+            {% endfor %}
+        {% else %}
+            {% for property in null_query %}
+            <div class="room">
+                <a href="#"><img src="../static/property_img/{{ property.image }}" alt="space" class="img-responsive"></a>
+                <div class="text">
+                    <h3>{{ property.property_name }}</h3>
+                    <p>Starting from <strong> ₹{{ property.best_price }}/Day</strong></p>
+                    <div class="post-meta">
+                        <ul>
+                            <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
+                            </li>
+                            <li><i class="icon-user2"></i> {{ property.capacity }} Guests</li>
+                        </ul>
+                    </div>
+                    <a href="/spaces/{{ property.id }}"><div style="text-align: center;"><h4>Book Space</h4></div></a>
+                </div>
+            </div>
+            {% endfor %}
+{% endif %}
+{#            <div class="room">#}
+{#                <a href="#"><img src="../static/img/space1.jpg" alt="space" class="img-responsive"></a>#}
+{#                <div class="text">#}
+{#                    <h3>Classic Room</h3>#}
+{#                    <p>Starting from <strong> ₹1299.00/Day</strong></p>#}
+{#                    <div class="post-meta">#}
+{#                        <ul>#}
+{#                            <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                            </li>#}
+{#                            <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="room">#}
+{#                <a href="#"><img src="../static/img/space3.jpg" alt="space" class="img-responsive"></a>#}
+{#                <div class="text">#}
+{#                    <h3>Classic Room</h3>#}
+{#                    <p>Starting from <strong> ₹1299.00/Day</strong></p>#}
+{#                    <div class="post-meta">#}
+{#                        <ul>#}
+{#                            <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews#}
+{#                            </li>#}
+{#                            <li><i class="icon-user2"></i> 3 Guests</li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+
+
         </div>
     </div>
 </section>

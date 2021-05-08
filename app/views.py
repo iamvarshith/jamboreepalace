@@ -346,7 +346,7 @@ def manageProperty():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('space_details.html')
 
 
 @app.route('/contact')
@@ -410,7 +410,6 @@ def individualProperties(token):
     property = Property.query.filter(Property.id == token).first()
     print(property)
     return render_template('space.html', property=property)
-
 
 @app.route('/payu', methods=['POST', "GET"])
 @login_required
