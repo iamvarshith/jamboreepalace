@@ -134,6 +134,8 @@ def confirm_email(token):
     email_email = user().email
     db.session.add(user())
     db.session.commit()
+    sendMail(usermail=user.email, subject='Welcome to Jamboree Palace'
+             , template='welcome', variables=({'date': str(datetime.today()), 'user_name': str(user.username)}))
 
     return render_template('mail_confirm.html', user=user)
 
@@ -560,6 +562,6 @@ def admin_approve():
 def admin_property():
     if current_user.permission == 'admin':
         booking_pending = Bookings.query.filter(Bookings.payment_status == 'pending').all()
-        return render_template('admin/other_prop.html', booking_pending = booking_pending)
+        return render_template('admin/other_prop.html', booking_pending=booking_pending)
     else:
         return abort(401)
