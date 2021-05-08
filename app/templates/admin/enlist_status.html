@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Home</title>
-	<link rel="stylesheet" href="../../static/css/admin_style.css">
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="../../static/css/admin_style.css">
 </head>
 <body>
 
@@ -14,82 +14,111 @@
             <li><a href="#">Dashboard</a></li>
             <li><a href="other_prop.html">Other Properties</a></li>
             <li><a href="./enlist_status.html">Enlistment Applications</a></li>
-            <li><a href="#" id = 'myBtn'>Log-out</a></li>
+            <li><a href="#" id='myBtn'>Log-out</a></li>
         </ul>
     </div>
-    <div class="main_content">
-        <div class="header" style = "font-size: xx-large;">Dashboard</div>
+<script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    function idsubmit(id) {
+        console.log(id)
+        $.ajax({
+        type: 'POST',
+        url: '/api/admin/approve_enlist',
+        data: {
+            'property_id' : id.toString()
+        },
+        async: !1,
+        cache: !1,
+        success: function () {
+            var myobj = document.getElementById(id);
+            myobj.remove()
+        }
 
-                <!--ENLISTMENT APPLICATION SECTION-->
-                <div class="info">
-                    <h2 id = 'ea'>Enlistment Application</h2>
-                    <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
+    });
+    }
+</script>
+    <div class="main_content">
+        <div class="header" style="font-size: xx-large;">Dashboard</div>
+
+        <!--ENLISTMENT APPLICATION SECTION-->
+        <div class="info">
+            <h2 id='ea'>Enlistment Application</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
                         <div class="table-responsive" data-pattern="priority-columns">
                             <table class="table table-bordered table-hover">
-                            <thead>
+                                <thead>
                                 <tr>
-                                <th>EA No.</th>
-                                <th data-priority="1"> Property Name</th>
-                                <th data-priority="2">Address</th>
-                                <th data-priority="3">Partitions Available</th>
-                                <th data-priority="4">Status</th>
-                                <th data-priority="5"></th>
+                                    <th>EA No.</th>
+                                    <th data-priority="1"> Property Name</th>
+                                    <th data-priority="2">Address</th>
+                                    <th data-priority="3">Partitions Available</th>
+                                    <th data-priority="4">Status</th>
+                                    <th data-priority="5"></th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <!--TABLE CONTENT HERE-->
-                                <tr>
-                                    <td>EA101</td>
-                                    <td>SOME VILLA</td>
-                                    <td>SOME STREET, SOME CITY, SOME STATE, LANDMARK, PINCODE</td>
-                                    <td>4</td>
-                                    <td><a href = "#">Assign Ground team</a></td>               <!--Status possible: Assign ground team, Ground team assigned, Verified, On hold-->
-                                    <td><button class="button"><span>More </span></button></td> <!--If status is verified, change more button to add to other properties-->
-                                </tr>
-                            </tbody>
+                                </thead>
+
+                                {% if enlist_applications|length %}
+                                    {% for properties in enlist_applications %}
+                                        <tbody>
+                                            <tr id="{{ properties.id }}">
+                                                <td>{{ properties.id }}</td>
+                                                <td>{{ properties.property_name }}</td>
+                                                <td>{{ properties.address }}</td>
+                                                <td>{{ properties.partitions }}</td>
+                                                <td><a href="#">Assign Ground team</a></td>
+                                                <!--Status possible: Assign ground team, Ground team assigned, Verified, On hold-->
+                                                <td>
+                                                    <button class="button" onclick="idsubmit({{ properties.id }})"><span>Approve </span></button>
+                                                </td> <!--If status is verified, change more button to add to other properties-->
+                                            </tr>
+                                        </tbody>
+                                    {% endfor %}
+                                    {% else %}
+                                    <div style="text-align: center;">No pending enlistments</div>
+
+                            {% endif %}
                             </table>
                         </div>
-                        </div>
                     </div>
-                    </div>
-                    </div>
-          </div>
-
-
-
+                </div>
+            </div>
+        </div>
     </div>
+
+
+</div>
 </div>
 <div id="myModal" class="modal">
 
     <!-- Modal content -->
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>Are you sure you want to log-out?</p>
-      <br><br>
-      <button class = "btn1">Yes, Log out</button>
-      <button class = "btn1" style = "background-color: #023246;">No, Stay here</button>
+        <span class="close">&times;</span>
+        <p>Are you sure you want to log-out?</p>
+        <br><br>
+        <button class="btn1">Yes, Log out</button>
+        <button class="btn1" style="background-color: #023246;">No, Stay here</button>
     </div>
 
-  </div>
+</div>
+<script src="../../static/js/scripts.min.js"></script>
+<script src="../../static/js/main.min.js"></script>
+<script src="../../static/js/custom.js"></script>
 
-  <script>
-  var modal = document.getElementById("myModal");
-  var btn = document.getElementById("myBtn");
-  var span = document.getElementsByClassName("close")[0];
-  btn.onclick = function() {
-    modal.style.display = "block";
-  }
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-  </script>
 
 </body>
 </html>

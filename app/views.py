@@ -4,7 +4,7 @@ import random
 import requests
 from flask_wtf import file
 from sqlalchemy import inspect
-from werkzeug.exceptions import BadRequest
+from werkzeug.exceptions import BadRequest, abort
 from werkzeug.utils import secure_filename
 
 from config import Secrets
@@ -36,6 +36,11 @@ def page_not_found(e):
 @app.errorhandler(500)
 def server_error(e):
     return render_template('500.html'), 500
+
+
+@app.errorhandler(401)
+def server_error(e):
+    return render_template('401.html'), 401
 
 
 @app.errorhandler(400)
@@ -112,7 +117,7 @@ def register():
 
         return redirect(url_for('login'))
     else:
-        return render_template('registration.html', title='Register', form=form)
+        return render_template('register.html', title='Register', form=form)
 
 
 @app.route('/confirm_email/<token>')
@@ -282,15 +287,20 @@ def enlistProperty():
                                       image=str(filename),
                                       enlistment_status=enlistment_status)
             db.session.add(enlistproperty)
+            url = Secrets.URL + '{}'.format(url_for('enlistApplication'))
+            print(url)
             db.session.commit()
-            return jsonify({})
-    return '200'
+            return jsonify({'url': Secrets.URL + '{}'.format(url_for('enlistApplication'))})
+    else:
+        return '401'
 
 
 @app.route('/profile')
 @login_required
 def profile():
     user = current_user
+    url = Secrets.URL + '{}'.format(url_for('enlistApplication'))
+    print(type(url))
     return render_template('profile.html', user=user)
 
 
@@ -312,7 +322,6 @@ def prevBookings():
         property_details = Property.query.filter(Property.id == previous_booking_list[i]['property_id']).first()
         previous_booking_list[i].update(object_as_dict(property_details))
 
-    print(previous_booking_list[i])
     return render_template('previousbookings.html', user=user, previous_booking_list=previous_booking_list)
 
 
@@ -321,8 +330,7 @@ def prevBookings():
 def enlistApplication():
     enlist_application = Property.query.filter(
         Property.owner_id == current_user.id, Property.enlistment_status == 'pending').all()
-    print(type(enlist_application))
-
+    print(enlist_application)
     return render_template('enlistapp.html', properties=enlist_application)
 
 
@@ -386,10 +394,10 @@ def spaces():
     arrival_date = request.args.get('arrival')
     depature_date = request.args.get('depature')
     no_guests = request.args.get('guests')
-    print(arrival_date)
+
     avilable1 = Property.query.filter(Property.address == location, Property.enlistment_status == 'approved').all()[:7]
 
-    null_query = Property.query.filter(Property.enlistment_status == 'approved').all()[-5:]
+    null_query = Property.query.filter(Property.enlistment_status == 'approved').all()
     print(null_query)
 
     return render_template('space_gallery.html', avilable1=avilable1, null_query=null_query)
@@ -516,8 +524,35 @@ def testing():
 
 
 @app.route('/admin/enlistment_status', methods=['POST', 'GET'])
+@login_required
 def admin_enlist_status():
-    return render_template('admin/enlist_status.html')
+    if current_user.permission == 'admin':
+        enlist_applications = Property.query.filter(Property.enlistment_status == 'pending').all()
+
+        return render_template('admin/enlist_status.html', enlist_applications=enlist_applications)
+    else:
+        return abort(401)
+
+
+@app.route('/api/admin/approve_enlist', methods=['POST'])
+def admin_approve():
+    if current_user.permission == 'admin':
+        if request.form['property_id']:
+            print(request.form['property_id'])
+            try:
+                request_property_id = request.form['property_id']
+                selected_property = Property.query.filter(Property.id == request_property_id).first()
+                print(selected_property.enlistment_status)
+                selected_property.enlistment_status = 'approved'
+                print(selected_property.enlistment_status)
+                db.session.commit()
+                return '200'
+            except:
+                return '400'
+        else:
+            return '400'
+    else:
+        return '401'
 
 
 @app.route('/admin/property', methods=['POST', 'GET'])

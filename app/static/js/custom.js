@@ -196,8 +196,10 @@ function enlist() {
         contentType: false,
         async: !1,
         cache: !1,
-        success: function () {
-            alert('form was submitted');
+        success: function (data) {
+
+            location.replace(data.url);
+
         }
 
     });
