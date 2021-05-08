@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="table-responsive" data-pattern="priority-columns">
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover" id = 'example'>
                                 <thead>
                                 <tr>
                                     <th>EA No.</th>
@@ -110,7 +110,7 @@
         <span class="close">&times;</span>
         <p>Are you sure you want to log-out?</p>
         <br><br>
-        <button class="btn1">Yes, Log out</button>
+        <button  onclick="location.href='{{ url_for("logout") }}'" class="btn1">Yes, Log out</button>
         <button class="btn1" style="background-color: #023246;">No, Stay here</button>
     </div>
 
@@ -118,6 +118,9 @@
 <script src="../../static/js/scripts.min.js"></script>
 <script src="../../static/js/main.min.js"></script>
 <script src="../../static/js/custom.js"></script>
+<script src = 'https://code.jquery.com/jquery-3.5.1.js'></script>
+<script src = 'https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js'></script>
+<script src = 'https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js'></script>
 
 
 </body>

@@ -95,7 +95,7 @@
                     <li class="el-list"><a href = "{{ url_for('manageProperty') }}"><i class="fa fa-tasks"></i> Manage Properties</a></li>
                 </ul>
             </div>
-
+            {% if previous_booking_list|length %}
             {% for dict in previous_booking_list %}
 
             <div class="col-md-4 col-sm-6 col-xs-12">
@@ -110,13 +110,20 @@
                         <li><i class="icon-user2"></i> 3 Guests</li>
                       </ul>
                     </div>
-                    <p><a href="#" class="btn btn-primary" role="button">Details</a></p>
+                    <p><a href="/booking/{{ dict['payment_id'] }}" class="btn btn-primary" role="button">Details</a></p>
                   </div>
                 </div>
               </div>
 
             {% endfor %}
-
+        {% else %}
+        <div class="col-md-4 col-sm-6 col-xs-12 profile-no-cont">
+            <i class="far fa-clipboard"></i>
+                <h2 style="color:#d4d4ce;">No Booking Yet</h2>
+            <h3>Start Booking Now!</h3>
+             <p><a href='{{ url_for("spaces") }}' class="btn btn-primary" role="button">Book Now</a></p>
+        </div>
+        {% endif %}
         </div>
 
     </section>

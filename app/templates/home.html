@@ -63,6 +63,19 @@
 
 
                 </li>
+                    {% if current_user.permission == 'admin' %}
+                        <li>
+                    <a id="dropdown" href='{{ url_for("admin_enlist_status") }}'>Admin Profile</a>
+                    <div class="dropdown-div">
+                    <a class="dropdown" href='{{ url_for("admin_enlist_status") }}'>Admin Enlist</a>
+                     <a class="dropdown" href='{{ url_for("admin_property") }}'>Bookings</a>
+
+                    </div>
+                        {% endif %}
+
+
+                </li>
+
                 {% else %}
                 <li><a href='{{ url_for("login") }}'> Login/Signup </a></li>
                 {% endif %}

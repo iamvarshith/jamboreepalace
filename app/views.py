@@ -346,7 +346,7 @@ def manageProperty():
 
 @app.route('/about')
 def about():
-    return render_template('space_details.html')
+    return render_template('about.html')
 
 
 @app.route('/contact')
@@ -560,7 +560,14 @@ def admin_approve():
 @login_required
 def admin_property():
     if current_user.permission == 'admin':
-        booking_pending = Bookings.query.filter(Bookings.payment_status == 'pending').all()
-        return render_template('admin/other_prop.html', booking_pending=booking_pending)
+        bookings = Bookings.query.all()
+        return render_template('admin/other_prop.html', bookings=bookings)
     else:
         return abort(401)
+
+@app.route('/booking/<id>',methods=['POST',"GET"])
+@login_required
+def booking_details(id):
+    booking = Bookings.query.filter(Bookings.payment_id == id).first()
+    booked_property = Property.query.filter(Property.id == booking.property_id).first()
+    return render_template('space_details.html',booking=booking,booked_property=booked_property)

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Home</title>
-	<link rel="stylesheet" href="../../static/css/admin_style.css">
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="../../static/css/admin_style.css">
 </head>
 <body>
 
@@ -14,84 +14,98 @@
             <li><a href="#">Dashboard</a></li>
             <li><a href="{{ url_for("admin_property") }}">Other Properties</a></li>
             <li><a href="{{ url_for("admin_enlist_status") }}">Enlistment Applications</a></li>
-            <li><a href="{{ url_for("logout") }}" id = 'myBtn'>Log-out</a></li>
+            <li><a href="{{ url_for("logout") }}" id='myBtn'>Log-out</a></li>
         </ul>
     </div>
     <div class="main_content">
-        <div class="header" style = "font-size: xx-large;">Dashboard</div>
+        <div class="header" style="font-size: xx-large;">Dashboard</div>
 
 
-            <!--OTHER PROPERTIES SECTION-->
-            <div class="info">
-                <h2 id = 'op'>Other Properties</h2>
-                <div class="container">
+        <!--OTHER PROPERTIES SECTION-->
+        <div class="info">
+            <h2 id='op'>Other Properties</h2>
+            <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                    <div class="table-responsive" data-pattern="priority-columns">
-                        <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                            <th style = "width:5%; ">ID</th>
-                            <th data-priority="1"> Property Name</th>
-                            <th data-priority="2">Address</th>
-                            <th data-priority="3">Partitions Available</th>
-                            <th data-priority="4">Partitions Booked</th>
-                            <th data-priority="5"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!--TABLE CONTENT HERE-->
-                            <tr>
-                                <td>OP101</td>
-                                <td>SOME VILLA</td>
-                                <td>SOME STREET, SOME CITY, SOME STATE, LANDMARK, PINCODE</td>
-                                <td>4</td>
-                                <td>2</td>
-                                <td><button class="button"><span>More </span></button></td>
-                            </tr>
-                        </tbody>
-                        </table>
+                        <div class="table-responsive" data-pattern="priority-columns">
+
+                            <table class="table table-bordered table-hover" id='example'>
+                                <thead>
+                                <tr>
+                                    <th style="width:5%; ">ID</th>
+                                    <th> Property_ID</th>
+                                    <th>Payment_id</th>
+                                    <th> Payment_amount</th>
+                                    <th>Payment_status</th>
+
+                                </tr>
+                                </thead>
+
+                                    <tbody>
+                                    {% for booking in bookings %}
+                                    <tr>
+                                        <td>{{ booking.id }}</td>
+                                        <td>{{ booking.property_id }}</td>
+                                        <td>{{ booking.payment_id }}</td>
+                                        <td>{{ booking.payment_amount }}</td>
+                                        <td>{{ booking.payment_status }}</td>
+                                        <td>
+                                            <button class="button"><span>More </span></button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                    </table>
+
+                        </div>
                     </div>
-                    </div>
                 </div>
-                </div>
-                </div>
-
-          </div>
-
-
+            </div>
+        </div>
 
     </div>
+
+
+</div>
 </div>
 <div id="myModal" class="modal">
 
     <!-- Modal content -->
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>Are you sure you want to log-out?</p>
-      <br><br>
-      <button class = "btn1">Yes, Log out</button>
-      <button class = "btn1" style = "background-color: #023246;">No, Stay here</button>
+        <span class="close">&times;</span>
+        <p>Are you sure you want to log-out?</p>
+        <br><br>
+        <button class="btn1">Yes, Log out</button>
+        <button class="btn1" style="background-color: #023246;">No, Stay here</button>
     </div>
 
-  </div>
+</div>
 
-  <script>
-  var modal = document.getElementById("myModal");
-  var btn = document.getElementById("myBtn");
-  var span = document.getElementsByClassName("close")[0];
-  btn.onclick = function() {
-    modal.style.display = "block";
-  }
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
+<script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function () {
+        modal.style.display = "block";
     }
-  }
-  </script>
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    {#  $(document).ready(function() {#}
+    {#    $('#example').DataTable();#}
+    {#} )
+    ;
+    #}
+</script>
+<script src='https://code.jquery.com/jquery-3.5.1.js'></script>
+<script src='https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js'></script>
+<script src='https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js'></script>
+
 
 </body>
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Details :  | Jamboree Palace</title>
+    <title>Details : | Jamboree Palace</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <link rel="icon" href="../static/img/logo-small.png" type="image/x-icon" sizes="16x16">
@@ -28,9 +28,10 @@
 <header role="banner" class="probootstrap-header">
     <!-- <div class="container"> -->
     <div class="row">
-        <a href='{{ url_for("home") }}' class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png" class="hires"
-                                                                       width="120" height="120"
-                                                                       alt="logo"></a>
+        <a href='{{ url_for("home") }}' class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png"
+                                                                                  class="hires"
+                                                                                  width="120" height="120"
+                                                                                  alt="logo"></a>
 
         <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>
@@ -52,19 +53,19 @@
                 <li><a href='{{ url_for("about") }}'>About</a></li>
                 <li><a href='{{ url_for("contact") }}'>Contact</a></li>
                 {% if current_user.is_authenticated %}
-                <li>
-                    <a id="dropdown" href='{{ url_for("profile") }}'>Profile</a>
-                    <div class="dropdown-div">
-                    <a class="dropdown" href='{{ url_for("prevBookings") }}'>Previous Bookings</a>
-                     <a class="dropdown" href='{{ url_for("enlistApplication") }}'>Enlistments</a>
-                        <a class="dropdown" href='{{ url_for("manageProperty") }}'>My Properties</a>
-                    <a href = '{{ url_for("logout") }}'>Log out <i class="icon fas fa-sign-out-alt"></i></a>
-                    </div>
+                    <li>
+                        <a id="dropdown" href='{{ url_for("profile") }}'>Profile</a>
+                        <div class="dropdown-div">
+                            <a class="dropdown" href='{{ url_for("prevBookings") }}'>Previous Bookings</a>
+                            <a class="dropdown" href='{{ url_for("enlistApplication") }}'>Enlistments</a>
+                            <a class="dropdown" href='{{ url_for("manageProperty") }}'>My Properties</a>
+                            <a href='{{ url_for("logout") }}'>Log out <i class="icon fas fa-sign-out-alt"></i></a>
+                        </div>
 
 
-                </li>
+                    </li>
                 {% else %}
-                <li><a href='{{ url_for("login") }}'> Login/Signup </a></li>
+                    <li><a href='{{ url_for("login") }}'> Login/Signup </a></li>
                 {% endif %}
             </ul>
             <div class="extra-text visible-xs">
@@ -83,182 +84,205 @@
 <!-- END: header -->
 
 
-
- <section class="probootstrap-section">
+<section class="probootstrap-section">
     <div class="container">
-      <div class="row mb30">
-        <div class="col-md-7">
-            <section class="probootstrap-slider flexslider" style="height: 500px;">
-                <ul class="slides">
-                   <li style="background-image: url(../static/property_img/photo-1593266314085-c349a6e877b6.jpg);" class="overlay">
-                    </li>
-                    <li style="background-image: url(../static/property_img/photo-1593266314085-c349a6e877b6.jpg);" class="overlay">
-                    </li>
-                </ul>
-              </section>
+        <div class="row mb30">
+            <div class="col-md-7">
+                <section class="probootstrap-slider flexslider" style="height: 500px;">
+                    <ul class="slides">
+                        <li style="background-image: url(../static/property_img/{{ booked_property.image }});"
+                            class="overlay">
+                        </li>
+                        <li style="background-image: url(../static/property_img/{{ booked_property.image }});"
+                            class="overlay">
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div class="col-md-5">
+                <div class="col-md-12">
+                    <h2 style="text-transform:uppercase" class="mt0">{{ booked_property.property_name }}</h2>
+                    <h3 class="mt0">Rs.{{ booked_property.best_price }}/Day</h3>
+                    <br>
+                    <div class="form-group-detail">
+                        <h4><i class="fas fa-warehouse"></i> Capacity of Room <i class="fas fa-angle-right"></i>
+                            <span>{{ booked_property.capacity }}</span></h4>
+                        <h4><i class="fas fa-calendar-alt"></i> From <i class="fas fa-angle-right"></i>
+                            <span>{{ booking.arrival_data }}</span></h4>
+                        <h4><i class="fas fa-calendar-alt"></i> To <i class="fas fa-angle-right"></i>
+                            <span>{{ booking.depature_data }}</span></h4>
+                        <h4><i class="fas fa-users"></i> Number of Guests<i class="fas fa-angle-right"></i>
+                            <span>{{ booking.no_adults }}</span></h4>
+                        <h4><i class="fas fa-clipboard-check"></i> Booking Id<i class="fas fa-angle-right"></i>
+                            <span>{{ booking.id }}</span></h4>
+                        <h4 style="text-transform: capitalize"><i class="fas fa-check"></i> Booking Status<i class="fas fa-angle-right"></i>
+                            <span>{{ booking.payment_status }}</span></h4>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-8">
+                    <div class="col-md-12 text-center probootstrap-animate">
+                        <h3 class="mt0">Features Available</h3></div>
+                    <div class="row">
+                        <div class="col-xs-12 probootstrap-animate">
+                            <h3 class="heading-with-icon"><i class="icon-heart2"></i>
+                                <span>Private and Semi-Private</span></h3>
+                        </div>
+                        <div class="col-xs-12 probootstrap-animate">
+                            <h3 class="heading-with-icon"><i class="icon-rocket"></i> <span>Catering on Demand</span>
+                            </h3>
+                        </div>
+
+                        <div class="col-xs-12 probootstrap-animate">
+                            <h3 class="heading-with-icon"><i class="icon-image"></i> <span>Wifi on demand</span></h3>
+                        </div>
+
+                        <div class="col-xs-12 probootstrap-animate">
+                            <h3 class="heading-with-icon"><i class="icon-briefcase"></i> <span>Restrooms</span></h3>
+                        </div>
+
+                        <div class="col-xs-12 probootstrap-animate">
+                            <h3 class="heading-with-icon"><i class="icon-chat"></i>
+                                <span>Behind the Word Mountains</span></h3>
+                        </div>
+                        <div class="col-xs-12 probootstrap-animate">
+                            <h3 class="heading-with-icon"><i class="icon-colours"></i> <span>Separated They Live</span>
+                            </h3>
+                        </div>
+                        <div class="clearfix visible-lg-block visible-md-block visible-sm-block"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <h2 class="mt0">Feedback</h2>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
+                        live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics,
+                        a large language ocean.</p>
+                    <p><a href="#" class="btn btn-primary" role="button">Send Message</a></p>
+                </div>
+
+
+            </div>
         </div>
-        <div class="col-md-5">
-            <div class="col-md-12">
-                <h3 class="mt0">Name</h3>
-                 <h3 class="mt0">₹price/Day</h3>
-                <br>
-                  <div class="form-group-detail">
-                  <h4><i class="fas fa-warehouse"></i> Type of Room <i class="fas fa-angle-right"></i> <span>private</span> </h4>
-                  <h4><i class="fas fa-calendar-alt"></i> From <i class="fas fa-angle-right"></i> <span>3/22/21</span></h4>
-                  <h4><i class="fas fa-calendar-alt"></i> To <i class="fas fa-angle-right"></i> <span>5/22/21</span></h4>
-                  <h4><i class="fas fa-users"></i> Number of Guests<i class="fas fa-angle-right"></i> <span>5</span></h4>
-              </div>
-
-        </div>
-
-      </div>
-      <div class="row">
-
-             <div class="col-md-8">
-                <div class="col-md-12 text-center probootstrap-animate">
-                  <h3 class="mt0">Features Available</h3></div>
-              <div class="row">
-                <div class="col-xs-12 probootstrap-animate">
-                  <h3 class="heading-with-icon"><i class="icon-heart2"></i> <span>Private and Semi-Private</span></h3>
-            </div>
-                <div class="col-xs-12 probootstrap-animate">
-                  <h3 class="heading-with-icon"><i class="icon-rocket"></i> <span>Catering on Demand</span></h3>
-                  </div>
-
-                <div class="col-xs-12 probootstrap-animate">
-                  <h3 class="heading-with-icon"><i class="icon-image"></i> <span>Wifi on demand</span></h3>
-                 </div>
-
-                <div class="col-xs-12 probootstrap-animate">
-                  <h3 class="heading-with-icon"><i class="icon-briefcase"></i> <span>Restrooms</span></h3>
-                 </div>
-
-                <div class="col-xs-12 probootstrap-animate">
-                  <h3 class="heading-with-icon"><i class="icon-chat"></i> <span>Behind the Word Mountains</span></h3>
-                  </div>
-                <div class="col-xs-12 probootstrap-animate">
-                  <h3 class="heading-with-icon"><i class="icon-colours"></i> <span>Separated They Live</span></h3>
-                  </div>
-                <div class="clearfix visible-lg-block visible-md-block visible-sm-block"></div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-                <h2 class="mt0">Feedback</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                <p><a href="#" class="btn btn-primary" role="button">Send Message</a></p>
-              </div>
-
-
-        </div>
-  </section>
-
-   <section class="probootstrap-section probootstrap-section-dark">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h2 class="mt0">Why Choose Us?</h2>
-        </div>
-        <div class="col-md-4">
-          <div class="service left-icon left-icon-sm probootstrap-animate">
-            <div class="icon">
-              <i class="icon-check"></i>
-            </div>
-            <div class="text">
-              <h3>1+ Million Event Spaces</h3>
-                <p>Many spaces from Jamboree Palace and our trusted clients enlisted on our site for all of you out there.</p><p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="service left-icon left-icon-sm probootstrap-animate">
-            <div class="icon">
-              <i class="icon-check"></i>
-            </div>
-            <div class="text">
-              <h3>Private & Semi-private</h3>
-                <p>Choose between private or semi-private spaces that best suits your needs. Variety of properties with both type of spaces.</p>
-                <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="service left-icon left-icon-sm probootstrap-animate">
-            <div class="icon">
-              <i class="icon-check"></i>
-            </div>
-            <div class="text">
-              <h3>Extra Facilities</h3>
-                <p>Get extra facilities along with your time with us. Extras such as food, wifi, props etc, can be availed at the property you have booked. </p><p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
+</section>
 
+<section class="probootstrap-section probootstrap-section-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="mt0">Why Choose Us?</h2>
+            </div>
+            <div class="col-md-4">
+                <div class="service left-icon left-icon-sm probootstrap-animate">
+                    <div class="icon">
+                        <i class="icon-check"></i>
+                    </div>
+                    <div class="text">
+                        <h3>1+ Million Event Spaces</h3>
+                        <p>Many spaces from Jamboree Palace and our trusted clients enlisted on our site for all of you
+                            out there.</p>
+                        <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service left-icon left-icon-sm probootstrap-animate">
+                    <div class="icon">
+                        <i class="icon-check"></i>
+                    </div>
+                    <div class="text">
+                        <h3>Private & Semi-private</h3>
+                        <p>Choose between private or semi-private spaces that best suits your needs. Variety of
+                            properties with both type of spaces.</p>
+                        <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service left-icon left-icon-sm probootstrap-animate">
+                    <div class="icon">
+                        <i class="icon-check"></i>
+                    </div>
+                    <div class="text">
+                        <h3>Extra Facilities</h3>
+                        <p>Get extra facilities along with your time with us. Extras such as food, wifi, props etc, can
+                            be availed at the property you have booked. </p>
+                        <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+    </div>
+</section>
 
 
 <!-- START: footer -->
 <footer role="contentinfo" class="probootstrap-footer">
     <div class="container">
-            <div class="col-md-3">
-                <div class="probootstrap-footer-widget">
-                    <p class="mt40"><img src="../static/img/logoD1.png" class="hires" width="50%" height="50%"
-                                         alt="logo"></p>
-                    <p style="font-size:80%;">A new idea for small groups to come together has finally become big enough to be put out there
-                        for our clients.
+        <div class="col-md-3">
+            <div class="probootstrap-footer-widget">
+                <p class="mt40"><img src="../static/img/logoD1.png" class="hires" width="50%" height="50%"
+                                     alt="logo"></p>
+                <p style="font-size:80%;">A new idea for small groups to come together has finally become big enough to
+                    be put out there
+                    for our clients.
 
-                    </p>
-                    <p><a href="#" class="link-with-icon">Learn More About Us!<i class=" icon-chevron-right"></i></a>
-                    </p>
-                </div>
+                </p>
+                <p><a href="#" class="link-with-icon">Learn More About Us!<i class=" icon-chevron-right"></i></a>
+                </p>
             </div>
+        </div>
 
-            <div class="col-md-6">
-                <div class="probootstrap-footer-widget">
-                    <p class="mt40"><img src="../static/img/THIS, HERE, LIGHT.jfif" class="hires" width="90%"
-                                         height="150px" alt="logo"></p>
-                    <p>
-                    <form>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                <input type="search" class="form-control" id="footer-newsletter"
-                                       name="footer-newsletter" placeholder="Subscribe">
-                            </div>
-                        </div>
+        <div class="col-md-6">
+            <div class="probootstrap-footer-widget">
+                <p class="mt40"><img src="../static/img/THIS, HERE, LIGHT.jfif" class="hires" width="90%"
+                                     height="150px" alt="logo"></p>
+                <p>
+                <form>
+                    <div class="col-md-7">
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-md" id="submit" name="submit" value="Go"
-                                   style="height: 35px;">
+                            <input type="search" class="form-control" id="footer-newsletter"
+                                   name="footer-newsletter" placeholder="Subscribe">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-md" id="submit" name="submit" value="Go"
+                               style="height: 35px;">
+                    </div>
                 </form>
                 </p>
             </div>
-            </div>
+        </div>
 
 
-            <div class="col-md-3">
-                <div class="probootstrap-footer-widget">
-                    <h3>Contact</h3>
-                    <ul class="probootstrap-contact-info">
-                        <li><i class="icon-location2"></i>
-                            <span>198 West 21th Street, Suite 721 New York NY 10016</span></li>
-                        <li><i class="icon-mail"></i><span>info@domain.com</span></li>
-                        <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
+        <div class="col-md-3">
+            <div class="probootstrap-footer-widget">
+                <h3>Contact</h3>
+                <ul class="probootstrap-contact-info">
+                    <li><i class="icon-location2"></i>
+                        <span>198 West 21th Street, Suite 721 New York NY 10016</span></li>
+                    <li><i class="icon-mail"></i><span>info@domain.com</span></li>
+                    <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
+                </ul>
+
+                <div class="row mt30">
+                    <ul class="probootstrap-footer-social">
+                        <li><a href=""><i class="icon-twitter"></i></a></li>
+                        <li><a href=""><i class="icon-facebook"></i></a></li>
+                        <li><a href=""><i class="icon-instagram2"></i></a></li>
                     </ul>
 
-                    <div class="row mt30">
-                        <ul class="probootstrap-footer-social">
-                            <li><a href=""><i class="icon-twitter"></i></a></li>
-                            <li><a href=""><i class="icon-facebook"></i></a></li>
-                            <li><a href=""><i class="icon-instagram2"></i></a></li>
-                        </ul>
-
-                    </div>
-
                 </div>
+
             </div>
+        </div>
     </div>
 </footer>
 <!-- END: footer -->
