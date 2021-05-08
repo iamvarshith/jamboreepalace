@@ -12,9 +12,9 @@
         <h2>Jamboree Palace</h2>
         <ul>
             <li><a href="#">Dashboard</a></li>
-            <li><a href="./other_prop.html">Other Properties</a></li>
-            <li><a href="enlist_status.html">Enlistment Applications</a></li>
-            <li><a href="#" id = 'myBtn'>Log-out</a></li>
+            <li><a href="{{ url_for("admin_property") }}">Other Properties</a></li>
+            <li><a href="{{ url_for("admin_enlist_status") }}">Enlistment Applications</a></li>
+            <li><a href="{{ url_for("logout") }}" id = 'myBtn'>Log-out</a></li>
         </ul>
     </div>
     <div class="main_content">
