@@ -112,7 +112,7 @@ def register():
         variables = {'url_email_confirm': '{}'.format(url)}
         print(variables)
 
-        sendMail(usermail=str(form.email.data), subject='Welcome to Jamboreepalace {}'.format(form.name.data),
+        sendMail(usermail=str(form.email.data), subject='Confirm Your Email {}'.format(form.name.data),
                  template='emailconfirm', variables=variables)
 
         return redirect(url_for('login'))
@@ -134,8 +134,8 @@ def confirm_email(token):
     email_email = user().email
     db.session.add(user())
     db.session.commit()
-    sendMail(usermail=user.email, subject='Welcome to Jamboree Palace'
-             , template='welcome', variables=({'date': str(datetime.today()), 'user_name': str(user.username)}))
+    sendMail(usermail=user().email, subject='Welcome to Jamboree Palace'
+             , template='welcome', variables=({'date': str(datetime.today()), 'user_name': str(user().username)}))
 
     return render_template('mail_confirm.html', user=user)
 
