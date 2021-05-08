@@ -556,5 +556,10 @@ def admin_approve():
 
 
 @app.route('/admin/property', methods=['POST', 'GET'])
+@login_required
 def admin_property():
-    return render_template('admin/other_prop.html')
+    if current_user.permission == 'admin':
+        booking_pending = Bookings.query.filter(Bookings.payment_status == 'pending').all()
+        return render_template('admin/other_prop.html', booking_pending = booking_pending)
+    else:
+        return abort(401)
