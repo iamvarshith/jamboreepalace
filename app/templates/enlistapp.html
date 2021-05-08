@@ -123,8 +123,12 @@
                 </div>
                 {% endfor %}
             {% else %}
-                <h4 style="color:#d4d4ce;">No Enlistments</h4>
-
+        <div class="col-md-4 col-sm-6 col-xs-12 profile-no-cont">
+            <i class="far fa-clipboard"></i>
+                <h2 style="color:#d4d4ce;">No Enlistments Yet</h2>
+            <h3>Enlist a property Now!</h3>
+             <p><a href='{{ url_for("enlist") }}' class="btn btn-primary" role="button">Enlist</a></p>
+        </div>
             {% endif %}
 
 

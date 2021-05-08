@@ -344,7 +344,7 @@ def manageProperty():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('space_details.html')
 
 
 @app.route('/contact')
@@ -408,7 +408,6 @@ def individualProperties(token):
     property = Property.query.filter(Property.id == token).first()
     print(property)
     return render_template('space.html', property=property)
-
 
 @app.route('/payu', methods=['POST', "GET"])
 @login_required
@@ -560,6 +559,6 @@ def admin_approve():
 def admin_property():
     if current_user.permission == 'admin':
         booking_pending = Bookings.query.filter(Bookings.payment_status == 'pending').all()
-        return render_template('admin/other_prop.html', booking_pending = booking_pending)
+        return render_template('admin/other_prop.html', booking_pending=booking_pending)
     else:
         return abort(401)
