@@ -28,9 +28,9 @@
 <header role="banner" class="probootstrap-header">
     <!-- <div class="container"> -->
     <div class="row">
-        <a href="index.html" class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png" class="hires"
-                                                                       width="120" height="33"
-                                                                       alt="Free Bootstrap Template by uicookies.com"></a>
+        <a href= '{{ url_for("home") }}' class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png" class="hires"
+                                                                       width="120" height="120"
+                                                                       alt="logo"></a>
 
         <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>
@@ -43,7 +43,7 @@
                 <li><a href='{{ url_for("enlist") }}'>Enlist</a></li>
 
                 <li class="hidden-xs probootstrap-logo-center">
-                    <a href="index.html">
+                    <a href='{{ url_for("home") }}'>
                         <img src="../static/img/logoD1.png" class="hires" width="100px" height=""
                              alt="Jamboree-Palace-logo">
                     </a>

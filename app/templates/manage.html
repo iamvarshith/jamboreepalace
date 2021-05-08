@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jamboree Palace</title>
+    <title>My Properties | Jamboree Palace</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <link rel="icon" href="../static/img/logo-small.png" type="image/x-icon" sizes="16x16">
@@ -28,9 +28,9 @@
 <header role="banner" class="probootstrap-header">
     <!-- <div class="container"> -->
     <div class="row">
-        <a href="index.html" class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png" class="hires"
-                                                                       width="120" height="33"
-                                                                       alt="Free Bootstrap Template by uicookies.com"></a>
+        <a href='{{ url_for("home") }}' class="probootstrap-logo visible-xs"><img src="../static/img/logoD1.png" class="hires"
+                                                                       width="120" height="120"
+                                                                       alt="logo"></a>
 
         <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>
@@ -38,12 +38,12 @@
         <nav role="navigation" class="probootstrap-nav hidden-xs">
             <ul class="probootstrap-main-nav">
 
-                <li class="active"><a href='{{ url_for("home") }}'>Home</a></li>
+                <li><a href='{{ url_for("home") }}'>Home</a></li>
                 <li><a href='{{ url_for("spaces") }}'>Spaces</a></li>
                 <li><a href='{{ url_for("enlist") }}'>Enlist</a></li>
 
                 <li class="hidden-xs probootstrap-logo-center">
-                    <a href="index.html">
+                    <a href='{{ url_for("home") }}'>
                         <img src="../static/img/logoD1.png" class="hires" width="100px" height=""
                              alt="Jamboree-Palace-logo">
                     </a>
@@ -57,7 +57,7 @@
                     <div class="dropdown-div">
                     <a class="dropdown" href='{{ url_for("prevBookings") }}'>Previous Bookings</a>
                      <a class="dropdown" href='{{ url_for("enlistApplication") }}'>Enlistments</a>
-                        <a class="dropdown" href='{{ url_for("manageProperty") }}'>My Properties</a>
+                        <a class="dropdown active" href='{{ url_for("manageProperty") }}'>My Properties</a>
                     <a href = '{{ url_for("logout") }}'>Log out <i class="icon fas fa-sign-out-alt"></i></a>
                     </div>
 
