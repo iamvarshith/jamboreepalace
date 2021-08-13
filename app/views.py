@@ -390,6 +390,7 @@ def search_api():
 
 
 @app.route('/spaces', methods=['GET'])
+@login_required
 def spaces():
     location = request.args.get('location')
     type_property = request.args.get('type')
@@ -406,10 +407,12 @@ def spaces():
 
 
 @app.route('/spaces/<token>', methods=['get', 'post'])
+@login_required
 def individualProperties(token):
     property = Property.query.filter(Property.id == token).first()
     print(property)
     return render_template('space.html', property=property)
+
 
 @app.route('/payu', methods=['POST', "GET"])
 @login_required
@@ -483,6 +486,7 @@ def payu_success():
     salt = "LpoLYPU8dV"
     order = Bookings.query.filter(Bookings.payment_id == txnid).first()
     property_selected = Property.query.filter(Property.id == order.property_id).first()
+    user = User.query.filter_by(User.id == order.user_id).first()
     retHashSeq = salt + '|' + status + '|||||||||||' + email + '|' + firstname + '|' + productinfo + '|' + amount + '|' + txnid + '|' + key
     hashh = hashlib.sha512(retHashSeq.encode()).hexdigest().lower()
     if hashh == posted_hash:
@@ -490,7 +494,7 @@ def payu_success():
         db.session.commit()
         pay_status = 1
         send_email_dict_variable = {
-            "username": current_user.username,
+            "username": user.username,
             "property_name": str(productinfo),
             "no_adults": str(order.no_adults),
             "date": str(order.arrival_data),
@@ -500,7 +504,7 @@ def payu_success():
             "booking_id": str(order.payment_id)
         }
         print(type(send_email_dict_variable))
-        sendMail(usermail=current_user.email, subject='Booking Confirmed', template='booking_confirm',
+        sendMail(usermail=user.email, subject='Booking Confirmed', template='booking_confirm',
                  variables=send_email_dict_variable)
     else:
         pay_status = 0
@@ -565,9 +569,10 @@ def admin_property():
     else:
         return abort(401)
 
-@app.route('/booking/<id>',methods=['POST',"GET"])
+
+@app.route('/booking/<id>', methods=['POST', "GET"])
 @login_required
 def booking_details(id):
     booking = Bookings.query.filter(Bookings.payment_id == id).first()
     booked_property = Property.query.filter(Property.id == booking.property_id).first()
-    return render_template('space_details.html',booking=booking,booked_property=booked_property)
+    return render_template('space_details.html', booking=booking, booked_property=booked_property)
